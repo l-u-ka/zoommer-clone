@@ -1,6 +1,6 @@
 import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
-import { PublicLayout } from "@src/layouts/PublicLayout";
+import { PublicLayout } from "@src/layouts/PublicLayout/PublicLayout";
 
 const Home = lazy(() => import("@src/views/Home/Home"));
 const Products = lazy(() => import("@src/views/Products/Products"));
