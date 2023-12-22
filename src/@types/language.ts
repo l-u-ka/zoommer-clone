@@ -1,9 +1,9 @@
 export enum LANGUAGE_ENUM {
-    GEO = "GEO",
-    ENG = "ENG",
+    KA = "ka",
+    EN = "en",
   }
 
 export interface TFLAGS {
-    [LANGUAGE_ENUM.GEO]: string;
-    [LANGUAGE_ENUM.ENG]: string;
+    [LANGUAGE_ENUM.KA]: string;
+    [LANGUAGE_ENUM.EN]: string;
 }

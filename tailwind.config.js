@@ -18,6 +18,9 @@ export default {
         //   DEFAULT: '5px',
         //   xl: '2rem',
         // },
+      },
+      fontFamily: {
+        'firago': ['FiraGO', 'sans-serif'],
       }
     },
   },
