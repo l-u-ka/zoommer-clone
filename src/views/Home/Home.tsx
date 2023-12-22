@@ -1,9 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { axiosInstance } from "@src/utils/publicAxios";
-import { useGlobalProvider } from "@src/providers/GlobalProvider/useGlobalProvider";
 
 export default function Home() {
-  const { count, setCount } = useGlobalProvider();
+  const [count, setCount] = useState(0);
 
   async function getPosts() {
     const posts = await axiosInstance.get("/posts");

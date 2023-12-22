@@ -1,11 +1,12 @@
 import { createContext } from "react";
+import {LANGUAGE_ENUM} from '@src/@types/language'
 
 interface TGlobalContext {
-  count: number;
-  setCount: React.Dispatch<React.SetStateAction<number>>;
+  selectedLanguage: LANGUAGE_ENUM;
+  setSelectedLanguage: React.Dispatch<React.SetStateAction<LANGUAGE_ENUM>>;
 }
 
 export const GlobalContext = createContext<TGlobalContext>({
-  count: 0,
-  setCount: () => {},
+  selectedLanguage: LANGUAGE_ENUM.GEO,
+  setSelectedLanguage: () => {}
 });

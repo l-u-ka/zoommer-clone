@@ -11,3 +11,9 @@
 .custom-container {
     @apply w-[100%] xl:max-w-[1200px] mx-auto;
 }
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+}
