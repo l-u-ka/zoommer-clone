@@ -5,20 +5,22 @@ import tiktokIcon from '@src/assets/icons/tiktok.png'
 import gmailIcon from '@src/assets/icons/gmail.png'
 import phoneIcon from '@src/assets/icons/phone.png'
 import locationIcon from '@src/assets/icons/locations.png'
+import { FormattedMessage } from 'react-intl'
+import { ReactNode } from 'react'
 
 interface TLink {
-    text: string;
+    text: string | ReactNode ;
     url: string;
     img?: string;
 }
 interface TFooterColumn {
-    title: string;
+    title: string | ReactNode;
     links: TLink[]
 }
 
 const footerSection:TFooterColumn[] = [
     {
-        title: "გამოგვყევი",
+        title: <FormattedMessage id='follow.us'/>,
         links: [
           { text: "Facebook", url: "#", img: fbIcon},
           { text: "Youtube", url: "#", img: ytIcon},
@@ -27,11 +29,11 @@ const footerSection:TFooterColumn[] = [
         ],
       },
       {
-        title: "კონტაქტი",
+        title: <FormattedMessage id='contact'/>,
         links: [
           { text: "info@zoomer.ge", url: "#", img: gmailIcon},
           { text: "+995 (32) 2 60 30 60 / *7007", url: "#", img: phoneIcon},
-          { text: "ფილიალები", url: "#", img: locationIcon},
+          { text: <FormattedMessage id='branches'/>, url: "#", img: locationIcon},
           { text: "Zoomer App", url: "#", },
         ],
       },

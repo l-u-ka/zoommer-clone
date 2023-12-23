@@ -12,10 +12,10 @@ export default function Navigation() {
             <div className="custom-container py-3 flex items-center">
                 <img src={headerLogo} alt='main logo' className='h-[40px]'/>
                 <div className='ml-[100px] w-[100%] flex justify-around'>
-                    <NavButton color={'#ec5e2a'} text={'ნავიგაცია'} textColor={'white'} icon={dotsIcon}/>
+                    <NavButton color={'#ec5e2a'} text={'navigation'} textColor={'white'} icon={dotsIcon}/>
                     <NavSearch/>
-                    <NavButton color={'#fff'} text={'კალათა'} textColor={'black'} icon={cartIcon}/>
-                    <NavButton color={'#fff'} text={'შესვლა'} textColor={'black'} icon={userIcon}/>
+                    <NavButton color={'#fff'} text={'cart'} textColor={'black'} icon={cartIcon}/>
+                    <NavButton color={'#fff'} text={'log.in'} textColor={'black'} icon={userIcon}/>
                 </div>
             </div>
         </div>
