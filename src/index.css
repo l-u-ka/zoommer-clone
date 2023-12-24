@@ -29,11 +29,17 @@
     @apply relative top-[-10px];
 }
 .custom-input .ant-input{
-    @apply border border-solid border-gray-300 hover:border-orange-primary focus:border-orange-primary focus:shadow-none firago-normal text-sm leading-[17px] py-4 rounded-[12px];
+    @apply border border-solid border-gray-300 hover:border-orange-primary focus:border-orange-primary focus:shadow-none firago-normal text-sm leading-[17px] py-4 rounded-xl;
 }
 .custom-input .ant-input-password{
-    @apply border border-solid border-gray-300 hover:border-orange-primary focus-within:border-orange-primary focus-within:shadow-none firago-normal text-sm leading-[17px] py-4 rounded-[12px];
+    @apply border border-solid border-gray-300 hover:border-orange-primary focus-within:border-orange-primary focus-within:shadow-none firago-normal text-sm leading-[17px] py-4 rounded-xl;
 }
 .custom-select .ant-select-selection-item{
     @apply text-black firago-normal;
+}
+.custom-select .ant-input-group-addon {
+    @apply rounded-l-xl;
+}
+.custom-button {
+    @apply firago-bold w-full h-[50px] text-sm leading-[17px] rounded-xl mt-2;
 }

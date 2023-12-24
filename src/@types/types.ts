@@ -8,10 +8,15 @@ export interface TFlags {
     [LANGUAGE_ENUM.EN]: string;
 }
 
-export interface AuthorizationFormInput {
+export interface RegistrationFormInput {
   name:string;
   surname:string;
   email:string;
+  phoneNumber:string;
+  password:string;
+}
+
+export interface AuthorizationFormInput {
   phoneNumber:string;
   password:string;
 }

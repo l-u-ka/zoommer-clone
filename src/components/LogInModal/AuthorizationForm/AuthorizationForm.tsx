@@ -1,20 +1,14 @@
 import { Form, Input, Button, Select } from "antd"
 import { AuthorizationFormInput } from "@src/@types/types"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { FormattedMessage, useIntl } from "react-intl"
 
-interface FormValues extends AuthorizationFormInput {
-  confirmPassword:string;
-  prefix:string;
+interface LoginFormValues extends AuthorizationFormInput{
+  prefix: string;
 }
 
-
 export default function AuthorizationForm() {
-
   const [authInput, setAuthInput] = useState<AuthorizationFormInput>({
-    name: '',
-    surname: '',
-    email: '',
     phoneNumber: '',
     password: ''
   });
@@ -28,10 +22,13 @@ export default function AuthorizationForm() {
     form.resetFields();
   }
 
-  function onValuesChange(changedValues: FormValues) {
+  console.log(authInput)
+
+  function onValuesChange(changedValues:LoginFormValues) {
+    const {prefix, ...filtered} = changedValues;
     setAuthInput((prev) => ({
       ...prev,
-      ...changedValues,
+      ...filtered,
     }));
   }
   
@@ -59,7 +56,7 @@ export default function AuthorizationForm() {
   // };
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>
-      <Select style={{ width: 80}} className="custom-select">
+      <Select style={{ width: 80}} >
         <Option value="995">+995</Option>
         <Option value="44">+44</Option>
       </Select>
@@ -71,7 +68,7 @@ export default function AuthorizationForm() {
     <Form
       // {...formItemLayout}
       form={form}
-      name="register"
+      name="authorize"
       onFinish={onFinish}
       onValuesChange={onValuesChange}
       initialValues={{prefix: '995' }}
@@ -79,44 +76,11 @@ export default function AuthorizationForm() {
       scrollToFirstError
     >
       <Form.Item
-        name="name"
-        rules={[{ required: true, message: <FormattedMessage id="input.name"/>}]}
-        className="custom-input"
-      >
-        <Input placeholder={formatMessage({id: "name"})}/>
-      </Form.Item>
-
-      <Form.Item
-        name="surname"
-        rules={[{ required: true, message: <FormattedMessage id="input.surname"/> }]}
-        className="custom-input"
-      >
-        <Input placeholder={formatMessage({id: "surname"})}/>
-      </Form.Item>
-
-      <Form.Item
-        name="email"
-        rules={[
-          {
-            type: 'email',
-            message: <FormattedMessage id="input.email.valid"/>,
-          },
-          {
-            required: true,
-            message: <FormattedMessage id="input.email"/>,
-          },
-        ]}
-        className="custom-input"
-      >
-        <Input placeholder={formatMessage({id: "email"})}/>
-      </Form.Item>
-
-      <Form.Item
-        name="phone"
+        name="phoneNumber"
         rules={[{ required: true, message: <FormattedMessage id="input.phone.number"/> }]}
         className="custom-input"
       >
-        <Input addonBefore={prefixSelector} style={{ width: '100%' }} placeholder={formatMessage({id: "phone.number"})}/>
+        <Input addonBefore={prefixSelector} style={{ width: '100%' }} placeholder={formatMessage({id: "phone.number"})} className="custom-select" type="tel"/>
       </Form.Item>
 
       <Form.Item
@@ -133,32 +97,9 @@ export default function AuthorizationForm() {
         <Input.Password placeholder={formatMessage({id: "password"})}/>
       </Form.Item>
 
-      <Form.Item
-        name="confirmPassword"
-        dependencies={['password']}
-        hasFeedback
-        rules={[
-          {
-            required: true,
-            message: <FormattedMessage id="input.password.confirm"/>,
-          },
-          ({ getFieldValue }) => ({
-            validator(_, value) {
-              if (!value || getFieldValue('password') === value) {
-                return Promise.resolve();
-              }
-              return Promise.reject(new Error(formatMessage({id: 'input.password.mismatch'})));
-            },
-          }),
-        ]}
-        className="custom-input"
-      >
-        <Input.Password placeholder={formatMessage({id: "confirm.password"})}/>
-      </Form.Item>
-
       <Form.Item > {/*{...tailFormItemLayout}*/}
-        <Button type="primary" htmlType="submit" style={{backgroundColor: '#ec5e2a'}} className="firago-bold w-full h-[50px] text-sm leading-[17px]">
-          <FormattedMessage id="register"/>
+        <Button type="primary" htmlType="submit" style={{backgroundColor: '#ec5e2a'}} className="custom-button">
+          <FormattedMessage id="log.in"/>
         </Button>
       </Form.Item>
     </Form>

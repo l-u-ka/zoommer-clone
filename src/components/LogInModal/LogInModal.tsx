@@ -1,8 +1,8 @@
 import { useState } from "react"
 import { Modal } from "antd"
 import closeIcon from '@src/assets/icons/mobile-modal-close.png'
-import AuthorizationForm from "./AuthorizationForm/AuthorizationForm"
 import RegistrationForm from "./RegistrationForm/RegistrationForm"
+import AuthorizationForm from "./AuthorizationForm/AuthorizationForm"
 import { FormattedMessage } from "react-intl"
 
 interface ModalProps {
