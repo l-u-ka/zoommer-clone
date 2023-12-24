@@ -5,5 +5,22 @@
     "branches": "ფილიალები",
     "follow.us": "გამოგვყვევი",
     "contact": "კონტაქტი",
-    "search": "ძიება"
+    "search": "ძიება",
+    "authorization": "ავტორიზაცია",
+    "registration": "რეგისტრაცია",
+    "name": "სახელი",
+    "surname": "გვარი",
+    "email": "იმეილი",
+    "phone.number": "ტელეფონის ნომერი",
+    "password": "პაროლი",
+    "confirm.password": "გაიმეორეთ პაროლი",
+    "input.name": "გთხოვთ შეიყვანოთ სახელი!",
+    "input.surname": "გთხოვთ შეიყვანოთ გვარი!",
+    "input.email": "გთხოვთ შეიყვანოთ იმეილი!",
+    "input.email.valid": "გთხოვთ შეიყვანოთ ვალიდური მისამართი!",
+    "input.phone.number": "გთხოვთ შეიყვანოთ ტელეფონის ნომერი!",
+    "input.password" : "გთხოვთ შეიყვანოთ პაროლი!",
+    "input.password.confirm" : "გთხოვთ გაიმეოროთ პაროლი!",
+    "input.password.mismatch": "თქვენ მიერ შეყვანილი პაროლები ერთმანეთს არ ემთხვევა!",
+    "register": "დარეგისტრირდი"    
 }

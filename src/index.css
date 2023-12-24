@@ -11,18 +11,29 @@
 }
 
 .custom-container {
-    @apply w-[100%] xl:max-w-[1200px] mx-auto;
+    @apply w-[100%] xl:max-w-[1280px] mx-auto px-3;
 }
-
-.grid-container {
-    display: grid;
-    grid-template-columns: auto auto;
-    justify-content: space-between;
-}
-
 .firago-bold {
     @apply font-firago font-[700]
 }
 .firago-normal {
     @apply font-firago font-[500]
+}
+.custom-modal {
+    @apply top-[80px] max-w-[440px];
+}
+.custom-modal .ant-modal-content {
+    @apply rounded-[20px];
+}
+.custom-modal .ant-modal-close-x {
+    @apply relative top-[-10px];
+}
+.custom-input .ant-input{
+    @apply border border-solid border-gray-300 hover:border-orange-primary focus:border-orange-primary focus:shadow-none firago-normal text-sm leading-[17px] py-4 rounded-[12px];
+}
+.custom-input .ant-input-password{
+    @apply border border-solid border-gray-300 hover:border-orange-primary focus-within:border-orange-primary focus-within:shadow-none firago-normal text-sm leading-[17px] py-4 rounded-[12px];
+}
+.custom-select .ant-select-selection-item{
+    @apply text-black firago-normal;
 }

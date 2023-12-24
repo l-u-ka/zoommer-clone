@@ -5,5 +5,22 @@
     "branches": "Branches",
     "follow.us": "Follow Us",
     "contact": "Contact",
-    "search": "Search"   
+    "search": "Search",
+    "authorization": "Authorization",
+    "registration": "Registration",
+    "name": "Name",
+    "surname": "Surname",
+    "email": "Email",
+    "phone.number": "Phone Number",
+    "password": "Password",
+    "confirm.password": "Confirm Password",
+    "input.name": "Please enter your name!",
+    "input.surname": "Please enter your surname!",
+    "input.email": "Please enter your email!",
+    "input.email.valid": "Please enter a valid email address!",
+    "input.phone.number": "Please enter your phone number!",
+    "input.password" : "Please enter your password!",
+    "input.password.confirm" : "Please confirm your password!",
+    "input.password.mismatch": "The new password that you entered does not match!",
+    "register": "Register"     
 }

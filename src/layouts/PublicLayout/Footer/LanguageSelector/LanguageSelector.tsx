@@ -3,7 +3,7 @@ import { CSSProperties } from "react";
 import type { MenuProps } from 'antd';
 import flagGeo from '@src/assets/icons/flag-geo.png'
 import flagEng from '@src/assets/icons/flag-eng.png'
-import {LANGUAGE_ENUM, TFLAGS} from '@src/@types/language'
+import {LANGUAGE_ENUM, TFlags} from '@src/@types/types'
 import { useLocaleProvider } from "@src/providers/LocaleProvider/useLocaleProvider";
 
 const customStyles:CSSProperties = {
@@ -15,7 +15,7 @@ const customStyles:CSSProperties = {
 const menuStyles:CSSProperties = {
   border: '1px solid orange',
 };
-const flags:TFLAGS = {
+const flags:TFlags = {
   [LANGUAGE_ENUM.KA]: flagGeo,
   [LANGUAGE_ENUM.EN]: flagEng,
 }
@@ -26,8 +26,18 @@ export default function LanguageSelector() {
     console.log(locale)
 
     const menuItems:MenuProps['items'] = [
-      { key: '1', label: 'GEO', onClick: () => setLocale(LANGUAGE_ENUM.KA)},
-      { key: '2', label: 'ENG', onClick: () => setLocale(LANGUAGE_ENUM.EN)},
+      { key: '1', 
+        label: 'GEO', 
+        onClick: () => {
+          setLocale(LANGUAGE_ENUM.KA)
+          localStorage.setItem('locale', LANGUAGE_ENUM.KA)
+      }},
+      { key: '2', 
+        label: 'ENG', 
+        onClick: () => {
+          setLocale(LANGUAGE_ENUM.EN)
+          localStorage.setItem('locale', LANGUAGE_ENUM.EN)
+      }},
     ];
     const menu = (
         <Menu style={menuStyles} items={menuItems}/>

@@ -5,14 +5,14 @@ interface NavItemProps {
     text: string;
     textColor: string;
     icon: string;
+    onClick?: () => void;
 }
 
-export default function NavButton({color, text, textColor, icon} : NavItemProps) {
-  console.log(color, icon)
+export default function NavButton({color, text, textColor, icon, onClick} : NavItemProps) {
   return (
-    <div style={{backgroundColor: color}} className="inline-flex items-center justify-between py-[10px] px-[15px] rounded-xl w-[130px] cursor-pointer">
-      <img src={icon} alt="nav button icon" className="w-auto"/>
-      <p style={{color: textColor}} className="firago-normal text-sm leading-[17px]"><FormattedMessage id={text}/></p>
-    </div>
+      <div onClick={onClick} style={{backgroundColor: color}} className="inline-flex h-full items-center justify-between py-[10px] px-[15px] rounded-xl w-[130px] cursor-pointer">
+        <img src={icon} alt="nav button icon" className="w-auto"/>
+        <p style={{color: textColor}} className="firago-normal text-sm leading-[17px]"><FormattedMessage id={text}/></p>
+      </div>
   )
 }
