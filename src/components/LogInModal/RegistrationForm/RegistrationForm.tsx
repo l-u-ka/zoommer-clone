@@ -71,7 +71,7 @@ export default function RegistrationForm() {
   
   return (
     
-    <Form
+    <Form<FormValues>
       // {...formItemLayout}
       form={form}
       name="register"
@@ -160,6 +160,7 @@ export default function RegistrationForm() {
       </Form.Item>
 
       <Form.Item > {/*{...tailFormItemLayout}*/}
+        {/* <Button type="primary" htmlType="submit" style={{backgroundColor: '#ec5e2a'}} className="custom-button"> */}
         <Button type="primary" htmlType="submit" style={{backgroundColor: '#ec5e2a'}} className="custom-button">
           <FormattedMessage id="register"/>
         </Button>

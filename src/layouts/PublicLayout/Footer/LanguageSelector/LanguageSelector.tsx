@@ -22,8 +22,6 @@ const flags:TFlags = {
 
 export default function LanguageSelector() {
     const {locale, setLocale} = useLocaleProvider();
-    
-    console.log(locale)
 
     const menuItems:MenuProps['items'] = [
       { key: '1', 

@@ -3,11 +3,13 @@ export default {
   content: [
     './src/**/*.{js,jsx,ts,tsx}',
   ],
+  darkMode: "class",
   theme: {
     extend: {
       colors: {
-        'gray-primary': 'rgba(237, 235, 235, 0.74)',
+        'gray-primary': '#f2f2f2',
         'orange-primary': '#ec5e2a',
+        'dark-theme-bg': '#141414'
       },
       // container: {
       //   center: true,

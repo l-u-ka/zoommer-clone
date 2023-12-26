@@ -98,7 +98,8 @@ export default function AuthorizationForm() {
       </Form.Item>
 
       <Form.Item > {/*{...tailFormItemLayout}*/}
-        <Button type="primary" htmlType="submit" style={{backgroundColor: '#ec5e2a'}} className="custom-button">
+        {/* <Button type="primary" htmlType="submit" style={{backgroundColor: '#ec5e2a'}} className="custom-button"> */}
+        <Button type="primary" htmlType="submit" className="custom-button">
           <FormattedMessage id="log.in"/>
         </Button>
       </Form.Item>

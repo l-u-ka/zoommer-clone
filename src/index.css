@@ -22,24 +22,18 @@
 .custom-modal {
     @apply top-[80px] max-w-[440px];
 }
-.custom-modal .ant-modal-content {
-    @apply rounded-[20px];
-}
 .custom-modal .ant-modal-close-x {
-    @apply relative top-[-10px];
+    @apply relative top-[-8px];
 }
-.custom-input .ant-input{
-    @apply border border-solid border-gray-300 hover:border-orange-primary focus:border-orange-primary focus:shadow-none firago-normal text-sm leading-[17px] py-4 rounded-xl;
+.custom-input .ant-input, .custom-input .ant-input-password, .custom-select .ant-select-selection-item{
+    @apply firago-normal text-black;
 }
-.custom-input .ant-input-password{
-    @apply border border-solid border-gray-300 hover:border-orange-primary focus-within:border-orange-primary focus-within:shadow-none firago-normal text-sm leading-[17px] py-4 rounded-xl;
+.custom-select .ant-input-group-addon{
+    @apply dark:bg-[rgb(242,242,242)] opacity-95;
 }
-.custom-select .ant-select-selection-item{
-    @apply text-black firago-normal;
-}
-.custom-select .ant-input-group-addon {
-    @apply rounded-l-xl;
+.custom-select .ant-select-arrow{
+    @apply dark:text-black opacity-95;
 }
 .custom-button {
-    @apply firago-bold w-full h-[50px] text-sm leading-[17px] rounded-xl mt-2;
+    @apply firago-bold w-full mt-2;
 }
