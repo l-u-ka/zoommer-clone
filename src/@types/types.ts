@@ -20,3 +20,7 @@ export interface AuthorizationFormInput {
   phoneNumber:string;
   password:string;
 }
+
+export interface CartITem {
+  
+}

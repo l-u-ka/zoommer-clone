@@ -14,10 +14,13 @@
     @apply w-[100%] xl:max-w-[1280px] mx-auto px-3;
 }
 .firago-bold {
-    @apply font-firago font-[700]
+    @apply font-firago font-[700];
 }
 .firago-normal {
-    @apply font-firago font-[500]
+    @apply font-firago font-[500];
+}
+.firago-semibold {
+    @apply font-firago font-[600];
 }
 .custom-modal {
     @apply top-[80px] max-w-[440px];

@@ -2,6 +2,9 @@
     "navigation" : "Navigation",
     "log.in" : "Log In",
     "cart" : "Cart",
+    "open.cart": "Open Cart",
+    "product": "Product",
+    "sum.price": "Total Price",
     "branches": "Branches",
     "follow.us": "Follow Us",
     "contact": "Contact",
@@ -22,5 +25,7 @@
     "input.password" : "Please enter your password!",
     "input.password.confirm" : "Please confirm your password!",
     "input.password.mismatch": "The new password that you entered does not match!",
-    "register": "Register"     
+    "register": "Register",
+    "light": "Light",
+    "dark": "Dark"     
 }

@@ -45,13 +45,13 @@ export default function FooterColumns() {
         {footerSection.map((section, index) => {
             return <div key={index} className="grid grid-cols-1 gap-5">
                     <div>
-                        <p className="mb-[15px] firago-bold text-xs leading-5">{section.title}</p>
+                        <p className="mb-[15px] firago-bold text-xs leading-5 text-black-08">{section.title}</p>
                         <hr className="mb-[5px] border border-solid border-orange-primary"/>
                     </div>
                     {section.links.map((link, index) => {
                         return <a key={index} href={link.url} className="flex items-center text-black no-underline text-xs font-medium">
                             {link.img && <img src={link.img} alt='footer row icon' className='w-[20px] mr-[10px]'/>}
-                            <span className='firago-normal text-xs leading-5'>{link.text}</span>
+                            <span className='firago-normal text-xs leading-5 text-black-08'>{link.text}</span>
                             </a>
                     })}
             </div>
