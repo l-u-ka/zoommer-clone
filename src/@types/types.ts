@@ -8,6 +8,10 @@ export interface TFlags {
     [LANGUAGE_ENUM.EN]: string;
 }
 
+export enum BUTTON_TYPE_ENUM {
+  DEFAULT = "default",
+  PRIMARY = "primary"
+}
 export interface RegistrationFormInput {
   name:string;
   surname:string;
