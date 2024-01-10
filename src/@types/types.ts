@@ -21,7 +21,7 @@ export interface RegistrationFormInput {
 }
 
 export interface AuthorizationFormInput {
-  phoneNumber:string;
+  email:string;
   password:string;
 }
 

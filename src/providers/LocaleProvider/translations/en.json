@@ -27,5 +27,8 @@
     "input.password.mismatch": "The new password that you entered does not match!",
     "register": "Register",
     "light": "Light",
-    "dark": "Dark"     
+    "dark": "Dark",
+    "search.result": "Search Result",
+    "invalid.input": "Invalid Information",
+    "loading": "Loading"     
 }

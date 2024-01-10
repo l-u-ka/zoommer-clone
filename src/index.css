@@ -38,5 +38,5 @@
     @apply dark:text-black opacity-95;
 }
 .custom-button {
-    @apply firago-bold w-full mt-2;
+    @apply firago-bold w-full;
 }

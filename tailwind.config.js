@@ -11,9 +11,12 @@ export default {
         'orange-primary': '#ec5e2a',
         'dark-theme-bg': '#000',
         'light-theme-bg': '#fff',
+        'black-04': 'rgba(0,0,0,.4)',
+        'black-06': 'rgba(0,0,0,.6)',
         'black-07': 'rgba(0, 0, 0, 0.7)',
         'black-08': 'rgba(0, 0, 0, 0.8)',
-        'black-main': '#000'
+        'black-main': '#000',
+        'red-08': 'rgba(255,0,0,.8)'
       },
       // container: {
       //   center: true,

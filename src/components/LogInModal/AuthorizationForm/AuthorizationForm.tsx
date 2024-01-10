@@ -1,36 +1,67 @@
-import { Form, Input, Button, Select } from "antd"
+import { Form, Input, Button } from "antd"
 import { AuthorizationFormInput } from "@src/@types/types"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { FormattedMessage, useIntl } from "react-intl"
+import axios from "axios";
 
-interface LoginFormValues extends AuthorizationFormInput{
-  prefix: string;
-}
 
 export default function AuthorizationForm() {
   const [authInput, setAuthInput] = useState<AuthorizationFormInput>({
-    phoneNumber: '',
+    email: '',
     password: ''
   });
-  const {Option} = Select;
   const [form] = Form.useForm();
-
   const {formatMessage} = useIntl();
+  const [isLoading, setLoading] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(false);
 
-  function onFinish(_args: any) {
-    console.log(authInput)
-    form.resetFields();
-  }
-
-  console.log(authInput)
-
-  function onValuesChange(changedValues:LoginFormValues) {
-    const {prefix, ...filtered} = changedValues;
-    setAuthInput((prev) => ({
-      ...prev,
-      ...filtered,
+  function onFinish(changedValues:AuthorizationFormInput) {
+    // console.log(authInput)
+    setAuthInput(() => ({
+      ...changedValues
     }));
+    // form.resetFields();
   }
+
+  async function userLogin() {
+    try {
+      setLoading(true);
+      setIsError(false)
+      const response = await axios.post("http://localhost:3000/auth/login", {
+        email: authInput.email,
+        password: authInput.password
+      })
+
+      if (response.status >= 200 && response.status < 300) {
+        // Request was successful, handle the response data here
+        console.log("Login successful:", response.data);
+        form.resetFields();
+      } else {
+        // Request was not successful, handle the error
+        console.error("Login failed. Status:", response.status);
+      }
+    } catch(e) {
+      console.error(e)
+      setIsError(true)
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(()=> {
+    const isNotEmpty = Object.values(authInput).every(element => element !== '');
+    if (isNotEmpty) {
+      userLogin();
+    }
+  }, [authInput])
+
+  // function onValuesChange(changedValues:LoginFormValues) {
+  //   const {prefix, ...filtered} = changedValues;
+  //   setAuthInput((prev) => ({
+  //     ...prev,
+  //     ...filtered,
+  //   }));
+  // }
   
   // const formItemLayout = {
   //   labelCol: {
@@ -54,14 +85,6 @@ export default function AuthorizationForm() {
   //     },
   //   },
   // };
-  const prefixSelector = (
-    <Form.Item name="prefix" noStyle>
-      <Select style={{ width: 80}} >
-        <Option value="995">+995</Option>
-        <Option value="44">+44</Option>
-      </Select>
-    </Form.Item>
-  );
   
   return (
     
@@ -70,17 +93,26 @@ export default function AuthorizationForm() {
       form={form}
       name="authorize"
       onFinish={onFinish}
-      onValuesChange={onValuesChange}
+      // onValuesChange={onValuesChange}
       initialValues={{prefix: '995' }}
       style={{ maxWidth: 600 }}
       scrollToFirstError
     >
       <Form.Item
-        name="phoneNumber"
-        rules={[{ required: true, message: <FormattedMessage id="input.phone.number"/> }]}
+        name="email"
+        rules={[
+          {
+            type: 'email',
+            message: <FormattedMessage id="input.email.valid"/>,
+          },
+          {
+            required: true,
+            message: <FormattedMessage id="input.email"/>,
+          },
+        ]}
         className="custom-input"
       >
-        <Input addonBefore={prefixSelector} style={{ width: '100%' }} placeholder={formatMessage({id: "phone.number"})} className="custom-select" type="tel"/>
+        <Input placeholder={formatMessage({id: "email"})}/>
       </Form.Item>
 
       <Form.Item
@@ -99,6 +131,8 @@ export default function AuthorizationForm() {
 
       <Form.Item > {/*{...tailFormItemLayout}*/}
         {/* <Button type="primary" htmlType="submit" style={{backgroundColor: '#ec5e2a'}} className="custom-button"> */}
+        {isLoading && <div className="firago-bold text-black-04 text-sm leading-[17px] mb-2"><FormattedMessage id="loading"/>...</div>}
+        {isError && <div className="firago-bold text-red-08 text-sm leading-[17px] mb-2"><FormattedMessage id="invalid.input"/></div>}
         <Button type="primary" htmlType="submit" className="custom-button">
           <FormattedMessage id="log.in"/>
         </Button>

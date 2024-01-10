@@ -1,6 +1,6 @@
 import { Form, Input, Button, Select } from "antd"
 import { RegistrationFormInput } from "@src/@types/types"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { FormattedMessage, useIntl } from "react-intl"
 
 interface FormValues extends RegistrationFormInput {
@@ -23,20 +23,34 @@ export default function RegistrationForm() {
 
   const {formatMessage} = useIntl();
 
-  function onFinish(_args: any) {
-    console.log(registerInput)
+  function onFinish(changedValues: FormValues) {
+    // console.log(registerInput)
+    // form.resetFields();
+
+    const {prefix, phoneNumber, confirmPassword, ...filtered} = changedValues;
+    const mergedPhoneNumber = prefix + " " + phoneNumber; 
+    setRegisterInput(() => ({
+      ...filtered,
+      phoneNumber: mergedPhoneNumber
+    }));
+
     form.resetFields();
   }
+  
 
-  console.log(registerInput)
+  useEffect(()=> {
+    const isNotEmpty = Object.values(registerInput).every(element => element !== '');
+    if (isNotEmpty) console.log(registerInput)
+  }, [registerInput])
 
-  function onValuesChange(changedValues: FormValues) {
-    const {prefix, confirmPassword, ...filtered} = changedValues;
-    setRegisterInput((prev) => ({
-      ...prev,
-      ...filtered,
-    }));
-  }
+
+  // function onValuesChange(changedValues: FormValues) {
+  //   const {prefix, confirmPassword, ...filtered} = changedValues;
+  //   setRegisterInput((prev) => ({
+  //     ...prev,
+  //     ...filtered,
+  //   }));
+  // }
   
   // const formItemLayout = {
   //   labelCol: {
@@ -76,7 +90,7 @@ export default function RegistrationForm() {
       form={form}
       name="register"
       onFinish={onFinish}
-      onValuesChange={onValuesChange}
+      // onValuesChange={onValuesChange}
       initialValues={{prefix: '995' }}
       style={{ maxWidth: 600 }}
       scrollToFirstError
