@@ -2,45 +2,68 @@ import { Form, Input, Button, Select } from "antd"
 import { RegistrationFormInput } from "@src/@types/types"
 import { useEffect, useState } from "react"
 import { FormattedMessage, useIntl } from "react-intl"
+import axios from "axios";
+import { useAuthProvider } from "@src/providers/AuthProvider/useAuthProvider";
 
 interface FormValues extends RegistrationFormInput {
-  confirmPassword:string;
+  confirm_password:string;
   prefix:string;
 }
 
 
-export default function RegistrationForm() {
+export default function RegistrationForm({closeModal}: {closeModal: ()=> void}) {
 
   const [registerInput, setRegisterInput] = useState<RegistrationFormInput>({
-    name: '',
-    surname: '',
+    first_name: '',
+    last_name: '',
     email: '',
-    phoneNumber: '',
+    phone_number: '',
     password: ''
   });
+  const [isError, setIsError] = useState<string>('');
+  const [isLoading, setLoading] = useState<boolean>(false);
   const {Option} = Select;
   const [form] = Form.useForm();
-
   const {formatMessage} = useIntl();
+  const {setAuthData} = useAuthProvider();
+
+  // console.log(registerInput)
 
   function onFinish(changedValues: FormValues) {
-    // console.log(registerInput)
-    // form.resetFields();
-
-    const {prefix, phoneNumber, confirmPassword, ...filtered} = changedValues;
-    const mergedPhoneNumber = prefix + " " + phoneNumber; 
+    const {prefix, confirm_password, ...filtered} = changedValues;
     setRegisterInput(() => ({
       ...filtered,
-      phoneNumber: mergedPhoneNumber
     }));
-
-    form.resetFields();
   }
   
+  async function registerUser() {
+    try {
+      setIsError('')
+      setLoading(true);
+      const response = await axios.post("http://localhost:3000/auth/register", {
+        "first_name": registerInput.first_name,
+        "last_name": registerInput.last_name,
+        "email": registerInput.email,
+        "password": registerInput.password,
+        "phone_number": registerInput.phone_number
+    })
+      // console.log("Registered successfully:", response.data);
+      // form.resetFields();
+      setAuthData(response.data)
+      closeModal();
+    } catch (e) {
+      setIsError('register.error')
+      console.error("Did not register successfully", e)
+    } finally {
+      setLoading(false);
+    }
+  }
 
   useEffect(()=> {
     const isNotEmpty = Object.values(registerInput).every(element => element !== '');
-    if (isNotEmpty) console.log(registerInput)
+    if (isNotEmpty) {
+      registerUser();
+    }
   }, [registerInput])
 
 
@@ -94,9 +117,12 @@ export default function RegistrationForm() {
       initialValues={{prefix: '995' }}
       style={{ maxWidth: 600 }}
       scrollToFirstError
+      onValuesChange={() => {
+        setIsError('')
+      }}
     >
       <Form.Item
-        name="name"
+        name="first_name"
         rules={[{ required: true, message: <FormattedMessage id="input.name"/>}]}
         className="custom-input"
       >
@@ -104,7 +130,7 @@ export default function RegistrationForm() {
       </Form.Item>
 
       <Form.Item
-        name="surname"
+        name="last_name"
         rules={[{ required: true, message: <FormattedMessage id="input.surname"/> }]}
         className="custom-input"
       >
@@ -129,8 +155,25 @@ export default function RegistrationForm() {
       </Form.Item>
 
       <Form.Item
-        name="phoneNumber"
-        rules={[{ required: true, message: <FormattedMessage id="input.phone.number"/> }]}
+        name="phone_number"
+        rules={[
+          { 
+            required: true, 
+            message: <FormattedMessage id="input.phone.number"/> 
+          },
+          {
+            max: 9,
+            message: <FormattedMessage id="input.phone.number.maxlength" values={{ maxLength: 9 }} />, 
+          },
+          {
+            validator: (_, value) => {
+              if (/^\d+$/.test(value)) {
+                return Promise.resolve();
+              }
+              return Promise.reject(new Error(formatMessage({ id: 'input.phone.number.invalid' })));
+            },
+          },
+        ]}
         className="custom-input"
       >
         <Input addonBefore={prefixSelector} style={{ width: '100%' }} placeholder={formatMessage({id: "phone.number"})} className="custom-select" type="tel"/>
@@ -143,6 +186,14 @@ export default function RegistrationForm() {
             required: true,
             message: <FormattedMessage id="input.password"/>,
           },
+          {
+            validator: (_, value) => {
+              if (value && value.length >= 8) {
+                return Promise.resolve();
+              }
+              return Promise.reject(new Error(formatMessage({ id: 'input.password.short' }))); // Add a message for short password
+            },
+          },
         ]}
         hasFeedback
         className="custom-input"
@@ -151,7 +202,7 @@ export default function RegistrationForm() {
       </Form.Item>
 
       <Form.Item
-        name="confirmPassword"
+        name="confirm_password"
         dependencies={['password']}
         hasFeedback
         rules={[
@@ -175,6 +226,8 @@ export default function RegistrationForm() {
 
       <Form.Item > {/*{...tailFormItemLayout}*/}
         {/* <Button type="primary" htmlType="submit" style={{backgroundColor: '#ec5e2a'}} className="custom-button"> */}
+        {isError && <div className="firago-bold text-red-08 text-sm leading-[17px] mb-2"><FormattedMessage id={`${isError}`}/></div>}
+        {isLoading && <div className="firago-bold text-black-04 text-sm leading-[17px] mb-2"><FormattedMessage id="loading"/>...</div>}
         <Button type="primary" htmlType="submit" style={{backgroundColor: '#ec5e2a'}} className="custom-button">
           <FormattedMessage id="register"/>
         </Button>

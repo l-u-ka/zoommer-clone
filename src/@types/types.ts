@@ -13,10 +13,10 @@ export enum BUTTON_TYPE_ENUM {
   PRIMARY = "primary"
 }
 export interface RegistrationFormInput {
-  name:string;
-  surname:string;
+  first_name:string;
+  last_name:string;
   email:string;
-  phoneNumber:string;
+  phone_number:string;
   password:string;
 }
 
@@ -27,4 +27,17 @@ export interface AuthorizationFormInput {
 
 export interface CartITem {
   
+}
+
+export interface TAuthRequest {
+  access_token:string;
+  refresh_token:string;
+}
+
+export interface TUserData {
+  email:string;
+  id:string;
+  first_name:string;
+  last_name:string;
+  phone_number: string;
 }

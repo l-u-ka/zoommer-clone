@@ -12,12 +12,15 @@ import searchIcon2 from '@src/assets/icons/search.png'
 import cartIcon2 from '@src/assets/icons/cart.svg'
 import { BUTTON_TYPE_ENUM } from '@src/@types/types'
 import NavSearchMobile from './NavSearch/NavSearchMobile'
+import { useAuthProvider } from '@src/providers/AuthProvider/useAuthProvider'
+import { Auth_Stage_Enum } from '@src/providers/AuthProvider/AuthContext'
 
 export default function Navigation() {
 
     const [loginModal, setLoginModal] = useState<boolean>(false);
     const [cartModal, setCartModal] = useState<boolean>(false);
     const [showSearchInput, setShowSearchInput] = useState<boolean>(false);
+    const {authStage} = useAuthProvider();
 
     function showLoginModal() {
         setLoginModal(true);
@@ -38,7 +41,7 @@ export default function Navigation() {
     return (
         <div className="w-[100%] bg-gray-primary sticky dark:bg-[rgb(15,15,15)]">
             <div className='hidden lg:block'>
-                <div className="custom-container py-3 items-center grid grid-cols-2 justify-between">
+                <div className="custom-container py-3 items-center grid grid-flow-col auto-cols-max justify-between">
                     <img src={headerLogo} alt='main logo' className='h-[28px] lg:h-[40px] cursor-pointer' onClick={()=>navigate("/")}/>
                     <div>
                         <div className=' w-[100%] grid grid-flow-col gap-4'>
@@ -52,8 +55,13 @@ export default function Navigation() {
                                 {cartModal && <CartModal /*closeModal={closeCartModal}*/ />}
                             </div>
                             <div>
-                                <NavButton text={'log.in'} type={BUTTON_TYPE_ENUM.DEFAULT} icon={userIcon} onClick={showLoginModal}/>
-                                <LogInModal modalOpen={loginModal} closeModal={closeLoginModal}/>
+                                {authStage === Auth_Stage_Enum.UNAUTHORIZED ? <>
+                                        <NavButton text={'log.in'} type={BUTTON_TYPE_ENUM.DEFAULT} icon={userIcon} onClick={showLoginModal}/>
+                                        <LogInModal modalOpen={loginModal} closeModal={closeLoginModal}/> 
+                                    </> : <>
+                                        <NavButton text={'profile'} type={BUTTON_TYPE_ENUM.DEFAULT} icon={userIcon} onClick={()=>navigate("/profile")}/>
+                                    </>
+                                }
                             </div>
                         </div>
                     </div>

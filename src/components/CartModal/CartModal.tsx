@@ -26,7 +26,6 @@ const customTheme = {
 
 export default function CartModal({closeModal} : CartModalProps) {
     const {cartItems} = useGlobalProvider();
-    console.log(cartItems)
     const navigate = useNavigate();
 
     return (

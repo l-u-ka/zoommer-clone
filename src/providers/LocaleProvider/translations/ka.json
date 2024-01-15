@@ -30,5 +30,11 @@
     "dark": "ბნელი",
     "search.result": "ძიების შედეგი",
     "invalid.input": "არასწორი მონაცემი",
-    "loading": "იტვირთება"    
+    "loading": "იტვირთება",
+    "register.success": "რეგისტრაცია წარმატებით გაიარეთ",
+    "input.password.short": "პაროლი უნდა შეიცავდეს მინიმუმ 8 ასოს",
+    "input.phone.number.invalid": "ტელეფონის ნომერი მხოლოდ ციფრებს უნდა შეიცავდეს",
+    "register.error": "მომხმარებლის დარეგისტრირება ვერ მოხერხდა",
+    "input.phone.number.maxlength": "ტელეფონის ნომერი 9 ციფრზე მეტი არ უნდა იყოს",
+    "profile": "პროფილი"       
 }

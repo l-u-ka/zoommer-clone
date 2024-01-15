@@ -62,7 +62,7 @@ export default function LogInModal({modalOpen, closeModal} : ModalProps) {
                 </div>
             </div>
             <div className="pt-5">
-                {onAuthorization ? <AuthorizationForm/> : <RegistrationForm/>}
+                {onAuthorization ? <AuthorizationForm closeModal={closeModal}/> : <RegistrationForm closeModal={closeModal}/>}
             </div>
         </Modal>
     </ConfigProvider>

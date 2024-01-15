@@ -3,6 +3,5 @@ import { GlobalContext } from "./GlobalContext";
 
 export function useGlobalProvider() {
   const { ...data } = useContext(GlobalContext);
-
   return { ...data };
 }

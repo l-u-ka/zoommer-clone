@@ -2,10 +2,10 @@ import { Form, Input, Button } from "antd"
 import { AuthorizationFormInput } from "@src/@types/types"
 import { useEffect, useState } from "react"
 import { FormattedMessage, useIntl } from "react-intl"
-import axios from "axios";
+import { publicAxios } from "@src/utils/publicAxios";
+import { useAuthProvider } from "@src/providers/AuthProvider/useAuthProvider";
 
-
-export default function AuthorizationForm() {
+export default function AuthorizationForm({closeModal}: {closeModal: ()=> void}) {
   const [authInput, setAuthInput] = useState<AuthorizationFormInput>({
     email: '',
     password: ''
@@ -14,32 +14,25 @@ export default function AuthorizationForm() {
   const {formatMessage} = useIntl();
   const [isLoading, setLoading] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
+  const {setAuthData} = useAuthProvider();
 
   function onFinish(changedValues:AuthorizationFormInput) {
-    // console.log(authInput)
     setAuthInput(() => ({
       ...changedValues
     }));
-    // form.resetFields();
   }
 
   async function userLogin() {
     try {
       setLoading(true);
       setIsError(false)
-      const response = await axios.post("http://localhost:3000/auth/login", {
+      const response = await publicAxios.post("/auth/login", {
         email: authInput.email,
         password: authInput.password
       })
-
-      if (response.status >= 200 && response.status < 300) {
-        // Request was successful, handle the response data here
-        console.log("Login successful:", response.data);
-        form.resetFields();
-      } else {
-        // Request was not successful, handle the error
-        console.error("Login failed. Status:", response.status);
-      }
+      // form.resetFields();
+      setAuthData(response.data);
+      closeModal();
     } catch(e) {
       console.error(e)
       setIsError(true)
@@ -122,6 +115,14 @@ export default function AuthorizationForm() {
             required: true,
             message: <FormattedMessage id="input.password"/>,
           },
+          {
+            validator: (_, value) => {
+              if (value && value.length >= 8) {
+                return Promise.resolve();
+              }
+              return Promise.reject(new Error(formatMessage({ id: 'input.password.short' }))); // Add a message for short password
+            },
+          }
         ]}
         hasFeedback
         className="custom-input"
@@ -133,7 +134,7 @@ export default function AuthorizationForm() {
         {/* <Button type="primary" htmlType="submit" style={{backgroundColor: '#ec5e2a'}} className="custom-button"> */}
         {isLoading && <div className="firago-bold text-black-04 text-sm leading-[17px] mb-2"><FormattedMessage id="loading"/>...</div>}
         {isError && <div className="firago-bold text-red-08 text-sm leading-[17px] mb-2"><FormattedMessage id="invalid.input"/></div>}
-        <Button type="primary" htmlType="submit" className="custom-button">
+        <Button type="primary" htmlType="submit" className="custom-button" loading={isLoading}>
           <FormattedMessage id="log.in"/>
         </Button>
       </Form.Item>

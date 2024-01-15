@@ -30,5 +30,11 @@
     "dark": "Dark",
     "search.result": "Search Result",
     "invalid.input": "Invalid Information",
-    "loading": "Loading"     
+    "loading": "Loading",
+    "register.success": "Registered Successfully",
+    "input.password.short": "Password should be longer than or equal to 8 characters",
+    "input.phone.number.invalid": "Phone number can not include non-number characters",
+    "register.error": "Could not register the user",
+    "input.phone.number.maxlength": "Phone number should not be longer than 9 characters",
+    "profile": "Profile"
 }
