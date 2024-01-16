@@ -18,7 +18,9 @@ export default {
         'black-main': '#000',
         'red-08': 'rgba(255,0,0,.8)',
         'green-main': '#369260',
-        'green-secondary': '#71d8a0'
+        'green-secondary': '#71d8a0',
+        'white-600': '#d9d9d9',
+        'white-400': '#f2f2f2'
       },
       // container: {
       //   center: true,

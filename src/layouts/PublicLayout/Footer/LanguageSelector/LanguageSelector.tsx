@@ -46,7 +46,7 @@ export default function LanguageSelector() {
       <Button style={customStyles}>
         <div className="flex items-center">
           <img src={flags[locale]} alt="language icon" className="w-[20px] mr-7"/>
-          <span style={{ color: 'initial' }} className=" firago-normal text-sm leading-[17px]">{locale}</span>
+          <span style={{ color: 'initial' }} className=" firago-medium text-sm leading-[17px]">{locale}</span>
         </div>
       </Button>
     </Dropdown>

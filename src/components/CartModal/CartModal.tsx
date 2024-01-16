@@ -34,14 +34,14 @@ export default function CartModal({closeModal} : CartModalProps) {
             <div onMouseLeave={closeModal} className="grid grid-cols-1 gap-[15px] absolute z-10 top-[60px] py-4 px-5 right-[5%] xl:right-[20%] bg-white dark:bg-dark-theme-bg w-[350px] rounded-xl border border-solid border-orange-primary">
                 <div className="flex justify-between">
                     <h4 className="firago-semibold text-black-08 dark:text-white text-sm leading-[17px]"><FormattedMessage id="cart"/></h4>
-                    <h4 className="firago-normal text-black-07 dark:text-white text-xs leading-[14px]">{cartItems.length} <FormattedMessage id="product"/></h4>
+                    <h4 className="firago-medium text-black-07 dark:text-white text-xs leading-[14px]">{cartItems.length} <FormattedMessage id="product"/></h4>
                 </div>
                 <div>
                 {(cartItems.length ===0) && <img src={emptyCart} alt="empty cart icon" className="h-[150px] mx-auto block"/>}
                 </div>
                 <div>
-                    <h4 className="text-right firago-normal text-black-07 dark:text-white text-xs leading-[14px]"><FormattedMessage id="sum.price"/>: <span className="firago-bold text-base leading-[19px] text-black-08 dark:text-white">0 ₾</span></h4>
-                    <Button type="primary" className="firago-normal mx-auto block mt-4" onClick={()=>navigate("/cart")}><FormattedMessage id="open.cart"/></Button>
+                    <h4 className="text-right firago-medium text-black-07 dark:text-white text-xs leading-[14px]"><FormattedMessage id="sum.price"/>: <span className="firago-bold text-base leading-[19px] text-black-08 dark:text-white">0 ₾</span></h4>
+                    <Button type="primary" className="firago-medium mx-auto block mt-4" onClick={()=>navigate("/cart")}><FormattedMessage id="open.cart"/></Button>
                 </div>
             </div>
         </ConfigProvider>

@@ -176,7 +176,7 @@ export default function RegistrationForm({closeModal}: {closeModal: ()=> void}) 
         ]}
         className="custom-input"
       >
-        <Input addonBefore={prefixSelector} style={{ width: '100%' }} placeholder={formatMessage({id: "phone.number"})} className="custom-select" type="tel"/>
+        <Input addonBefore={prefixSelector} style={{ width: '100%' }} placeholder={formatMessage({id: "phone.number"})} className="custom-addon" type="tel"/>
       </Form.Item>
 
       <Form.Item
@@ -227,8 +227,7 @@ export default function RegistrationForm({closeModal}: {closeModal: ()=> void}) 
       <Form.Item > {/*{...tailFormItemLayout}*/}
         {/* <Button type="primary" htmlType="submit" style={{backgroundColor: '#ec5e2a'}} className="custom-button"> */}
         {isError && <div className="firago-bold text-red-08 text-sm leading-[17px] mb-2"><FormattedMessage id={`${isError}`}/></div>}
-        {isLoading && <div className="firago-bold text-black-04 text-sm leading-[17px] mb-2"><FormattedMessage id="loading"/>...</div>}
-        <Button type="primary" htmlType="submit" style={{backgroundColor: '#ec5e2a'}} className="custom-button">
+        <Button loading={isLoading} type="primary" htmlType="submit" style={{backgroundColor: '#ec5e2a'}} className="custom-button w-full">
           <FormattedMessage id="register"/>
         </Button>
       </Form.Item>

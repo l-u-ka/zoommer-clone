@@ -132,9 +132,8 @@ export default function AuthorizationForm({closeModal}: {closeModal: ()=> void})
 
       <Form.Item > {/*{...tailFormItemLayout}*/}
         {/* <Button type="primary" htmlType="submit" style={{backgroundColor: '#ec5e2a'}} className="custom-button"> */}
-        {isLoading && <div className="firago-bold text-black-04 text-sm leading-[17px] mb-2"><FormattedMessage id="loading"/>...</div>}
         {isError && <div className="firago-bold text-red-08 text-sm leading-[17px] mb-2"><FormattedMessage id="invalid.input"/></div>}
-        <Button type="primary" htmlType="submit" className="custom-button" loading={isLoading}>
+        <Button loading={isLoading} type="primary" htmlType="submit" className="custom-button w-full">
           <FormattedMessage id="log.in"/>
         </Button>
       </Form.Item>

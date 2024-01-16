@@ -36,5 +36,9 @@
     "input.phone.number.invalid": "Phone number can not include non-number characters",
     "register.error": "Could not register the user",
     "input.phone.number.maxlength": "Phone number should not be longer than 9 characters",
-    "profile": "Profile"
+    "profile": "Profile",
+    "hello": "Hello",
+    "update" : "Update",
+    "logout": "Log out",
+    "edit.profile" : "Edit Profile" 
 }

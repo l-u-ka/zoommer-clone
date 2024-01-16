@@ -50,14 +50,14 @@ export default function LogInModal({modalOpen, closeModal} : ModalProps) {
 
   return (
     <ConfigProvider theme={customTheme} >
-        <Modal open={modalOpen} footer={false} onCancel={closeModal} className="custom-modal" closeIcon={<img src={closeIcon} alt="modal close icon"/>}>
+        <Modal open={modalOpen} footer={false} onCancel={closeModal} maskClosable={false} className="custom-modal" closeIcon={<img className="relative top-[-8px]" src={closeIcon} alt="modal close icon"/>}>
             <div className="flex">
                 <div className="w-1/2 cursor-pointer" onClick={()=>setOnAuthorization(true)}>
-                    <p className={`${onAuthorization ? 'firago-bold' : 'firago-normal'} text-center text-base leading-[19px] mt-2 mb-[14px]`}><FormattedMessage id="authorization"/></p>
+                    <p className={`${onAuthorization ? 'firago-bold' : 'firago-medium'} text-center text-base leading-[19px] mt-2 mb-[14px]`}><FormattedMessage id="authorization"/></p>
                     <hr className={`border border-solid ${onAuthorization ? ' border-orange-primary' : 'border-gray-primary'}`}/>
                 </div>
                 <div className="w-1/2 cursor-pointer" onClick={()=>setOnAuthorization(false)}>
-                    <p className={`${!onAuthorization ? 'firago-bold' : 'firago-normal'} text-center text-base leading-[19px] mt-2 mb-[14px]`}><FormattedMessage id="registration"/></p>
+                    <p className={`${!onAuthorization ? 'firago-bold' : 'firago-medium'} text-center text-base leading-[19px] mt-2 mb-[14px]`}><FormattedMessage id="registration"/></p>
                     <hr className={`border border-solid ${!onAuthorization ? ' border-orange-primary' : 'border-gray-primary'}`}/>
                 </div>
             </div>

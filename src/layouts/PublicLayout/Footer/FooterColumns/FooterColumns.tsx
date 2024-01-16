@@ -51,7 +51,7 @@ export default function FooterColumns() {
                     {section.links.map((link, index) => {
                         return <a key={index} href={link.url} className="flex items-center text-black no-underline text-xs font-medium">
                             {link.img && <img src={link.img} alt='footer row icon' className='w-[20px] mr-[10px]'/>}
-                            <span className='firago-normal text-xs leading-5 text-black-08 dark:text-gray-primary'>{link.text}</span>
+                            <span className='firago-medium text-xs leading-5 text-black-08 dark:text-gray-primary'>{link.text}</span>
                             </a>
                     })}
             </div>
