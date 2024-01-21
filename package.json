@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.2.6",
     "antd": "^5.12.4",
     "axios": "^1.6.5",
     "jwt-decode": "^4.0.0",

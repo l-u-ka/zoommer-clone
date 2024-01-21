@@ -2,7 +2,7 @@ import { useThemeProvider } from "@src/providers/ThemeProvider/useThemeProvider"
 import { FormattedMessage } from "react-intl";
 
 
-export default function ToggleModeButton() {
+export default function ToggleThemeButton() {
   const {lightMode, toggleLightMode} = useThemeProvider();
 
   return (

@@ -4,6 +4,7 @@ import { GlobalProvider } from "./GlobalProvider/GlobalProvider";
 import { LocaleProvider } from "./LocaleProvider/LocaleProvider";
 import { ThemeProvider } from "./ThemeProvider/ThemeProvider";
 import {AuthProvider} from "./AuthProvider/AuthProvider";
+import { CartProvider } from "./CartProvider/CartProvider";
 
 type ProvidersProps = {};
 
@@ -12,11 +13,13 @@ export function Providers({ children }: PropsWithChildren<ProvidersProps>) {
     <BrowserRouter>
       <GlobalProvider>
         <AuthProvider>
-          <LocaleProvider>
-            <ThemeProvider>
-              {children}
-            </ThemeProvider>
-          </LocaleProvider>
+          <CartProvider>
+            <LocaleProvider>
+              <ThemeProvider>
+                {children}
+              </ThemeProvider>
+            </LocaleProvider>
+          </CartProvider>
         </AuthProvider> 
       </GlobalProvider>
     </BrowserRouter>

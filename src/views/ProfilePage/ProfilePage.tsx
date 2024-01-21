@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import editIcon from '@src/assets/icons/edit-icon.png'
 import { useThemeProvider } from "@src/providers/ThemeProvider/useThemeProvider";
 import LogoutModal from "@src/components/LogoutModal/LogoutModal";
+import { useGlobalProvider } from "@src/providers/GlobalProvider/useGlobalProvider";
 
 enum Editing_Form_Enum {
     FIRST_NAME = "edit_first_name",
@@ -29,6 +30,7 @@ export default function ProfilePage() {
     const [isEditing, setIsEditing] = useState<Editing_Form_Enum>();
     const [isLogoutModal, setIsLogoutModal] = useState<boolean>(false);
 
+    const {showOverlay} = useGlobalProvider();
 
     function showLogoutModal() {
         setIsLogoutModal(true);
@@ -49,7 +51,8 @@ export default function ProfilePage() {
             "colorBorder": "rgb(242, 242, 242)",
             "colorBgContainer": "rgb(242, 242, 242) !important",
             "lineHeight": 1.0625,
-            "colorTextPlaceholder": "rgba(0, 0, 0, 0.6)"
+            "colorTextPlaceholder": "rgba(0, 0, 0, 0.6)",
+            "activeShadow": "0",
           },
           "Button": {
             "colorPrimary": "rgb(236, 94, 42)",
@@ -84,7 +87,7 @@ export default function ProfilePage() {
 
     return (
         <ConfigProvider theme={customTheme}>
-            <div className="custom-container mt-[30px] mb-[60px]">
+            <div className="custom-container pt-[30px] pb-[60px]">
                 <div className="flex items-center">
                     <img src={profileIcon} alt="profile icon" className="w-6 mr-3"/>
                     <h1 className="text-2xl firago-bold leading-[29px] text-black-main dark:text-gray-primary"> <FormattedMessage id="hello"/>, {userData?.first_name}</h1>
@@ -106,7 +109,7 @@ export default function ProfilePage() {
                                 form={form}
                                 name="edit_profile"
                                 onFinish={handleFinish}
-                                style={{ maxWidth: 400 }}
+                                style={{ maxWidth: 400, zIndex: !showOverlay ? 'auto' : -1 }}
                                 //scrollToFirstError
                             >
                                 <Form.Item

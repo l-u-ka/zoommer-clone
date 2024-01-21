@@ -40,5 +40,9 @@
     "hello": "Hello",
     "update" : "Update",
     "logout": "Log out",
-    "edit.profile" : "Edit Profile" 
+    "edit.profile" : "Edit Profile",
+    "yes": "Yes",
+    "no": "No",
+    "logout.sure" : "Are you sure you want to log out?",
+    "information.might.lost": "Your items may be lost" 
 }

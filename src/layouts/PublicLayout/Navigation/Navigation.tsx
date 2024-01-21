@@ -41,7 +41,7 @@ export default function Navigation() {
     return (
         <div className="w-[100%] bg-gray-primary sticky dark:bg-[rgb(15,15,15)]">
             <div className='hidden lg:block'>
-                <div className="custom-container py-3 items-center grid grid-flow-col auto-cols-max justify-between">
+                <div className="custom-container py-3 items-center grid grid-flow-col auto-cols-max justify-between relative">
                     <img src={headerLogo} alt='main logo' className='h-[28px] lg:h-[40px] cursor-pointer' onClick={()=>navigate("/")}/>
                     <div>
                         <div className=' w-[100%] grid grid-flow-col gap-4'>

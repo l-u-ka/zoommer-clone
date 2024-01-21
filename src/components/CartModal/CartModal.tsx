@@ -1,8 +1,8 @@
-import { useGlobalProvider } from "@src/providers/GlobalProvider/useGlobalProvider";
 import emptyCart from '@src/assets/icons/emptybag.png'
 import { Button, ConfigProvider } from "antd";
 import { useNavigate } from "react-router-dom";
 import { FormattedMessage } from "react-intl";
+import { useCartProvider } from "@src/providers/CartProvider/useCartProvider";
 
 interface CartModalProps {
     //openModal: () => void;
@@ -25,13 +25,13 @@ const customTheme = {
   }
 
 export default function CartModal({closeModal} : CartModalProps) {
-    const {cartItems} = useGlobalProvider();
+    const {cartItems} = useCartProvider();
     const navigate = useNavigate();
 
     return (
         <ConfigProvider theme={customTheme}>
-            {/* <div onMouseLeave={closeModal} onMouseEnter={openModal} className="absolute z-10 top-[60px] right-[5%] xl:right-[20%] bg-white dark:bg-dark-theme-bg w-[350px] h-[300px] rounded-xl border border-solid border-orange-primary">CartModal</div> */}
-            <div onMouseLeave={closeModal} className="grid grid-cols-1 gap-[15px] absolute z-10 top-[60px] py-4 px-5 right-[5%] xl:right-[20%] bg-white dark:bg-dark-theme-bg w-[350px] rounded-xl border border-solid border-orange-primary">
+            {/* <div onMouseLeave={closeModal} onMouseEnter={openModal} className="absolute top-[60px] right-[5%] xl:right-[20%] bg-white dark:bg-dark-theme-bg w-[350px] h-[300px] rounded-xl border border-solid border-orange-primary">CartModal</div> */}
+            <div onMouseLeave={closeModal} className="grid grid-cols-1 gap-[15px] absolute top-[58.5px] py-4 px-5 xl:right-[70px] bg-white dark:bg-dark-theme-bg w-[350px] rounded-xl border border-solid border-orange-primary">
                 <div className="flex justify-between">
                     <h4 className="firago-semibold text-black-08 dark:text-white text-sm leading-[17px]"><FormattedMessage id="cart"/></h4>
                     <h4 className="firago-medium text-black-07 dark:text-white text-xs leading-[14px]">{cartItems.length} <FormattedMessage id="product"/></h4>

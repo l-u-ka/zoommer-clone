@@ -5,10 +5,10 @@ import { CartITem } from "@src/@types/types";
 export function GlobalProvider({ children }: PropsWithChildren) {
 
   // const [selectedLanguage, setSelectedLanguage] = useState<LANGUAGE_ENUM>(LANGUAGE_ENUM.GEO);
-  const [cartItems, setCartItems] = useState<CartITem[]>([]);
+  const [showOverlay, setShowOverlay] = useState<boolean>(false)
   
   return (
-    <GlobalContext.Provider value={{cartItems, setCartItems}}>
+    <GlobalContext.Provider value={{showOverlay, setShowOverlay}}>
       {children}
     </GlobalContext.Provider>
   );

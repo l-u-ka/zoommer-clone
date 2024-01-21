@@ -3,12 +3,15 @@ import { useIntl } from 'react-intl'
 import searchIcon from '@src/assets/icons/main-search.png'
 import InputSearch from '@src/features/InputSearch/InputSearch';
 import { useRef, useState } from 'react';
+import { useGlobalProvider } from '@src/providers/GlobalProvider/useGlobalProvider';
 export default function NavSearch() {
   const {formatMessage} = useIntl();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
   const searchElement = useRef<HTMLInputElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
   const [searchValue, setSearchValue] = useState<string>('');
+
+  const {setShowOverlay} = useGlobalProvider()
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -20,6 +23,7 @@ export default function NavSearch() {
         !modalRef.current.contains(event.target as Node)
       ) {
         setIsModalOpen(false);
+        setShowOverlay(false);
       }
     };
 
@@ -36,10 +40,10 @@ export default function NavSearch() {
 
   function showModal() {
     setIsModalOpen(true);
+    setShowOverlay(true);
   }
 
   return (
-    <>
       <div className='flex items-center relative'>
           <img src={searchIcon} alt='search icon' className='absolute left-3 w-[20px]'/>
           <div onFocus={showModal} ref={modalRef}>
@@ -47,7 +51,5 @@ export default function NavSearch() {
             {isModalOpen && <InputSearch/>}
           </div>
       </div>
-      
-    </>
   )
 }

@@ -29,7 +29,8 @@ export default function LogInModal({modalOpen, closeModal} : ModalProps) {
           "colorBorder": "rgb(242, 242, 242)",
           "colorBgContainer": "rgb(242, 242, 242)",
           "lineHeight": 1.0625,
-          "colorTextPlaceholder": "rgba(0, 0, 0, 0.6)"
+          "colorTextPlaceholder": "rgba(0, 0, 0, 0.6)",
+          "activeShadow": "0"
         },
         "Button": {
           "colorPrimary": "rgb(236, 94, 42)",
