@@ -12,8 +12,9 @@
 .custom-container {
   @apply w-[100%] xl:max-w-[1280px] mx-auto px-3;
 }
-.firago-bold {
-  @apply font-firago font-[700];
+
+.firago-normal {
+  @apply font-firago font-[400];
 }
 .firago-medium {
   @apply font-firago font-[500];
@@ -21,8 +22,8 @@
 .firago-semibold {
   @apply font-firago font-[600];
 }
-.firago-normal {
-  @apply font-firago font-[400];
+.firago-bold {
+  @apply font-firago font-[700];
 }
 
 .custom-modal {

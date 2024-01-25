@@ -1,9 +1,10 @@
-import { useEffect } from "react";
+import CategoriesTab from "@src/components/CategoriesTab/CategoriesTab";
 
 export default function Home() {
+
     return (
-    <div>
-      <h1>HOME</h1>
-    </div>
+      <div className="custom-container pt-[30px] pb-[60px]">
+        <CategoriesTab/>
+      </div>
   );
 }

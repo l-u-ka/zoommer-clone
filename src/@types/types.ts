@@ -25,6 +25,12 @@ export interface AuthorizationFormInput {
   password:string;
 }
 
+export interface TCategory {
+  id: string; 
+  created_at: string;
+  updated_at: string; 
+  name: string;
+}
 export interface CartITem {
   
 }

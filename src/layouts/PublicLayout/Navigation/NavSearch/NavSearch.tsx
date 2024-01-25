@@ -11,7 +11,7 @@ export default function NavSearch() {
   const modalRef = useRef<HTMLDivElement>(null);
   const [searchValue, setSearchValue] = useState<string>('');
 
-  const {setShowOverlay} = useGlobalProvider()
+  const {setShowOverlay} = useGlobalProvider();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -47,7 +47,7 @@ export default function NavSearch() {
       <div className='flex items-center relative'>
           <img src={searchIcon} alt='search icon' className='absolute left-3 w-[20px]'/>
           <div onFocus={showModal} ref={modalRef}>
-            <input value={searchValue} onChange={(e) => setSearchValue(e.target.value)} ref={searchElement} type="text" placeholder={formatMessage({id: 'search'})} className='py-[12px] pl-[40px] pr-5 w-[460px] border-solid border rounded-xl text-sm font-firago font-normal border-orange-primary dark:bg-gray-primary'/>
+            <input value={searchValue} onChange={(e) => setSearchValue(e.target.value)} ref={searchElement} type="text" placeholder={formatMessage({id: 'search'})} className='py-[12px] pl-[40px] pr-5 w-[460px] border-solid border rounded-xl text-sm font-firago font-normal border-orange-primary dark:bg-white-400'/>
             {isModalOpen && <InputSearch/>}
           </div>
       </div>

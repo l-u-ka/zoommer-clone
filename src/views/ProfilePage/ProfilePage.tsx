@@ -90,7 +90,7 @@ export default function ProfilePage() {
             <div className="custom-container pt-[30px] pb-[60px]">
                 <div className="flex items-center">
                     <img src={profileIcon} alt="profile icon" className="w-6 mr-3"/>
-                    <h1 className="text-2xl firago-bold leading-[29px] text-black-main dark:text-gray-primary"> <FormattedMessage id="hello"/>, {userData?.first_name}</h1>
+                    <h1 className="text-2xl firago-bold leading-[29px] text-black-main dark:text-white-400"> <FormattedMessage id="hello"/>, {userData?.first_name}</h1>
                 </div>
                 <hr className="mt-[20px] mb-[30px] border border-solid border-white-400"/>
                 <div>
@@ -103,7 +103,7 @@ export default function ProfilePage() {
                         </div>
                         <hr className="mx-[100px] border border-solid border-white-400"/>
                         <div className="flex flex-col w-[400px]">
-                            <h3 className="mb-[30px] firago-semibold text-lg leading-[22px] text-black-main dark:text-gray-primary"><FormattedMessage id="edit.profile"/></h3>
+                            <h3 className="mb-[30px] firago-semibold text-lg leading-[22px] text-black-main dark:text-white-400"><FormattedMessage id="edit.profile"/></h3>
                             <Form<TEdit_Form_Values>
                                 // {...formItemLayout}
                                 form={form}

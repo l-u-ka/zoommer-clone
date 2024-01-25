@@ -1,0 +1,22 @@
+import { TCategory } from "@src/@types/types";
+import { useProductsProvider } from "@src/providers/ProductsProvider/useProductsProvider";
+import { useNavigate } from "react-router-dom";
+export default function CategoriesTab() {
+
+    const {categories} = useProductsProvider();
+    const navigate = useNavigate();
+
+    const tabItems = categories.map((cat:TCategory) => {
+        return (
+            <div key={cat.id} className="w-fullcursor-pointer hover:bg-white-400 px-[10px] first:rounded-t-xl last:rounded-b-xl" onClick={()=> navigate(`/products/${cat.name}`)}>
+                <p className="border-0 border-b border-solid border-white-400 py-3 cursor-pointer firago-medium text-xs leading-[14px] text-black-08 opacity-80">{cat.name}</p>
+            </div>
+        )
+    })
+
+  return (
+    <div className=" hidden lg:block w-[246px] rounded-xl shadow-lg">
+        {tabItems}
+    </div>
+  )
+}

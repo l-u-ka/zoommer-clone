@@ -1,34 +1,21 @@
-import { useEffect, useState } from "react";
+import { useProductsProvider } from '@src/providers/ProductsProvider/useProductsProvider';
+import React, { useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 
 export default function Products() {
-  const [language, setLanguage] = useState("");
+  
+  const {category} = useParams();
+  const {categories, setSelectedCategory} = useProductsProvider();
 
-  useEffect(() => {
-    if (localStorage.getItem("language")) {
-      setLanguage(localStorage.getItem("language") as string);
+  useEffect(()=> {
+    for (let cat of categories) {
+      if(cat.name === category) {
+        setSelectedCategory(cat)
+      }
     }
-  }, []);
+  }, [categories])
 
   return (
-    <div>
-      {language}
-
-      <button
-        onClick={() => {
-          localStorage.setItem("language", "ქართუი");
-          setLanguage("ქართული");
-        }}
-      >
-        ქართული
-      </button>
-      <button
-        onClick={() => {
-          localStorage.setItem("language", "ინგლისური");
-          setLanguage("ინგლისური");
-        }}
-      >
-        ინგლისური
-      </button>
-    </div>
-  );
+    <div>{category}</div>
+  )
 }

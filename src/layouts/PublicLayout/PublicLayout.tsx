@@ -10,8 +10,7 @@ export function PublicLayout() {
 
   const {userData, authStage} = useAuthProvider();
   const {showOverlay} = useGlobalProvider();
-  console.log("OVERLAY: ", showOverlay)
-  console.log(userData, authStage)
+  // console.log(userData, authStage);
 
   return (
     <div className="dark:bg-dark-theme-bg">

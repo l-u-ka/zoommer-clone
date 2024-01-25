@@ -55,11 +55,11 @@ export default function LogInModal({modalOpen, closeModal} : ModalProps) {
             <div className="flex">
                 <div className="w-1/2 cursor-pointer" onClick={()=>setOnAuthorization(true)}>
                     <p className={`${onAuthorization ? 'firago-bold' : 'firago-medium'} text-center text-base leading-[19px] mt-2 mb-[14px]`}><FormattedMessage id="authorization"/></p>
-                    <hr className={`border border-solid ${onAuthorization ? ' border-orange-primary' : 'border-gray-primary'}`}/>
+                    <hr className={`border border-solid ${onAuthorization ? ' border-orange-primary' : 'border-white-400'}`}/>
                 </div>
                 <div className="w-1/2 cursor-pointer" onClick={()=>setOnAuthorization(false)}>
                     <p className={`${!onAuthorization ? 'firago-bold' : 'firago-medium'} text-center text-base leading-[19px] mt-2 mb-[14px]`}><FormattedMessage id="registration"/></p>
-                    <hr className={`border border-solid ${!onAuthorization ? ' border-orange-primary' : 'border-gray-primary'}`}/>
+                    <hr className={`border border-solid ${!onAuthorization ? ' border-orange-primary' : 'border-white-400'}`}/>
                 </div>
             </div>
             <div className="pt-5">
