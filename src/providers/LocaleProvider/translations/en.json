@@ -44,5 +44,7 @@
     "yes": "Yes",
     "no": "No",
     "logout.sure" : "Are you sure you want to log out?",
-    "information.might.lost": "Your items may be lost" 
+    "information.might.lost": "Your items may be lost",
+    "filter": "Filter",
+    "clear": "Clear" 
 }

@@ -8,12 +8,12 @@ import { useLocaleProvider } from "@src/providers/LocaleProvider/useLocaleProvid
 
 const customStyles:CSSProperties = {
   backgroundColor: 'white',
-  border: '1px solid orange',
+  border: '1px solid #ec5e2a',
   display: 'block',
   marginLeft: 'auto',
 };
 const menuStyles:CSSProperties = {
-  border: '1px solid orange',
+  border: '1px solid #ec5e2a',
 };
 const flags:TFlags = {
   [LANGUAGE_ENUM.KA]: flagGeo,

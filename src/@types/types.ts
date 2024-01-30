@@ -47,3 +47,14 @@ export interface TUserData {
   last_name:string;
   phone_number: string;
 }
+
+export interface ProductType {
+  id: string;
+  created_at: string;
+  updated_at: string;
+  title: string;
+  description: string;
+  image: string;
+  price: number;
+  category_name: string;
+}
