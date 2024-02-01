@@ -1,6 +1,5 @@
 import { ProductType } from '@src/@types/types'
 import ProductCard from '@src/components/ProductCard/ProductCard'
-import { useNavigate } from 'react-router-dom'
 
 interface ProductsListProps {
     products: ProductType[]
@@ -9,7 +8,7 @@ interface ProductsListProps {
 export default function ProductsList({products} : ProductsListProps) {
     
     const productCards = products.map((prod:ProductType)=> {
-        return <ProductCard product={prod}/>
+        return <ProductCard key={prod.id} product={prod}/>
     })
 
     return (

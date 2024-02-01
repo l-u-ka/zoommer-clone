@@ -2,10 +2,10 @@ import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import { PublicLayout } from "@src/layouts/PublicLayout/PublicLayout";
 import { PrivateRoute } from "./features/PrivateRoute/PrivateRoute";
-import ProductPage from "./views/ProductPage/ProductPage";
 
 const Home = lazy(() => import("@src/views/Home/Home"));
 const Products = lazy(() => import("@src/views/Products/ProductsPage"));
+const ProductPage = lazy(()=> import("@src/views/ProductPage/ProductPage"));
 const Cart = lazy(()=> import("@src/views/Cart/Cart"));
 const ProfilePage = lazy(()=> import("@src/views/ProfilePage/ProfilePage"));
 const AllCategories = lazy(()=> import("@src/views/AllCategories/AllCategories"))
