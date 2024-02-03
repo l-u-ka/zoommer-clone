@@ -51,5 +51,6 @@
     "description": "Description",
     "additional.info" : "Additional information",
     "update.success" : "User information successfully updated",
-    "update.fail" : "User information failed to update"
+    "update.fail" : "User information failed to update",
+    "buy.product": "Buy"
 }

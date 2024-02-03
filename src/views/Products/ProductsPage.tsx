@@ -2,9 +2,8 @@ import { ProductType } from '@src/@types/types';
 import useGetProducts from '@src/hooks/useGetProducts';
 import { useNavigate, useParams } from 'react-router-dom'
 import goBackIcon from '@src/assets/icons/category-left-arr.png'
-import clearIcon from '@src/assets/icons/clear.png'
 import ProductsList from './ProductsList/ProductsList';
-import { FormattedMessage } from 'react-intl';
+import FilterProducts from '@src/features/FilterProducts/FilterProducts';
 export default function Products() {
   
   const {category} = useParams();
@@ -24,16 +23,7 @@ export default function Products() {
       <div>
         {productsLoading ? <h3>Loading...</h3> : (
           <div className='w-full flex'>
-            <div className='w-[350px] hidden lg:block'>
-              <div className='flex justify-between items-center'>
-                <h2 className='firago-medium text-base leading-[19px] dark:text-orange-primary'><FormattedMessage id='filter'/></h2>
-                <div className='inline-flex items-center cursor-pointer'>
-                  <img src={clearIcon} alt='clear filet icon' className='w-full mr-2'/>
-                  <h2 className='firago-medium text-xs leading-[14px] opacity-60 dark:text-orange-primary'><FormattedMessage id='clear'/></h2>
-                </div>
-              </div>
-              <hr className="mt-[22px] mb-[40px] border border-solid border-white-400"/>
-            </div>
+            <FilterProducts/>
             <ProductsList products={products}/>
           </div>
         )}

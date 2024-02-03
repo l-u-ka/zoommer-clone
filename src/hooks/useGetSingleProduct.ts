@@ -21,7 +21,7 @@ export default function useGetSingleProduct({productId} : {productId: string}) {
 
     useEffect(()=> {
         getProduct(productId);
-    }, [])
+    }, [productId])
 
     return {product, singleProductLoading}
 }

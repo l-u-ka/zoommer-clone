@@ -83,7 +83,7 @@ export default function Navigation() {
                 <div className="custom-container py-3 items-center grid grid-flow-col auto-cols-max justify-between relative">
                     <img src={headerLogo} alt='main logo' className='h-[28px] lg:h-[40px] cursor-pointer' onClick={()=>navigate("/")}/>
                     <div>
-                        <div className=' w-[100%] grid grid-flow-col gap-4'>
+                        <div className=' w-[100%] grid grid-flow-col gap-3 items-center'>
                             {/* <Button text={'navigation'} color={'#ec5e2a'} textColor={'white'} icon={dotsIcon}/> */}
                             <NavButton text={'navigation'} type={BUTTON_TYPE_ENUM.PRIMARY} icon={dotsIcon} onClick={()=>navigate("/all-categories")}/>
                             <NavSearch/>
