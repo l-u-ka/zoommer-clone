@@ -5,9 +5,9 @@ import { FormattedMessage } from "react-intl";
 import {useIntl} from "react-intl";
 import { useEffect, useState } from "react";
 import editIcon from '@src/assets/icons/edit-icon.png'
-import { useThemeProvider } from "@src/providers/ThemeProvider/useThemeProvider";
 import LogoutModal from "@src/components/LogoutModal/LogoutModal";
-import { useGlobalProvider } from "@src/providers/GlobalProvider/useGlobalProvider";
+import { privateAxios } from "@src/utils/privateAxios";
+import useGetUserInfo from "@src/hooks/useGetUserInfo";
 
 enum Editing_Form_Enum {
     FIRST_NAME = "edit_first_name",
@@ -24,13 +24,14 @@ interface TEdit_Form_Values {
 } 
 
 export default function ProfilePage() {
-    const {userData, logout} = useAuthProvider();
+    const {userData, getNewTokens} = useAuthProvider();
     const [form] = Form.useForm();
     const {formatMessage} = useIntl();
     const [isEditing, setIsEditing] = useState<Editing_Form_Enum>();
     const [isLogoutModal, setIsLogoutModal] = useState<boolean>(false);
-
-    const {showOverlay} = useGlobalProvider();
+    const {userInfo, getUserInfo} = useGetUserInfo();
+    const [updateLoading, setUpdateLoading] = useState<boolean>(false);
+    const [updateMessage, setUpdateMessage] = useState<string>("");
 
     function showLogoutModal() {
         setIsLogoutModal(true);
@@ -38,6 +39,8 @@ export default function ProfilePage() {
     function closeLogoutModal() {
         setIsLogoutModal(false);
     }
+
+    console.log("BEING RENDERED")
 
     const customTheme = {
         // algorithm: !lightMode ? darkAlgorithm : defaultAlgorithm,
@@ -75,14 +78,41 @@ export default function ProfilePage() {
     useEffect(()=> {
         form.setFieldsValue({
             edit_first_name: userData?.first_name,
-        edit_last_name: userData?.last_name,
-        edit_email: userData?.email,
-        edit_phone_number: userData?.phone_number,
+            edit_last_name: userData?.last_name,
+            edit_email: userData?.email,
+            edit_phone_number: userData?.phone_number,
         })
     }, [userData])
 
     function handleFinish(values:TEdit_Form_Values) {
-        console.log(values)
+        updateUserInfo(values);
+    }
+
+    useEffect(()=> {
+        if (userInfo) {
+            console.log("Call here!!!!", userInfo);
+            getNewTokens(userInfo.refresh_token);
+        }
+    }, [userInfo])
+    
+    async function updateUserInfo(values:TEdit_Form_Values) {
+        setUpdateMessage('')
+        try {
+            setUpdateLoading(true);
+            await privateAxios.put('/user',{
+                "email":  values.edit_email,
+                "first_name": values.edit_first_name,
+                "last_name": values.edit_last_name,
+                "phone_number": values.edit_phone_number
+             })
+             getUserInfo();
+             setUpdateMessage("update.success")
+        } catch(err) {
+            console.log(err);
+            setUpdateMessage("update.fail")
+        } finally {
+            setUpdateLoading(false);
+        }
     }
 
     return (
@@ -109,7 +139,7 @@ export default function ProfilePage() {
                                 form={form}
                                 name="edit_profile"
                                 onFinish={handleFinish}
-                                style={{ maxWidth: 400, zIndex: !showOverlay ? 'auto' : -1 }}
+                                style={{ maxWidth: 400}}
                                 //scrollToFirstError
                             >
                                 <Form.Item
@@ -159,7 +189,6 @@ export default function ProfilePage() {
                                             addonAfter={<img src={editIcon} alt="edit input icon" className="cursor-pointer" onClick={()=>setIsEditing(Editing_Form_Enum.EMAIL)}
                                             />}
                                         />
-                                       
                                 </Form.Item>
                                 <Form.Item
                                     name="edit_phone_number"
@@ -172,9 +201,7 @@ export default function ProfilePage() {
                                         },
                                         {
                                           validator: (_, value) => {
-                                            if (/^\d+$/.test(value)) {
-                                              return Promise.resolve();
-                                            }
+                                            if (/^\d+$/.test(value)) return Promise.resolve();
                                             return Promise.reject(new Error(formatMessage({ id: 'input.phone.number.invalid' })));
                                           },
                                         },
@@ -190,10 +217,10 @@ export default function ProfilePage() {
                                         />
                                 </Form.Item>
                                 <Form.Item className="mb-0">
-                                    <Button type="primary" className="w-full mt-4" htmlType="submit"><FormattedMessage id="update"/></Button>
+                                    {updateMessage && <p className={`firago-medium text-base leading-5 ${updateMessage==="update.success" ? 'text-green-600' : 'text-red-08'}`}><FormattedMessage id={`${updateMessage}`}/></p>}
+                                    <Button loading={updateLoading} type="primary" className="w-full mt-4" htmlType="submit"><FormattedMessage id="update"/></Button>
                                 </Form.Item>
                             </Form>
-                           
                         </div>
                     </div>
                 </div>

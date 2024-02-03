@@ -1,26 +1,20 @@
-import React from 'react';
+import React from "react";
 
-interface ShadowOverlayProps {
-  children: React.ReactNode;
-  overlayColor?: string;
-  overlayOpacity?: number;
-}
+function ShadowOverlay() {
 
-const ShadowOverlay: React.FC<ShadowOverlayProps> = ({
-  children,
-  overlayColor = 'rgba(0, 0, 0, 0.5)',
-  overlayOpacity = 1,
-}) => {
+  console.log("I AM BEING RENDERED")
   return (
-    <div className="relative z-[-1]">
-      <div
-        className="absolute inset-0 bg-black opacity-0 transition-opacity duration-300 hover:opacity-100" 
-        style={{
-          backgroundColor: overlayColor,
-          opacity: overlayOpacity,
-        }}
-      />
-      {children}
+    <div
+      style={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        backgroundColor: "rgba(0, 0, 0, 0.6)", // Adjust the alpha value for transparency
+        zIndex: 10, // Adjust the index to ensure it overlays other components
+      }}
+    >
     </div>
   );
 };

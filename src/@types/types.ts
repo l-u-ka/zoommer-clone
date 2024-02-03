@@ -57,4 +57,5 @@ export interface ProductType {
   image: string;
   price: number;
   category_name: string;
+  salePrice: null | number;
 }

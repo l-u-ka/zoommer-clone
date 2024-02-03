@@ -12,6 +12,7 @@ interface TAuthContext {
     userData?: TUserData, 
     setAuthData: (e:TAuthRequest)=> void,
     logout: () => void,
+    getNewTokens: (token:string) => Promise<void>,
 }
 
 export const AuthContext = createContext<TAuthContext>({
@@ -20,4 +21,5 @@ export const AuthContext = createContext<TAuthContext>({
     userData: undefined,
     setAuthData: ()=> {},
     logout: () => {},
+    getNewTokens: async () => {},
 })

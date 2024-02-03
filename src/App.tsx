@@ -17,7 +17,7 @@ function App() {
         <Route element={<PublicLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/products/:category" element={<Products />} />
-          <Route path="/product/:prodId" element={<ProductPage/>}/>
+          <Route path="/products/:category/:prodId" element={<ProductPage/>}/>
           <Route path="/all-categories" element={<AllCategories/>}/>
           <Route path="/cart" element={<Cart/>}/>
           <Route path="/profile" element={<PrivateRoute children={<ProfilePage/>}/>}/>

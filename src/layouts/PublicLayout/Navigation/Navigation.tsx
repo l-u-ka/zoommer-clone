@@ -78,7 +78,7 @@ export default function Navigation() {
     }, [isDesktop])
 
     return (
-        <div className="w-[100%] bg-white-07 sticky dark:bg-[rgb(15,15,15)]">
+        <div className="w-[100%] bg-white-07 sticky dark:bg-[rgb(15,15,15)] z-20">
             <div className='hidden lg:block'>
                 <div className="custom-container py-3 items-center grid grid-flow-col auto-cols-max justify-between relative">
                     <img src={headerLogo} alt='main logo' className='h-[28px] lg:h-[40px] cursor-pointer' onClick={()=>navigate("/")}/>
@@ -89,9 +89,9 @@ export default function Navigation() {
                             <NavSearch/>
                             {/* <Button text={'cart'} color={'#fff'} textColor={'black'} icon={cartIcon} onMouseEnter={showCartModal} onMouseLeave={closeCartModal}/>
                             <Button text={'log.in'} color={'#fff'} textColor={'black'} icon={userIcon} onClick={showLoginModal}/> */}
-                            <div onMouseEnter={showCartModal} onMouseLeave={closeCartModal}>
+                            <div onMouseEnter={showCartModal} /*onMouseLeave={closeCartModal}*/>
                                 <NavButton text={'cart'} type={BUTTON_TYPE_ENUM.DEFAULT} icon={cartIcon} /*onMouseEnter={showCartModal} onMouseLeave={closeCartModal}*//>
-                                {cartModal && <CartModal /*closeModal={closeCartModal}*/ />}
+                                {cartModal && <CartModal closeModal={closeCartModal}/>}
                             </div>
                             <div>
                                 {authStage === Auth_Stage_Enum.UNAUTHORIZED ? <>

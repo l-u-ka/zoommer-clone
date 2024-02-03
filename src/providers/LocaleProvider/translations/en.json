@@ -47,5 +47,9 @@
     "information.might.lost": "Your items may be lost",
     "filter": "Filter",
     "clear": "Clear",
-    "add": "Add" 
+    "add": "Add",
+    "description": "Description",
+    "additional.info" : "Additional information",
+    "update.success" : "User information successfully updated",
+    "update.fail" : "User information failed to update"
 }

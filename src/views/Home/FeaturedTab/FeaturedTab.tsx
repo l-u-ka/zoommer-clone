@@ -11,7 +11,7 @@ export default function FeaturedTab({categoryName} : {categoryName: string}) {
     const {products} = useGetProducts({categoryName});
     const {showOverlay} = useGlobalProvider();
     const featuredProducts = products.map((product:ProductType) => {
-        return <ProductCard product={product}/>
+        return <ProductCard key={product.id} product={product}/>
     })
 
     function SampleNextArrow(props:any) {
@@ -20,7 +20,7 @@ export default function FeaturedTab({categoryName} : {categoryName: string}) {
         return (
           <img
             className={className}
-            style={{ ...style, display: "block", width:'50px', height: '50px', position:'relative', top: '-140px', left: '95.5%', zIndex: 10, boxShadow: 'rgba(0, 0, 0, 0.2) 0px 2px 10px', borderRadius: '50%' }}
+            style={{ ...style, display: "block", width:'50px', height: '50px', position:'relative', top: '-140px', left: '95.5%', zIndex: 1, boxShadow: 'rgba(0, 0, 0, 0.2) 0px 2px 10px', borderRadius: '50%' }}
             onClick={onClick}
             src={righrArrow}
           />
@@ -33,7 +33,7 @@ export default function FeaturedTab({categoryName} : {categoryName: string}) {
         return (
           <img
             className={className}
-            style={{ ...style, display: "block", width:'50px', height: '50px', position:'relative', top: '200px', left: '5px', zIndex: 10, boxShadow: 'rgba(0, 0, 0, 0.2) 0px 2px 10px', borderRadius: '50%'  }}
+            style={{ ...style, display: "block", width:'50px', height: '50px', position:'relative', top: '200px', left: '5px', zIndex: 1, boxShadow: 'rgba(0, 0, 0, 0.2) 0px 2px 10px', borderRadius: '50%'  }}
             onClick={onClick}
             src={leftArrow}
           />
@@ -44,15 +44,15 @@ export default function FeaturedTab({categoryName} : {categoryName: string}) {
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: 4,
-        slidesToScroll: 4,
+        slidesToShow: 3,
+        slidesToScroll: 3,
         swipeToSlide: true,
         nextArrow: <SampleNextArrow />,
         prevArrow: <SamplePrevArrow />
       };
 
     return (
-        <div className={`${!showOverlay ? 'z-auto' : 'z-[-1]'}`}>
+        <div>
             <h3>{categoryName}</h3>
             <Slider {...settings}>
                 {featuredProducts}
