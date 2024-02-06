@@ -52,5 +52,12 @@
     "additional.info" : "Additional information",
     "update.success" : "User information successfully updated",
     "update.fail" : "User information failed to update",
-    "buy.product": "Buy"
+    "buy.product": "Buy",
+    "sort.default": "Sort",
+    "sort.price.asc": "Price: Ascending",
+    "sort.price.desc": "Price: Descending",
+    "sort.title.asc": "Title: A - Z",
+    "sort.title.desc": "Title: Z - A",
+    "for.sale": "Products for Sale",
+    "price": "Price"
 }

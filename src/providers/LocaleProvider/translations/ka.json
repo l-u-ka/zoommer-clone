@@ -52,5 +52,12 @@
     "additional.info" : "დამატებითი მახასიათებლები",
     "update.success" : "მომხმარებლის ინფორმაცია წარმატებით შეიცვალა",
     "update.fail" : "მომხმარებლის ინფორმაცია ვერ შეიცვალა",
-    "buy.product": "ყიდვა"      
+    "buy.product": "ყიდვა",
+    "sort.default": "სორტირება",
+    "sort.price.asc": "ფასი: ზრდადობით",
+    "sort.price.desc": "ფასი: კლებადობით",
+    "sort.title.asc": "სათაური: A - Z",
+    "sort.title.desc": "სათაური: Z - A",
+    "for.sale": "ფასდაკლებული პროდუქტები",
+    "price": "ფასი"      
 }

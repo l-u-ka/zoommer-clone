@@ -12,7 +12,7 @@ interface SimilarProductsProps {
 export default function SimilarProducts({category, productId}: SimilarProductsProps) {
 
     const {products, productsLoading} = useGetProducts({categoryName: category})
-    const [similarProducts, setSimilarProducts] = useState<ProductType[]>();
+    const [similarProducts, setSimilarProducts] = useState<ProductType[]>([]);
 
     useEffect(()=> {
         const filteredProducts = products.filter(product => product.id !== productId);
@@ -31,14 +31,13 @@ export default function SimilarProducts({category, productId}: SimilarProductsPr
         slidesToShow: similarProducts?.length,
         slidesToScroll: similarProducts?.length,
         swipeToSlide: true,
-        nextArrow: undefined,
-        prevArrow: undefined,
+        arrows: false
     };
 
     return (
         <div>
             {productsLoading && <h3>Loading...</h3>}
-            {!productsLoading && (
+            {(!productsLoading && similarProducts?.length > 0) && (
                 <Slider {...settings}>
                     {similarProductDivs}
                 </Slider>

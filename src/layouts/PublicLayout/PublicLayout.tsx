@@ -5,6 +5,7 @@ import ToggleThemeButton from "@src/components/ToggleThemeButton/ToggleThemeButt
 import { useAuthProvider } from "@src/providers/AuthProvider/useAuthProvider";
 import { useGlobalProvider } from "@src/providers/GlobalProvider/useGlobalProvider";
 import ShadowOverlay from "@src/components/ShadowOverlay/ShadowOverlay";
+import MobileNavigation from "./Navigation/MobileNavigation/MobileNavigation";
 
 export function PublicLayout() {
 
@@ -19,6 +20,7 @@ export function PublicLayout() {
         <Footer/>
         <ToggleThemeButton/>
         {showOverlay && <ShadowOverlay/>}
+        {<MobileNavigation/>}
       </div>
       
     </div>

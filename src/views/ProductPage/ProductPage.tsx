@@ -2,7 +2,6 @@ import useGetSingleProduct from "@src/hooks/useGetSingleProduct";
 import { useNavigate, useParams } from "react-router-dom"
 import goBackIcon from '@src/assets/icons/category-left-arr.png'
 import ProductDetails from "./ProductDetails/ProductDetails";
-import { ProductType } from "@src/@types/types";
 import BuyProduct from "@src/features/BuyProduct/BuyProduct";
 import BuyProductMobile from "@src/features/BuyProduct/BuyProductMobile";
 
@@ -39,6 +38,7 @@ export default function ProductPage() {
             </div>
           </div>
         )}
+        {(!singleProductLoading && !product) && <h3>პროდუქტი ვერ ჩაიტვირთა</h3>}
       </div>
     )
 }

@@ -37,12 +37,9 @@ export default function LanguageSelector() {
           localStorage.setItem('locale', LANGUAGE_ENUM.EN)
       }},
     ];
-    const menu = (
-        <Menu style={menuStyles} items={menuItems}/>
-    );
-
+   
   return (
-    <Dropdown overlay={menu} placement="top"  trigger={['click']}>
+    <Dropdown menu={{items: menuItems, style: menuStyles}} placement="top" trigger={['click']}>
       <Button style={customStyles}>
         <div className="flex items-center">
           <img src={flags[locale]} alt="language icon" className="w-[20px] mr-7"/>

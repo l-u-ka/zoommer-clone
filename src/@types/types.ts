@@ -59,3 +59,11 @@ export interface ProductType {
   category_name: string;
   salePrice: null | number;
 }
+
+export enum SORT_BY_ENUM {
+  DEFAULT = "sort.default",
+  PRICE_ASC = "sort.price.asc",
+  PRICE_DESC = "sort.price.desc",
+  TITLE_ASC = "sort.title.asc",
+  TITLE_DESC = "sort.title.desc"
+}
