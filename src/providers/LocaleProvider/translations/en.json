@@ -59,5 +59,7 @@
     "sort.title.asc": "Title: A - Z",
     "sort.title.desc": "Title: Z - A",
     "for.sale": "Products for Sale",
-    "price": "Price"
+    "price": "Price",
+    "similar.products": "Similar Products",
+    "product.not.found": "Unfortunately, product could not be found"
 }

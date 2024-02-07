@@ -1,8 +1,4 @@
-import React from "react";
-
 function ShadowOverlay() {
-
-  console.log("I AM BEING RENDERED")
   return (
     <div
       style={{

@@ -36,7 +36,7 @@ export default function FilterProducts() {
           "handleSizeHover": 14,
           "railSize": 6,
           "handleLineWidthHover": 10,
-          "handleActiveColor": "rgba(22, 119, 255, 0.4)"
+          "handleActiveColor": "rgba(22, 119, 255, 0.2)"
         },
         "Checkbox": {
           "colorPrimary": "rgb(236, 94, 42)",

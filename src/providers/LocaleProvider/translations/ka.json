@@ -59,5 +59,7 @@
     "sort.title.asc": "სათაური: A - Z",
     "sort.title.desc": "სათაური: Z - A",
     "for.sale": "ფასდაკლებული პროდუქტები",
-    "price": "ფასი"      
+    "price": "ფასი",
+    "similar.products": "მსგავსი პროდუქტები",
+    "product.not.found": "სამწუხაროდ, პროდუქტი ვერ მოიძებნა"      
 }
