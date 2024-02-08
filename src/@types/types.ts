@@ -67,3 +67,10 @@ export enum SORT_BY_ENUM {
   TITLE_ASC = "sort.title.asc",
   TITLE_DESC = "sort.title.desc"
 }
+
+export enum EDITING_FORM_ENUM {
+  FIRST_NAME = "edit_first_name",
+  LAST_NAME = "edit_last_name",
+  EMAIL = "edit_email",
+  PHONE_NUMBER = "edit_phone_number",
+}

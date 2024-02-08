@@ -38,8 +38,8 @@ export default function SortProducts({sortOrder ,setSortOrder}: {sortOrder: SORT
 
     return (
         <Dropdown menu={{items: menuItems, style: menuStyles}} placement="bottom" trigger={['click']}>
-            <button className="w-full h-full border-none rounded-[30px] cursor-pointer shadow-md">
-                <div className="flex items-center justify-center" onClick={()=>setIsDropped(prev => !prev)}>
+            <button className="w-full h-full border-none rounded-[30px] cursor-pointer shadow-md px-4">
+                <div className="flex items-center justify-between" onClick={()=>setIsDropped(prev => !prev)}>
                     <p className="firago-medium text-black text-xs leading-[14px] mr-2"><FormattedMessage id={sortOrder}/></p>
                     <img src={dropdownArrow} alt="dropdown arrow" className={`w-3 ${isDropped && 'rotate-180'}`} />
                 </div>

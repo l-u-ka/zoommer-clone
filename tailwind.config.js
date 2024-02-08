@@ -10,7 +10,7 @@ export default {
         'gray-seconday': '#ddd',
         "gray-03": "rgba(237, 237, 237)",
         "orange-primary": "#ec5e2a",
-        "dark-theme-bg": "#000",
+        "dark-theme-bg": "rgb(8, 8, 8)",
         "light-theme-bg": "#fff",
         "black-04": "rgba(0,0,0,.4)",
         "black-06": "rgba(0,0,0,.6)",

@@ -12,9 +12,8 @@ import CartModal from '@src/components/CartModal/CartModal'
 import searchIcon2 from '@src/assets/icons/search.png'
 import cartIcon2 from '@src/assets/icons/cart.svg'
 import burgerIcon from '@src/assets/icons/burger-icon.png'
-import burgerCloseIcon from '@src/assets/icons/burger-close.png'
+import burgerCloseIcon from '@src/assets/icons/close.png'
 import { BUTTON_TYPE_ENUM } from '@src/@types/types'
-import NavSearchMobile from './NavSearch/NavSearchMobile'
 import { useAuthProvider } from '@src/providers/AuthProvider/useAuthProvider'
 import { Auth_Stage_Enum } from '@src/providers/AuthProvider/AuthContext'
 import { useGlobalProvider } from '@src/providers/GlobalProvider/useGlobalProvider'
@@ -61,6 +60,7 @@ export default function Navigation() {
     }
     function closeSearchInput() {
         setSearchInput(false);
+        setShowOverlay(false);
     }
 
     useEffect(()=> {
@@ -78,7 +78,7 @@ export default function Navigation() {
     }, [isDesktop])
 
     return (
-        <div className="w-[100%] bg-white-07 sticky dark:bg-[rgb(15,15,15)] z-20">
+        <div className="w-[100%] bg-white-07 sticky top-0 dark:bg-[rgba(30,30,30)] z-20">
             <div className='hidden lg:block'>
                 <div className="custom-container py-3 items-center grid grid-flow-col auto-cols-max justify-between relative">
                     <img src={headerLogo} alt='main logo' className='h-[28px] lg:h-[40px] cursor-pointer' onClick={()=>navigate("/")}/>
@@ -121,8 +121,8 @@ export default function Navigation() {
                             <img src={cartIcon2} alt='cart icon' className='ml-5 w-6 cursor-pointer'/>
                         </div>
                     </div>
-                    {searchInput && <NavSearchMobile/>}
-                    {categoriesTabModal && <CategoriesTabMobile/>}
+                    {searchInput && <NavSearch/>}
+                    {<CategoriesTabMobile isOpen={categoriesTabModal}/>}
                 </div>
             </div>
         </div>

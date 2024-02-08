@@ -25,7 +25,7 @@ export default function SearchResultPage() {
     <div className='custom-container pt-[30px] pb-[60px] min-h-[700px]'>
       <div className='mb-10'>
         <h4 className='firago-medium text-black-06 text-xs leading-[14px] mb-[15px] dark:text-white-400'><FormattedMessage id="search.result"/></h4>
-        <h3 className='firago-medium text-base leading-[14px] dark:text-white-400'> მოიძებნა {searchedProducts?.length} შედეგი <span className=' text-orange-primary'>{searchValue}</span></h3>
+        {!searchLoading && <h3 className='firago-medium text-base leading-[14px] dark:text-white-400'> მოიძებნა {searchedProducts?.length} შედეგი <span className=' text-orange-primary'>{searchValue}</span></h3>}
       </div>
       {searchLoading && <div>Loading...</div>}
       {(!searchLoading && searchedProducts.length >= 1) && (
@@ -33,7 +33,7 @@ export default function SearchResultPage() {
           {searchedProductCards}
         </div>
       )}
-      {(!searchLoading && searchedProducts.length < 1) && <div>Products could not be found</div>}
+      {(!searchLoading && searchedProducts.length < 1) && <p className='firago-semibold text-base leading-5 dark:text-white-400'><FormattedMessage id='product.not.found'/></p>}
     </div>
   )
 }

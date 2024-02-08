@@ -4,8 +4,12 @@ import useGetProducts from "@src/hooks/useGetProducts"
 import Slider from "react-slick";
 import leftArrow from '@src/assets/icons/slider-left-btn.png'
 import righrArrow from '@src/assets/icons/slider-right-btn.png'
+import { useMediaQuery } from "react-responsive";
+
 
 export default function FeaturedTab({categoryName} : {categoryName: string}) {
+
+    const isDesktop = useMediaQuery({ minWidth: 1024 });
 
     const {products, productsLoading} = useGetProducts({categoryName});
     const featuredProducts = products.map((product:ProductType) => {
@@ -43,8 +47,8 @@ export default function FeaturedTab({categoryName} : {categoryName: string}) {
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: 5,
-        slidesToScroll: 5,
+        slidesToShow: isDesktop ? 5 : 3,
+        slidesToScroll: isDesktop ? 5 : 3 ,
         swipeToSlide: true,
         nextArrow: <SampleNextArrow />,
         prevArrow: <SamplePrevArrow />
@@ -53,7 +57,7 @@ export default function FeaturedTab({categoryName} : {categoryName: string}) {
     return (
       (!productsLoading && products.length > 0) && (
         <div className="relative">
-            <h3 className="mb-4">{categoryName}</h3>
+            <h3 className="mb-4 dark:text-orange-primary">{categoryName}</h3>
               <Slider {...settings}>
                   {featuredProducts}
               </Slider>

@@ -22,7 +22,6 @@ export function PublicLayout() {
         {showOverlay && <ShadowOverlay/>}
         {<MobileNavigation/>}
       </div>
-      
     </div>
   );
 }

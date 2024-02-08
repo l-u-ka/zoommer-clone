@@ -42,7 +42,7 @@ export default function InputSearch({searchInput, closeModal}: {searchInput: str
   })
 
   useEffect(()=> {
-    if(searchInput.length > 3) searchProducts(searchInput)
+    if(searchInput?.length > 3) searchProducts(searchInput)
     else setSearchedProducts([])
   }, [searchInput])
 
@@ -50,13 +50,13 @@ export default function InputSearch({searchInput, closeModal}: {searchInput: str
     <div className="w-full lg:w-[600px] max-h-[500px] p-5 rounded-xl bg-light-theme-bg dark:bg-dark-theme-bg border border-solid border-orange-primary absolute top-[60px] lg:top-[60px] lg:left-[-70px]">
         <div className="w-full flex justify-between">
           <h4 className="firago-medium text-sm leading-[17px] text-black-08 dark:text-white-400"><FormattedMessage id="search.result"/>:</h4>
-          {(searchInput.length > 3 && !searchLoading && searchedProducts.length >= 1) && <Link onClick={closeModal} to={`/products/search/${searchInput}`} className="no-underline firago-medium text-sm leading-[17px] text-orange-primary">ყველას ნახვა</Link>}
+          {(searchInput?.length > 3 && !searchLoading && searchedProducts?.length >= 1) && <Link onClick={closeModal} to={`/products/search/${searchInput}`} className="no-underline firago-medium text-sm leading-[17px] text-orange-primary">ყველას ნახვა</Link>}
         </div>
         {searchLoading && <h3>Loading...</h3>}
-        {(!searchLoading && searchedProducts.length >=1) && <div className="grid gap-3 mt-3">
+        {(!searchLoading && searchedProducts?.length >=1) && <div className="grid gap-3 mt-3">
             {searchedProductDivs}
           </div>}
-        {(searchInput.length > 3 && !searchLoading && searchedProducts.length < 1) && <div className="firago-medium text-black-08 text-sm leading-[17px] mt-3"><FormattedMessage id="product.not.found"/></div>}
+        {(searchInput?.length > 3 && !searchLoading && searchedProducts?.length < 1) && <div className="firago-medium text-black-08 text-sm leading-[17px] mt-3"><FormattedMessage id="product.not.found"/></div>}
     </div>
   )
 }

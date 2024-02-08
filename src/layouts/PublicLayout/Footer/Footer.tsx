@@ -3,7 +3,7 @@ import FooterColumns from "./FooterColumns/FooterColumns";
 
 export default function Footer() {
   return (
-    <div className="w-full bg-white-400 dark:bg-[rgb(15,15,15)]">
+    <div className="w-full bg-white-400 dark:bg-[rgb(30,30,30)]">
         <FooterColumns/>
         <hr className="border border-solid border-white"/>
         <div className="custom-container py-[10px]">

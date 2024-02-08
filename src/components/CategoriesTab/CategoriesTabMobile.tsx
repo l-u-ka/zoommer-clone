@@ -2,7 +2,7 @@ import { TCategory } from "@src/@types/types";
 import { useProductsProvider } from "@src/providers/ProductsProvider/useProductsProvider"
 import { useNavigate } from "react-router-dom";
 
-export default function CategoriesTabMobile() {
+export default function CategoriesTabMobile({ isOpen }: {isOpen: boolean }) {
 
     const {categories} = useProductsProvider();
     const navigate = useNavigate();
@@ -14,6 +14,8 @@ export default function CategoriesTabMobile() {
     })
 
     return (
-        <div className="absolute top-[52px] left-0 grid grid-flow-row">{categorieTabs}</div>
+        <div className={`absolute top-[52px] left-0 flex flex-col h-screen bg-white-600 transition-all duration-300 ${
+            isOpen ? "translate-x-0" : "-translate-x-full"
+          }`}>{categorieTabs}</div>
     )
 }

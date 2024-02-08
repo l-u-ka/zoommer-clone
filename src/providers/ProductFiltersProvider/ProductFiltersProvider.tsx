@@ -7,7 +7,7 @@ export function ProductFiltersProvider({children}: PropsWithChildren) {
     const defaultMaxPrice:number = 5000;
 
     const [currentPage, setCurrentPage] = useState<number>(1);
-    const [pageSize, setPageSize] = useState<number>(1);
+    const [pageSize, setPageSize] = useState<number>(12);
     const [minPrice, setMinPrice] = useState<number>(defaultMinPrice);
     const [maxPrice, setMaxPrice] = useState<number>(defaultMaxPrice);
     const [isForSale, setIsForSale] = useState<boolean>(false);

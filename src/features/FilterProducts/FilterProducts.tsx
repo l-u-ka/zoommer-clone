@@ -2,24 +2,38 @@ import clearIcon from '@src/assets/icons/clear.png'
 import { FormattedMessage } from 'react-intl';
 import { Slider, Checkbox, CheckboxProps, ConfigProvider } from 'antd';
 import { useProductFiltersProvider } from '@src/providers/ProductFiltersProvider/useProductFiltersProvider';
+import { useState } from 'react';
 
-export default function FilterProducts() {
+export default function FilterProducts({closeModal} : {closeModal?: ()=>void}) {
 
-    const {setMaxPrice, setMinPrice, minPrice, maxPrice, defaultMinPrice, defaultMaxPrice, setIsForSale, isForSale} = useProductFiltersProvider();
-      
+    const {setMaxPrice, setMinPrice, defaultMinPrice, defaultMaxPrice, setIsForSale, isForSale} = useProductFiltersProvider();
+    const [isForSaleChecked, setIsForSaleChecked] = useState(false); 
+    const [sliderValue, setSliderValue] = useState<[number, number]>([defaultMinPrice, defaultMaxPrice]); // State for slider value
+
+
     const onChangeComplete = (value: number[]) => {
       setMinPrice(value[0])
       setMaxPrice(value[1]);
+      setSliderValue([value[0], value[1]]);
+      if (closeModal) closeModal();
     };
 
     const onSaleChange: CheckboxProps['onChange'] = (e) => {
-      setIsForSale(e.target.checked)
+      setIsForSale(e.target.checked);
+      setIsForSaleChecked(e.target.checked)
+      if(closeModal) closeModal();
+    };
+
+    const onChange = (value: number[]) => {
+      setSliderValue([value[0], value[1]]);
     };
 
     function clearFilters() {
       setMinPrice(defaultMinPrice);
       setMaxPrice(defaultMaxPrice);
+      setSliderValue([defaultMinPrice, defaultMaxPrice]);
       setIsForSale(false);
+      setIsForSaleChecked(false);
     }
 
     const configTheme = {
@@ -48,7 +62,7 @@ export default function FilterProducts() {
 
     return (
       <ConfigProvider theme={configTheme}>
-        <div className='w-[350px] min-w-[350px] hidden lg:block'>
+        <div /*className='w-[350px] min-w-[350px] hidden lg:block' */ className='w-full'>
           <div className='flex justify-between items-center'>
             <h2 className='firago-medium text-base leading-[19px] dark:text-orange-primary'><FormattedMessage id='filter'/></h2>
             <div className='inline-flex items-center cursor-pointer'>
@@ -64,11 +78,11 @@ export default function FilterProducts() {
               max={defaultMaxPrice}
               range
               step={10}
-              defaultValue={[minPrice, maxPrice]}
-              // onChange={onChange}
+              value={sliderValue}
+              onChange={onChange}
               onChangeComplete={onChangeComplete}
             />
-            <Checkbox className='mt-8' onChange={onSaleChange} defaultChecked={isForSale}><h3 className='firago-semibold text-base leading-5 opacity-80 dark:text-orange-primary'><FormattedMessage id='for.sale'/></h3></Checkbox>
+            <Checkbox checked={isForSaleChecked} className='mt-8' onChange={onSaleChange} defaultChecked={isForSale}><h3 className='firago-semibold text-base leading-5 opacity-80 dark:text-orange-primary'><FormattedMessage id='for.sale'/></h3></Checkbox>
           </div>
         </div>
       </ConfigProvider>

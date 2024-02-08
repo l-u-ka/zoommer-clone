@@ -7,6 +7,10 @@ import FilterProducts from '@src/features/FilterProducts/FilterProducts';
 import { useProductFiltersProvider } from '@src/providers/ProductFiltersProvider/useProductFiltersProvider';
 import { useEffect, useState } from 'react';
 import SortProducts from '@src/features/SortProducts/SortProducts';
+import { FormattedMessage } from 'react-intl';
+import filterIcon from '@src/assets/icons/filter.png'
+import FilterProductsMobile from '@src/features/FilterProducts/FilterProductsMobile';
+
 export default function Products() {
   
   const {category} = useParams();
@@ -14,6 +18,16 @@ export default function Products() {
   const {products, productsLoading, totalProducts, setProducts} = useGetProducts({categoryName: category as string, page: currentPage, pageSize: pageSize, minPrice: minPrice, maxPrice: maxPrice, onlySales: isForSale})
   const navigate = useNavigate();
   const [sortOrder, setSortOrder] = useState<SORT_BY_ENUM>(SORT_BY_ENUM.DEFAULT);
+  const [filterModal, setFilterModal] = useState<boolean>(false);
+
+
+  const showFilterModal = () => {
+    setFilterModal(true);
+  };
+
+  const handleFilterCancel = () => {
+    setFilterModal(false);
+  };
 
   function sortProducts() {
   switch (sortOrder) {
@@ -68,7 +82,15 @@ export default function Products() {
               <SortProducts setSortOrder={setSortOrder} sortOrder={sortOrder}/>
             </div>
             {/* add mobile filter button below*/}
-            <button className='w-full'>replace this</button>
+            <div className='w-full'>
+              <button className='w-full h-10 border-none px-5 rounded-[30px] cursor-pointer shadow-md' onClick={showFilterModal}>
+                <div className='flex justify-start items-center'>
+                  <img alt='filter icon' src={filterIcon} className='w-5 mr-[10px]'/>
+                  <p className='firago-medium text-xs leading-[14px]'><FormattedMessage id='filter'/></p>
+                </div>
+              </button>
+              <FilterProductsMobile isModalOpen={filterModal} handleCancel={handleFilterCancel}/>
+            </div>
           </div>
         </div>
       </div>
@@ -76,7 +98,9 @@ export default function Products() {
       <div>
           <div>
             <div className='w-full flex'>
-              <FilterProducts/>
+              <div className='w-[350px] min-w-[350px] hidden lg:block'>
+                <FilterProducts/>
+              </div>
               {productsLoading && <h3 className='ml-6'>Loading...</h3>}
               {(!productsLoading && products.length > 0) && <ProductsList products={products} totalProducts={totalProducts as number}/>}
               {(!productsLoading && products.length === 0) && <h2>პროდუქტები ვერ მოიძებნა</h2>}
