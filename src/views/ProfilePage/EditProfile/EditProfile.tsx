@@ -64,7 +64,7 @@ export default function EditProfile() {
     }, [userInfo])
 
     return (
-        <div>
+        <div className="flex flex-col w-[400px]">
             <h3 className="mb-[30px] firago-semibold text-lg leading-[22px] text-black-main dark:text-white-400"><FormattedMessage id="edit.profile"/></h3>
                             <Form<TEdit_Form_Values>
                                 // {...formItemLayout}

@@ -61,5 +61,8 @@
     "for.sale": "Products for Sale",
     "price": "Price",
     "similar.products": "Similar Products",
-    "product.not.found": "Unfortunately, product could not be found"
+    "product.not.found": "Unfortunately, product could not be found",
+    "wishllist": "Wishlist",
+    "no.product.in.list": "There are no products in the list",
+    "all.categories": "All categories"
 }

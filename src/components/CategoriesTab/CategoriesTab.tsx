@@ -1,4 +1,4 @@
-import { TCategory } from "@src/@types/types";
+import { CategoryType } from "@src/@types/types";
 import { useProductsProvider } from "@src/providers/ProductsProvider/useProductsProvider";
 import { useNavigate } from "react-router-dom";
 export default function CategoriesTab() {
@@ -6,7 +6,7 @@ export default function CategoriesTab() {
     const {categories} = useProductsProvider();
     const navigate = useNavigate();
 
-    const tabItems = categories.map((cat:TCategory, index: number) => {
+    const tabItems = categories.map((cat:CategoryType, index: number) => {
         const isLastItem = index === categories.length - 1;
     
         return (

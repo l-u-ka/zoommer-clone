@@ -1,50 +1,48 @@
 export enum LANGUAGE_ENUM {
-    KA = "ka",
-    EN = "en",
-  }
+  KA = "ka",
+  EN = "en",
+}
 
 export interface TFlags {
-    [LANGUAGE_ENUM.KA]: string;
-    [LANGUAGE_ENUM.EN]: string;
+  [LANGUAGE_ENUM.KA]: string;
+  [LANGUAGE_ENUM.EN]: string;
 }
 
 export enum BUTTON_TYPE_ENUM {
   DEFAULT = "default",
-  PRIMARY = "primary"
+  PRIMARY = "primary",
 }
 export interface RegistrationFormInput {
-  first_name:string;
-  last_name:string;
-  email:string;
-  phone_number:string;
-  password:string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone_number: string;
+  password: string;
 }
 
 export interface AuthorizationFormInput {
-  email:string;
-  password:string;
+  email: string;
+  password: string;
 }
 
-export interface TCategory {
-  id: string; 
+export interface CategoryType {
+  id: string;
   created_at: string;
-  updated_at: string; 
+  updated_at: string;
   name: string;
 }
-export interface CartITem {
-  
-}
+export interface CartITem {}
 
 export interface TAuthRequest {
-  access_token:string;
-  refresh_token:string;
+  access_token: string;
+  refresh_token: string;
 }
 
 export interface TUserData {
-  email:string;
-  id:string;
-  first_name:string;
-  last_name:string;
+  email: string;
+  id: string;
+  first_name: string;
+  last_name: string;
   phone_number: string;
 }
 
@@ -56,8 +54,21 @@ export interface ProductType {
   description: string;
   image: string;
   price: number;
-  category_name: string;
   salePrice: null | number;
+  category_name: string;
+}
+
+export interface LikedProduct extends ProductType {
+  category: CategoryType;
+}
+
+export interface WishlistItemType {
+  id: string;
+  created_at: string;
+  updated_at: string;
+  product_id: string;
+  user_id: string;
+  likedProduct: LikedProduct;
 }
 
 export enum SORT_BY_ENUM {
@@ -65,7 +76,7 @@ export enum SORT_BY_ENUM {
   PRICE_ASC = "sort.price.asc",
   PRICE_DESC = "sort.price.desc",
   TITLE_ASC = "sort.title.asc",
-  TITLE_DESC = "sort.title.desc"
+  TITLE_DESC = "sort.title.desc",
 }
 
 export enum EDITING_FORM_ENUM {

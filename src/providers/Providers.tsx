@@ -7,6 +7,7 @@ import {AuthProvider} from "./AuthProvider/AuthProvider";
 import { CartProvider } from "./CartProvider/CartProvider";
 import { ProductsProvider } from "./ProductsProvider/ProductsProvider";
 import {ProductFiltersProvider} from "./ProductFiltersProvider/ProductFiltersProvider";
+import { WishlistProvider } from "./WishlistProvider/WishlistProvider";
 
 type ProvidersProps = {};
 
@@ -18,11 +19,13 @@ export function Providers({ children }: PropsWithChildren<ProvidersProps>) {
           <ProductsProvider>
             <ProductFiltersProvider>
               <CartProvider>
-                <LocaleProvider>
-                  <ThemeProvider>
-                    {children}
-                  </ThemeProvider>
-                </LocaleProvider>
+                <WishlistProvider>
+                  <LocaleProvider>
+                    <ThemeProvider>
+                      {children}
+                    </ThemeProvider>
+                  </LocaleProvider>
+                </WishlistProvider>
               </CartProvider>
             </ProductFiltersProvider>
           </ProductsProvider>

@@ -1,4 +1,4 @@
-import { TCategory } from "@src/@types/types";
+import { CategoryType } from "@src/@types/types";
 import CategoriesTab from "@src/components/CategoriesTab/CategoriesTab";
 import useGetCategories from "@src/hooks/useGetCategories";
 import FeaturedTab from "./FeaturedTab/FeaturedTab";
@@ -6,7 +6,7 @@ import FeaturedTab from "./FeaturedTab/FeaturedTab";
 export default function Home() {
 
   const {categories} = useGetCategories();
-  const featuredTabs = categories.map((cat:TCategory, index:number)=> {
+  const featuredTabs = categories.map((cat:CategoryType, index:number)=> {
     if (index < 2) {
       return <FeaturedTab key={cat.id} categoryName={cat.name}/>
     } else return null;
