@@ -3,10 +3,12 @@ import { createContext } from "react"
 
 interface TCartContext {
     cartItems: CartITem[];
-    setCartItems: React.Dispatch<React.SetStateAction<CartITem[]>>
+    cartLoading: boolean;
+    getCartItems:() => Promise<void>;
 }
 
 export const CartContext = createContext<TCartContext>({
     cartItems: [],
-    setCartItems: ()=> {},
+    cartLoading: false,
+    getCartItems: async () => {}
 })

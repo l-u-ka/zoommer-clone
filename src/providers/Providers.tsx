@@ -14,8 +14,8 @@ type ProvidersProps = {};
 export function Providers({ children }: PropsWithChildren<ProvidersProps>) {
   return (
     <BrowserRouter>
-      <GlobalProvider>
-        <AuthProvider>
+      <AuthProvider>
+        <GlobalProvider>
           <ProductsProvider>
             <ProductFiltersProvider>
               <CartProvider>
@@ -29,8 +29,8 @@ export function Providers({ children }: PropsWithChildren<ProvidersProps>) {
               </CartProvider>
             </ProductFiltersProvider>
           </ProductsProvider>
-        </AuthProvider> 
-      </GlobalProvider>
+        </GlobalProvider>
+      </AuthProvider> 
     </BrowserRouter>
   );
 }

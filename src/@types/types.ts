@@ -31,20 +31,6 @@ export interface CategoryType {
   updated_at: string;
   name: string;
 }
-export interface CartITem {}
-
-export interface TAuthRequest {
-  access_token: string;
-  refresh_token: string;
-}
-
-export interface TUserData {
-  email: string;
-  id: string;
-  first_name: string;
-  last_name: string;
-  phone_number: string;
-}
 
 export interface ProductType {
   id: string;
@@ -56,6 +42,18 @@ export interface ProductType {
   price: number;
   salePrice: null | number;
   category_name: string;
+}
+
+export interface CartProduct extends ProductType{
+  category: CategoryType
+}
+export interface CartITem {
+  id: string;
+  created_at: string;
+  updated_at: string;
+  product_id: string;
+  user_id: string;
+  cartProduct: CartProduct;
 }
 
 export interface LikedProduct extends ProductType {
@@ -70,6 +68,21 @@ export interface WishlistItemType {
   user_id: string;
   likedProduct: LikedProduct;
 }
+
+export interface TAuthRequest {
+  access_token: string;
+  refresh_token: string;
+}
+
+export interface TUserData {
+  email: string;
+  id: string;
+  first_name: string;
+  last_name: string;
+  phone_number: string;
+}
+
+
 
 export enum SORT_BY_ENUM {
   DEFAULT = "sort.default",

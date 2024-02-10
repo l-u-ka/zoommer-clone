@@ -9,7 +9,8 @@ import { publicAxios } from "@src/utils/publicAxios";
 
 export function AuthProvider({children} : PropsWithChildren) {
 
-    const [authStage, setAuthStage] = useState<Auth_Stage_Enum>((localStorage.getItem(REFRESH_TOKEN)) ? Auth_Stage_Enum.AUTHORIZED : Auth_Stage_Enum.UNAUTHORIZED);
+    // const [authStage, setAuthStage] = useState<Auth_Stage_Enum>((localStorage.getItem(REFRESH_TOKEN)) ? Auth_Stage_Enum.AUTHORIZED : Auth_Stage_Enum.UNAUTHORIZED);
+    const [authStage, setAuthStage] = useState<Auth_Stage_Enum>(Auth_Stage_Enum.PENDING);
     const [userData, setUserData] = useState<TUserData>();
 
     function setAuthData(tokens: TAuthRequest) {
@@ -31,6 +32,7 @@ export function AuthProvider({children} : PropsWithChildren) {
 
     async function getNewTokens(refreshToken:string) {
         try {
+            // setAuthStage(Auth_Stage_Enum.PENDING);
             const response = await publicAxios.post<TAuthRequest>(
                 "/auth/update-tokens",
                 { refresh_token: refreshToken }
@@ -44,6 +46,7 @@ export function AuthProvider({children} : PropsWithChildren) {
     useEffect(()=> {
         const refreshToken = localStorage.getItem(REFRESH_TOKEN);
         if(refreshToken) getNewTokens(refreshToken);
+        else setAuthStage(Auth_Stage_Enum.UNAUTHORIZED);
     }, [])
 
     return (

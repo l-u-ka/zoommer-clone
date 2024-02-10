@@ -103,7 +103,7 @@ export default function Products() {
               </div>
               {productsLoading && <h3 className='ml-6'>Loading...</h3>}
               {(!productsLoading && products.length > 0) && <ProductsList products={products} totalProducts={totalProducts as number}/>}
-              {(!productsLoading && products.length === 0) && <h2>პროდუქტები ვერ მოიძებნა</h2>}
+              {(!productsLoading && products.length === 0) && <h2 className='pl-8 dark:text-white-400 firago-semibold text-lg leading-[20px]'><FormattedMessage id='products.not.found'/></h2>}
             </div>
           </div>
       </div>

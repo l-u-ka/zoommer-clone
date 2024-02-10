@@ -8,10 +8,10 @@ export default function Wishlist() {
 
     return (
         <div>
-            <h2 className="mb-10 firago-semibold text-lg leading-[22px] dark:text-white-400"><FormattedMessage id="wishllist"/></h2>
+            {/* <h2 className="mb-10 firago-semibold text-lg leading-[22px] dark:text-white-400"><FormattedMessage id="wishlist"/></h2> */}
             {wishlistItems?.length < 1 && <div className="firago-medium dark:text-white-400 text-base leading-[20px]"><FormattedMessage id="no.product.in.list"/></div>}
             {wishlistItems?.length >= 1 && (
-                    <div className="grid grid-cols-3 xl:grid-cols-4">
+                    <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                         {wishlistItems?.map(item => {
                             return <ProductCard product={item.likedProduct}/>
                         })}

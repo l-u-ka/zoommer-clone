@@ -13,7 +13,7 @@ export default function Home() {
   })
 
     return (
-      <div className="custom-container pt-[30px] pb-[60px]">
+      <div className="custom-container pt-[30px] pb-[60px] min-h-[700px]">
         <div className="flex">
           <CategoriesTab/>
         </div>

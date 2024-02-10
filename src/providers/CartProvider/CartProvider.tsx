@@ -1,13 +1,15 @@
 import { PropsWithChildren, useState } from "react";
 import { CartContext } from "./CartContext";
-import { CartITem } from "@src/@types/types";
+import { useGetCartItems } from "@src/hooks/useGetCartItems";
 
 export function CartProvider({children} : PropsWithChildren) {
 
-    const [cartItems, setCartItems] = useState<CartITem[]>([]);
+    const {cartItems, cartLoading, getCartItems} = useGetCartItems();
+
+    console.log("CART ITEMS", cartItems)
 
     return (
-        <CartContext.Provider value={{cartItems, setCartItems}}>
+        <CartContext.Provider value={{cartItems, cartLoading, getCartItems}}>
             {children}
         </CartContext.Provider>
     )

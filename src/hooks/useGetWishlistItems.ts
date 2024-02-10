@@ -1,10 +1,13 @@
 import { WishlistItemType } from "@src/@types/types";
+import { Auth_Stage_Enum } from "@src/providers/AuthProvider/AuthContext";
+import { useAuthProvider } from "@src/providers/AuthProvider/useAuthProvider";
 import { privateAxios } from "@src/utils/privateAxios";
 import { useEffect, useState } from "react";
 
 export function useGetWishlistItems() {
     const [wishlistItems, setWishlistItems] = useState<WishlistItemType[]>([]);
     const [wishlistLoading, setWishlistLoading] = useState<boolean>(false);
+    const {authStage} = useAuthProvider();
 
     async function getWishlistItems() {
         try {
@@ -17,6 +20,11 @@ export function useGetWishlistItems() {
             setWishlistLoading(false);
         }
     }
+
+
+    useEffect(()=> {
+        if(authStage === Auth_Stage_Enum.AUTHORIZED) getWishlistItems();
+    }, [authStage])
 
     // useEffect(()=> {
     //    if(userData) getWishlistItems();

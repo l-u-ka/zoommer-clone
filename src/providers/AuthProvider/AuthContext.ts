@@ -3,7 +3,8 @@ import { createContext } from "react";
 
 export enum Auth_Stage_Enum {
     AUTHORIZED = "authorized",
-    UNAUTHORIZED = "unauthorized"
+    UNAUTHORIZED = "unauthorized",
+    PENDING = "pending"
 }
 
 interface TAuthContext {

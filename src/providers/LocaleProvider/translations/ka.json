@@ -62,7 +62,8 @@
     "price": "ფასი",
     "similar.products": "მსგავსი პროდუქტები",
     "product.not.found": "სამწუხაროდ, პროდუქტი ვერ მოიძებნა",
-    "wishllist": "ვიშლისტი",
+    "products.not.found": "პროდუქტები ვერ მოიძებნა",
+    "wishlist": "ვიშლისტი",
     "no.product.in.list": "სიაში პროდუქტები არ არის",
     "all.categories": "ყველა კატეგორია" 
 }

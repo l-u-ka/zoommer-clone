@@ -22,7 +22,8 @@ import { useMediaQuery } from 'react-responsive'
 
 export default function Navigation() {
 
-    const [loginModal, setLoginModal] = useState<boolean>(false);
+    // const [loginModal, setLoginModal] = useState<boolean>(false);
+    const {loginModalOpen, setLoginModalOpen} = useGlobalProvider();
     const [cartModal, setCartModal] = useState<boolean>(false);
     const [categoriesTabModal, setCategoriesTabModal] = useState<boolean>(false);
     const [searchInput, setSearchInput] = useState<boolean>(false);
@@ -33,10 +34,10 @@ export default function Navigation() {
     const isDesktop = useMediaQuery({ minWidth: 1024 });
 
     function showLoginModal() {
-        setLoginModal(true);
+        setLoginModalOpen(true);
     };
     function closeLoginModal(){
-        setLoginModal(false);
+        setLoginModalOpen(false);
     };
     function showCartModal() {
         setCartModal(true);
@@ -94,9 +95,9 @@ export default function Navigation() {
                                 {cartModal && <CartModal closeModal={closeCartModal}/>}
                             </div>
                             <div>
-                                {authStage === Auth_Stage_Enum.UNAUTHORIZED ? <>
+                                {authStage !== Auth_Stage_Enum.AUTHORIZED ? <>
                                         <NavButton text={'log.in'} type={BUTTON_TYPE_ENUM.DEFAULT} icon={userIcon} onClick={showLoginModal}/>
-                                        <LogInModal modalOpen={loginModal} closeModal={closeLoginModal}/> 
+                                        <LogInModal modalOpen={loginModalOpen} closeModal={closeLoginModal}/> 
                                     </> : <>
                                         <NavButton text={'profile'} type={BUTTON_TYPE_ENUM.DEFAULT} icon={userIcon} onClick={()=>navigate("/profile")}/>
                                     </>
