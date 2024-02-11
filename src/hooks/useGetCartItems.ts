@@ -14,6 +14,7 @@ export function useGetCartItems() {
             setCartLoading(true);
             const result = await privateAxios.get('/cart')
             setCartItems(result.data)
+            console.log("fetch cart items")
         } catch (error) {
             console.error(error);
         } finally {

@@ -18,20 +18,22 @@ import { useAuthProvider } from '@src/providers/AuthProvider/useAuthProvider'
 import { Auth_Stage_Enum } from '@src/providers/AuthProvider/AuthContext'
 import { useGlobalProvider } from '@src/providers/GlobalProvider/useGlobalProvider'
 import { useMediaQuery } from 'react-responsive'
+import { useCartProvider } from '@src/providers/CartProvider/useCartProvider'
 
 
 export default function Navigation() {
 
     // const [loginModal, setLoginModal] = useState<boolean>(false);
     const {loginModalOpen, setLoginModalOpen} = useGlobalProvider();
+    const {cartItems} = useCartProvider();
+    const {authStage} = useAuthProvider();
+    const {setShowOverlay} = useGlobalProvider();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const isDesktop = useMediaQuery({ minWidth: 1024 });
     const [cartModal, setCartModal] = useState<boolean>(false);
     const [categoriesTabModal, setCategoriesTabModal] = useState<boolean>(false);
     const [searchInput, setSearchInput] = useState<boolean>(false);
-    const {authStage} = useAuthProvider();
-    const navigate = useNavigate();
-    const location = useLocation();
-    const {setShowOverlay} = useGlobalProvider();
-    const isDesktop = useMediaQuery({ minWidth: 1024 });
 
     function showLoginModal() {
         setLoginModalOpen(true);
@@ -79,7 +81,7 @@ export default function Navigation() {
     }, [isDesktop])
 
     return (
-        <div className="w-[100%] bg-white-07 sticky top-0 dark:bg-[rgba(30,30,30)] z-20">
+        <div className="w-[100%] bg-white-07 sticky top-0 dark:bg-[#1f1f1f] z-20">
             <div className='hidden lg:block'>
                 <div className="custom-container py-3 items-center grid grid-flow-col auto-cols-max justify-between relative">
                     <img src={headerLogo} alt='main logo' className='h-[28px] lg:h-[40px] cursor-pointer' onClick={()=>navigate("/")}/>
@@ -91,7 +93,7 @@ export default function Navigation() {
                             {/* <Button text={'cart'} color={'#fff'} textColor={'black'} icon={cartIcon} onMouseEnter={showCartModal} onMouseLeave={closeCartModal}/>
                             <Button text={'log.in'} color={'#fff'} textColor={'black'} icon={userIcon} onClick={showLoginModal}/> */}
                             <div onMouseEnter={showCartModal} /*onMouseLeave={closeCartModal}*/>
-                                <NavButton text={'cart'} type={BUTTON_TYPE_ENUM.DEFAULT} icon={cartIcon} /*onMouseEnter={showCartModal} onMouseLeave={closeCartModal}*//>
+                                <NavButton text={'cart'} type={BUTTON_TYPE_ENUM.DEFAULT} icon={cartIcon} cartItems={cartItems.length} /*onMouseEnter={showCartModal} onMouseLeave={closeCartModal}*//>
                                 {cartModal && <CartModal closeModal={closeCartModal}/>}
                             </div>
                             <div>

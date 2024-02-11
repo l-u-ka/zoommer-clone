@@ -21,7 +21,7 @@ export default function BuyProduct({product}: {product: ProductType}) {
             <hr className="mt-[24px] mb-[30px] border border-solid border-white"/>
             <div className="px-5 grid grid-cols-1 gap-5">
                 <PrimaryButton height={50} width="100%"><p className="firago-bold text-base leading-[19px] text-white"><FormattedMessage id="buy.product"/></p></PrimaryButton>
-                <AddCartButton height={50} borderRadius={12}/>
+                <AddCartButton height={50} borderRadius={12} productId={product.id}/>
             </div>
         </div>
     

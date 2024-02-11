@@ -11,7 +11,6 @@ import wishlistIcon from '@src/assets/icons/product-details-heart.png'
 import wishlistIconActive from '@src/assets/icons/product-details-heart-active.png'
 
 export default function ProductDetails({product} : {product: ProductType}) {
-    // console.log("PRODUCT DETAILS: ", product)
     const {addToWishlist, addLoading} = useAddToWishlist();
     const {removeFromWishlist, removeLoading} = useRemoveFromWishlist();
     const {wishlistItems} = useWishlistProvider();
@@ -19,8 +18,6 @@ export default function ProductDetails({product} : {product: ProductType}) {
 
     function removeItem(id: string) {
         const item = wishlistItems.find(item => item.likedProduct.id === id);
-        // console.log(item?.id)
-        // console.log(wishlistItems, id)
         if (item) removeFromWishlist(item.id)
     }
 

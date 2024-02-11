@@ -6,11 +6,11 @@ export default {
     extend: {
       colors: {
         "white-07": "rgba(237, 235, 235, 0.74)",
-        'gray-main': '#666',
-        'gray-seconday': '#ddd',
+        "gray-main": "#666",
+        "gray-seconday": "#ddd",
         "gray-03": "rgba(237, 237, 237)",
         "orange-primary": "#ec5e2a",
-        "dark-theme-bg": "rgb(8, 8, 8)",
+        "dark-theme-bg": "rgb(20, 20, 20)", //#1f1f1f
         "light-theme-bg": "#fff",
         "black-04": "rgba(0,0,0,.4)",
         "black-06": "rgba(0,0,0,.6)",
@@ -24,6 +24,7 @@ export default {
         "white-400": "#f2f2f2",
         "text-blue": "rgb(10, 50, 81)",
         "shadow-color": "rgba(0, 0, 0, 0.1)",
+        "gray-shadow": "rgba(102, 102, 102, 0.12)"
       },
       // container: {
       //   center: true,

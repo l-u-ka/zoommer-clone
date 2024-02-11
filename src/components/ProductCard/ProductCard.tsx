@@ -19,8 +19,6 @@ export default function ProductCard({product} : {product: ProductType}) {
 
     function removeItem(id: string) {
         const item = wishlistItems.find(item => item.likedProduct.id === id);
-        // console.log(item?.id)
-        // console.log(wishlistItems, id)
         if (item) removeFromWishlist(item.id)
     }
 
@@ -50,7 +48,7 @@ export default function ProductCard({product} : {product: ProductType}) {
                 )}
                 <h3 onClick={()=>navigate(`/products/${product.category_name}/${product.id}`)}  className="max-w-40 firago-medium text-xs leading-[18px] opacity-80 cursor-pointer dark:text-orange-primary">{product.title}</h3>
             </div>
-            <AddCartButton height={40} borderRadius={4}/>
+            <AddCartButton height={40} borderRadius={4} productId={product.id}/>
         </div>
     )
 }

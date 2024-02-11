@@ -4,6 +4,7 @@ import goBackIcon from '@src/assets/icons/category-left-arr.png'
 import ProductDetails from "./ProductDetails/ProductDetails";
 import BuyProduct from "@src/features/BuyProduct/BuyProduct";
 import BuyProductMobile from "@src/features/BuyProduct/BuyProductMobile";
+import { FormattedMessage } from "react-intl";
 
 export default function ProductPage() {
 
@@ -20,7 +21,7 @@ export default function ProductPage() {
               <div className='w-full'>
                 <div className='inline-flex items-center cursor-pointer mr-6' onClick={()=> {navigate('/')}}>
                   <img src={goBackIcon} alt='go back icon' className='h-full mr-[20px]'/>
-                  <h2 className='firago-bold text-base leading-[19px] text-black dark:text-orange-primary'>მთავარი</h2>
+                  <h2 className='firago-bold text-base leading-[19px] text-black dark:text-orange-primary'><FormattedMessage id="main"/></h2>
                 </div>
                 <div className='inline-flex items-center cursor-pointer' onClick={()=> {navigate(`/products/${product?.category_name}`)}}>
                   <img src={goBackIcon} alt='go back icon' className='h-full mr-[20px]'/>

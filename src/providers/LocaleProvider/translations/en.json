@@ -48,6 +48,7 @@
     "filter": "Filter",
     "clear": "Clear",
     "add": "Add",
+    "added": "Added",
     "description": "Description",
     "additional.info" : "Additional information",
     "update.success" : "User information successfully updated",
@@ -65,5 +66,9 @@
     "products.not.found": "Products could not be found",
     "wishlist": "Wishlist",
     "no.product.in.list": "There are no products in the list",
-    "all.categories": "All categories"
+    "all.categories": "All categories",
+    "warning": "Warning",
+    "understood": "It is clear",
+    "already.in.cart": "The product is already in the cart",
+    "main": "Main"
 }
