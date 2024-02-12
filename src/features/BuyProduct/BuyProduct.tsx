@@ -5,7 +5,7 @@ import { FormattedMessage } from "react-intl";
 
 export default function BuyProduct({product}: {product: ProductType}) {
   return (
-        <div className='w-[400px] bg-[#f2f2f2] fixed shadow-lg py-5 rounded-xl'>
+        <div className='w-full bg-[#f2f2f2] sticky top-0 shadow-lg py-5 rounded-xl'>
             <div className="px-5">
                 {!product.salePrice && <h3 className="firago-semibold text-orange-primary text-xl leading-6">{product.price} ₾</h3>}
                 {product.salePrice && (

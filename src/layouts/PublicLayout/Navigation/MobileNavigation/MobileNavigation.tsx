@@ -3,7 +3,6 @@ import { useLocation, useNavigate } from "react-router-dom"
 export default function MobileNavigation() {
   const navigate = useNavigate();
   const location = useLocation();
-  console.log("Location", location.pathname)
 
   return (
     <div className="grid grid-cols-3 lg:hidden w-full bg-white dark:bg-[rgba(20,20,20)] fixed left-0 bottom-0 z-10 py-4 border-t border-solid border-b-0 border-x-0 border-white-600">

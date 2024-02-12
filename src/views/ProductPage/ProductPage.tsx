@@ -31,7 +31,7 @@ export default function ProductPage() {
               <hr className="mt-[24px] mb-[30px] border border-solid border-white-400"/>
               <ProductDetails product={product}/>
             </div>
-            <div className="hidden lg:block absolute right-0 top-0 w-[400px]">
+            <div className="hidden lg:block w-[400px]">
               <BuyProduct product={product}/>
             </div>
             <div className="block lg:hidden">

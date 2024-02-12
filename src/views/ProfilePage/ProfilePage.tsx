@@ -70,7 +70,7 @@ export default function ProfilePage() {
 
     return (
         <ConfigProvider theme={customTheme}>
-            <div className="custom-container pt-[30px] pb-[60px] min-h-[700px]">
+            <div className="custom-container pt-[30px] pb-[60px] min-h-screen">
                 <div className="hidden lg:block">
                     <div className="flex items-center">
                         <img src={profileIcon} alt="profile icon" className="w-6 mr-3"/>

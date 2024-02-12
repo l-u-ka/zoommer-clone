@@ -14,7 +14,7 @@ export default function InputSearch({searchInput, closeModal}: {searchInput: str
 
   const searchedProductDivs = searchedProducts?.map((prod) => {
     return (
-      <div className="w-full bg-[rgb(242,242,242)] p-[6px] flex justify-between items-center cursor-pointer rounded-lg" onClick={()=>{
+      <div key={prod.id} className="w-full bg-[rgb(242,242,242)] p-[6px] flex justify-between items-center cursor-pointer rounded-lg" onClick={()=>{
         navigate(`/products/${prod.category_name}/${prod.id}`)
         closeModal();
         }}>

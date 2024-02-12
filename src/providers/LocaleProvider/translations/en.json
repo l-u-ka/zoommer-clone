@@ -70,5 +70,9 @@
     "warning": "Warning",
     "understood": "It is clear",
     "already.in.cart": "The product is already in the cart",
-    "main": "Main"
+    "main": "Main",
+    "there.are": "There are",
+    "products.in.cart": "products in the cart",
+    "next": "Continue",
+    "pay": "Pay"
 }

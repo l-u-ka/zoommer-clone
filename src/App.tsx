@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import { PublicLayout } from "@src/layouts/PublicLayout/PublicLayout";
+import { PrivateLayout } from "./layouts/PrivateLayout/PrivateLayout";
 import { PrivateRoute } from "./features/PrivateRoute/PrivateRoute";
 
 const Home = lazy(() => import("@src/views/Home/Home"));
@@ -21,6 +22,8 @@ function App() {
           <Route path="/products/:category/:prodId" element={<ProductPage/>}/>
           <Route path="/products/search/:searchValue" element={<SearchResultsPage/>}/>
           <Route path="/all-categories" element={<AllCategories/>}/>
+        </Route>
+        <Route element={<PrivateLayout/>}>
           <Route path="/cart" element={<PrivateRoute children={<Cart/>}/>}/>
           <Route path="/profile" element={<PrivateRoute children={<ProfilePage/>}/>}/>
         </Route>

@@ -80,6 +80,20 @@ export default function Navigation() {
         }
     }, [isDesktop])
 
+
+    function handleMouseLeave(event: React.MouseEvent<HTMLElement>) {
+        const { clientX, clientY } = event;
+        const { left, top, width, height } = event.currentTarget.getBoundingClientRect();
+    
+        if (clientX < left) {
+            closeCartModal();
+        } else if (clientX > left + width) {
+            closeCartModal();
+        } else if (clientY < top) {
+            closeCartModal();
+        }
+    }
+
     return (
         <div className="w-[100%] bg-white-07 sticky top-0 dark:bg-[#1f1f1f] z-20">
             <div className='hidden lg:block'>
@@ -90,12 +104,10 @@ export default function Navigation() {
                             {/* <Button text={'navigation'} color={'#ec5e2a'} textColor={'white'} icon={dotsIcon}/> */}
                             <NavButton text={'navigation'} type={BUTTON_TYPE_ENUM.PRIMARY} icon={dotsIcon} onClick={()=>navigate("/all-categories")}/>
                             <NavSearch/>
-                            {/* <Button text={'cart'} color={'#fff'} textColor={'black'} icon={cartIcon} onMouseEnter={showCartModal} onMouseLeave={closeCartModal}/>
-                            <Button text={'log.in'} color={'#fff'} textColor={'black'} icon={userIcon} onClick={showLoginModal}/> */}
-                            <div onMouseEnter={showCartModal} /*onMouseLeave={closeCartModal}*/>
-                                <NavButton text={'cart'} type={BUTTON_TYPE_ENUM.DEFAULT} icon={cartIcon} cartItems={cartItems.length} /*onMouseEnter={showCartModal} onMouseLeave={closeCartModal}*//>
+                            <>
+                                <NavButton text={'cart'} type={BUTTON_TYPE_ENUM.DEFAULT} icon={cartIcon} cartItems={cartItems.length} onMouseEnter={showCartModal} onMouseLeave={handleMouseLeave}  /*onMouseEnter={showCartModal} onMouseLeave={closeCartModal}*//>
                                 {cartModal && <CartModal closeModal={closeCartModal}/>}
-                            </div>
+                            </>
                             <div>
                                 {authStage !== Auth_Stage_Enum.AUTHORIZED ? <>
                                         <NavButton text={'log.in'} type={BUTTON_TYPE_ENUM.DEFAULT} icon={userIcon} onClick={showLoginModal}/>
@@ -121,7 +133,7 @@ export default function Navigation() {
                         </div>
                         <div>
                             <img src={searchIcon2} alt='search icon' className='w-6 cursor-pointer' onClick={()=>{!searchInput ? showSearchInput() : closeSearchInput()}}/>
-                            <img src={cartIcon2} alt='cart icon' className='ml-5 w-6 cursor-pointer'/>
+                            <img src={cartIcon2} alt='cart icon' className='ml-5 w-6 cursor-pointer' onClick={() => navigate('/cart')}/>
                         </div>
                     </div>
                     {searchInput && <NavSearch/>}

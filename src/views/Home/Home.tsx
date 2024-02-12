@@ -7,9 +7,9 @@ export default function Home() {
 
   const {categories} = useGetCategories();
   const featuredTabs = categories.map((cat:CategoryType, index:number)=> {
-    if (index < 2) {
+    // if (index < 2) {
       return <FeaturedTab key={cat.id} categoryName={cat.name}/>
-    } else return null;
+    // } else return null;
   })
 
     return (

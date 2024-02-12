@@ -19,7 +19,6 @@ export default function FeaturedTab({categoryName} : {categoryName: string}) {
 
     function SampleNextArrow(props:any) {
         const { className, style, onClick } = props;
-        console.log(className, style)
         return (
           <img
             className={className}
@@ -32,7 +31,6 @@ export default function FeaturedTab({categoryName} : {categoryName: string}) {
       
       function SamplePrevArrow(props:any) {
         const { className, style, onClick } = props;
-        console.log(className, style)
         return (
           <img
             className={className}
@@ -45,7 +43,7 @@ export default function FeaturedTab({categoryName} : {categoryName: string}) {
 
     const settings = {
         dots: false,
-        infinite: true,
+        infinite: false,
         speed: 500,
         slidesToShow: isDesktop ? 5 : 3,
         slidesToScroll: isDesktop ? 5 : 3 ,

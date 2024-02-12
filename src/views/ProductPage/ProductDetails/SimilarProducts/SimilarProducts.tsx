@@ -24,7 +24,6 @@ export default function SimilarProducts({category, productId}: SimilarProductsPr
         return <ProductCard product={prod}/>
     })
 
-    console.log("SIMILAR PRODUCTS: ", similarProducts)
     const settings = {
         dots: false,
         infinite: true,

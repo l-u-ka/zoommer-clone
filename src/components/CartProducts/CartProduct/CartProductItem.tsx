@@ -16,9 +16,9 @@ export default function CartProductItem({product}: {product: CartProduct}) {
     }
 
     return (
-        <div className='flex bg-white-400 rounded-xl p-[10px] justify-between relative'>
+        <div className='flex bg-white-400 rounded-xl p-[10px] relative'>
             <img className=' w-[60px] h-[60px] object-contain' alt='product img' src={product.image}/>
-            <div className='max-w-[120px] flex flex-col justify-between'>
+            <div className='max-w-[120px] flex flex-col justify-between ml-3 mr-auto'>
                 <h3 className='firago-medium text-black-08 text-base leading-[14px]'>{product.title}</h3>
                 <h4 className='firago-bold text-black text-sm leading-[17px]'>{product.salePrice || product.price} ₾</h4>
             </div>
@@ -28,9 +28,15 @@ export default function CartProductItem({product}: {product: CartProduct}) {
                     {removeFromCartLoading && <div>Loading...</div>}
                 </div>
                 <div className='inline-flex bg-orange-primary w-[90px] h-[30px] rounded-[30px] mt-auto'>
-                    <div onClick={()=>setProductCount(prev => prev - 1)} className='w-[30px] h-full rounded-[30px] cursor-pointer flex justify-center items-center hover:bg-gray-shadow transition-all duration-300 ease-out'>-</div>
-                    <div className='flex-1 flex justify-center items-center'>{productCount}</div>
-                    <div onClick={()=>setProductCount(prev => prev + 1)} className='w-[30px] h-full rounded-[30px] cursor-pointer flex justify-center items-center hover:bg-gray-shadow transition-all duration-300 ease-out'>+</div>
+                    <div onClick={()=>setProductCount(prev => prev - 1)} className='w-[30px] h-full rounded-[30px] cursor-pointer flex justify-center items-center text-white hover:bg-gray-shadow transition-all duration-300 ease-out'>
+                        <p className='firago-bold text-xs leading-[15px]'>-</p>
+                    </div>
+                    <div className='flex-1 flex justify-center items-center text-white'>
+                        <p className='firago-bold text-xs leading-[15px]'>{productCount}</p>
+                    </div>
+                    <div onClick={()=>setProductCount(prev => prev + 1)} className='w-[30px] h-full rounded-[30px] cursor-pointer flex justify-center items-center text-white hover:bg-gray-shadow transition-all duration-300 ease-out'>
+                    <p className='firago-bold text-xs leading-[15px]'>+</p>
+                    </div>
                 </div>
             </div>
         </div>

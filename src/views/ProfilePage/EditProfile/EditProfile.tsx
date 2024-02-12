@@ -90,7 +90,6 @@ export default function EditProfile() {
     
     useEffect(()=> {
         if (userInfo) {
-            console.log("Call here!!!!", userInfo);
             getNewTokens(userInfo.refresh_token);
         }
     }, [userInfo])

@@ -6,10 +6,8 @@ export function CartProvider({children} : PropsWithChildren) {
 
     const {cartItems, cartLoading, getCartItems} = useGetCartItems();
 
-    // console.log("CART ITEMS", cartItems)
-
     useEffect(()=> {
-        console.log("changed", cartItems)
+        console.log("cart items", cartItems)
     }, [cartItems])
 
     return (
