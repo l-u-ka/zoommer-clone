@@ -9,8 +9,9 @@ const Products = lazy(() => import("@src/views/Products/ProductsPage"));
 const ProductPage = lazy(()=> import("@src/views/ProductPage/ProductPage"));
 const Cart = lazy(()=> import("@src/views/Cart/Cart"));
 const ProfilePage = lazy(()=> import("@src/views/ProfilePage/ProfilePage"));
-const AllCategories = lazy(()=> import("@src/views/AllCategories/AllCategories"))
-const SearchResultsPage = lazy(()=> import("@src/views/SearchResultPage/SearchResultPage"))
+const AllCategories = lazy(()=> import("@src/views/AllCategories/AllCategories"));
+const SearchResultsPage = lazy(()=> import("@src/views/SearchResultPage/SearchResultPage"));
+const BuyPage = lazy(()=>import("@src/views/BuyPage/BuyPage"))
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route element={<PrivateLayout/>}>
           <Route path="/cart" element={<PrivateRoute children={<Cart/>}/>}/>
           <Route path="/profile" element={<PrivateRoute children={<ProfilePage/>}/>}/>
+          <Route path="/buy-product" element={<PrivateRoute children={<BuyPage/>}/>}/>
         </Route>
       </Routes>
     </Suspense>

@@ -45,7 +45,7 @@ export default function AlreadyInCartModal({modalOpen, closeModal}:AlreadyInCart
                         <Button type="primary" className="w-full custom-button hover:scale-95 transition-all ease-in-out" onClick={closeModal}><FormattedMessage id="understood"/></Button>
                     </div>
                 </div>
-        </Modal>
+            </Modal>
         </ConfigProvider>
     )
 }

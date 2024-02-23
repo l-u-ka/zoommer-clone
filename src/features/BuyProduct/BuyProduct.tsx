@@ -1,9 +1,31 @@
 import { ProductType } from "@src/@types/types";
 import AddCartButton from "@src/components/AddCartButton/AddCartButton";
 import PrimaryButton from "@src/components/PrimaryButton/PrimaryButton";
+import { useGlobalProvider } from "@src/providers/GlobalProvider/useGlobalProvider";
+import { useEffect } from "react";
 import { FormattedMessage } from "react-intl";
+import { useNavigate } from "react-router-dom";
 
 export default function BuyProduct({product}: {product: ProductType}) {
+
+    const navigate = useNavigate();
+    const {setTotalPurchasePrice, setTotalPurchaseAmount, setIsBuyingFromCart} = useGlobalProvider();
+
+    function handleClick() {
+        setTotalPurchaseAmount(1);
+        setTotalPurchasePrice(product.salePrice || product.price);
+        localStorage.setItem('purchaseAmount', JSON.stringify(1));
+        localStorage.setItem('purchasePrice', JSON.stringify(product.salePrice || product.price));
+        setIsBuyingFromCart(false);
+        localStorage.setItem('isBuyingFromCart', JSON.stringify(false))
+        navigate("/buy-product");
+    }
+
+    // useEffect(()=> {
+    //     localStorage.setItem('purchaseAmount', JSON.stringify(totalPurchaseAmount));
+    //     localStorage.setItem('purchasePrice', JSON.stringify(totalPurchasePrice));
+    // }, [totalPurchaseAmount, totalPurchasePrice])
+
   return (
         <div className='w-full bg-[#f2f2f2] sticky top-0 shadow-lg py-5 rounded-xl'>
             <div className="px-5">
@@ -20,7 +42,7 @@ export default function BuyProduct({product}: {product: ProductType}) {
             </div>
             <hr className="mt-[24px] mb-[30px] border border-solid border-white"/>
             <div className="px-5 grid grid-cols-1 gap-5">
-                <PrimaryButton height={50} width="100%"><p className="firago-bold text-base leading-[19px] text-white"><FormattedMessage id="buy.product"/></p></PrimaryButton>
+                <PrimaryButton onClick={handleClick} height={50} width="100%"><p className="firago-bold text-base leading-[19px] text-white"><FormattedMessage id="buy.product"/></p></PrimaryButton>
                 <AddCartButton height={50} borderRadius={12} productId={product.id}/>
             </div>
         </div>

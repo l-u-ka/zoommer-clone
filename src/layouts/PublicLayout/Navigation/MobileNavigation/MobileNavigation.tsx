@@ -1,8 +1,10 @@
+import { useCartProvider } from "@src/providers/CartProvider/useCartProvider";
 import { useLocation, useNavigate } from "react-router-dom"
 
 export default function MobileNavigation() {
   const navigate = useNavigate();
   const location = useLocation();
+  const {cartItems} = useCartProvider();
 
   return (
     <div className="grid grid-cols-3 lg:hidden w-full bg-white dark:bg-[rgba(20,20,20)] fixed left-0 bottom-0 z-10 py-4 border-t border-solid border-b-0 border-x-0 border-white-600">
@@ -18,11 +20,12 @@ export default function MobileNavigation() {
           <p className={`${location.pathname === '/profile' ? 'firago-bold text-orange-primary' : 'firago-medium text-gray-main'} text-xs leading-[14px] mt-1`}>Home</p>
         </div>
       </div>
-      <div className="flex justify-center col-span-1" onClick={() => navigate('/cart')}>
+      <div className="flex justify-center col-span-1 relative" onClick={() => navigate('/cart')}>
         <div className="inline-flex justify-center items-center flex-col cursor-pointer">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g opacity="0.6" stroke={`${location.pathname === '/cart' ? '#ec5e2a' : '#7F8184'}`} strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"><path d="M2 2h1.74c1.08 0 1.93.93 1.84 2l-.83 9.96a2.796 2.796 0 0 0 2.79 3.03h10.65c1.44 0 2.7-1.18 2.81-2.61l.54-7.5c.12-1.66-1.14-3.01-2.81-3.01H5.82M16.25 22a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5ZM8.25 22a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5ZM9 8h12"></path></g></svg>
           <p className={`${location.pathname === '/cart' ? 'firago-bold text-orange-primary' : 'firago-medium text-gray-main'} text-xs leading-[14px] mt-1`}>Home</p>
         </div>
+        {cartItems.length >=1 && <div className="absolute bg-orange-primary w-4 h-4 rounded-[50%] top-[-8px] right-24 flex justify-center items-center"><p className="text-white firago-medium text-[10px] leading-[14px]">{cartItems.length}</p></div>}
       </div>
     </div>
   )

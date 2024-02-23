@@ -6,6 +6,9 @@ export default {
     extend: {
       colors: {
         "white-07": "rgba(237, 235, 235, 0.74)",
+        "white-600": "#d9d9d9",
+        "white-400": "#f2f2f2",
+        "242-600": "rgba(242,242,242,0.6)",
         "gray-main": "#666",
         "gray-seconday": "#ddd",
         "gray-03": "rgba(237, 237, 237)",
@@ -20,8 +23,6 @@ export default {
         "red-08": "rgba(255,0,0,.8)",
         "green-main": "#369260",
         "green-secondary": "#71d8a0",
-        "white-600": "#d9d9d9",
-        "white-400": "#f2f2f2",
         "text-blue": "rgb(10, 50, 81)",
         "shadow-color": "rgba(0, 0, 0, 0.1)",
         "gray-shadow": "rgba(102, 102, 102, 0.12)"

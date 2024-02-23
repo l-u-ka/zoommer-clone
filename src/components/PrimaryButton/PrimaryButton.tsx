@@ -5,12 +5,13 @@ interface PrimaryButtonProps {
     onClick?: ()=>void;
     width: string;
     height: number;
-    children: ReactNode
+    children: ReactNode;
+    loading?: boolean;
 }
 
 
 
-export default function PrimaryButton({width, height, onClick, children}: PrimaryButtonProps) {
+export default function PrimaryButton({width, height, onClick, children, loading}: PrimaryButtonProps) {
 
     const customTheme = {
         // algorithm: !lightMode ? darkAlgorithm : defaultAlgorithm,
@@ -30,7 +31,7 @@ export default function PrimaryButton({width, height, onClick, children}: Primar
 
   return (
     <ConfigProvider theme={customTheme}>
-        <Button type="primary" onClick={onClick} className={` w-[${width}] flex items-center justify-center hover:scale-95`}>
+        <Button type="primary" onClick={onClick} className={` w-[${width}] flex items-center justify-center hover:scale-95`} loading={loading ? loading : undefined}>
             {children}
         </Button>
     </ConfigProvider>

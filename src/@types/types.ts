@@ -53,6 +53,7 @@ export interface CartITem {
   updated_at: string;
   product_id: string;
   user_id: string;
+  count: number;
   cartProduct: CartProduct;
 }
 

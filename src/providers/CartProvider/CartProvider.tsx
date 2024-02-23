@@ -6,9 +6,9 @@ export function CartProvider({children} : PropsWithChildren) {
 
     const {cartItems, cartLoading, getCartItems} = useGetCartItems();
 
-    useEffect(()=> {
-        console.log("cart items", cartItems)
-    }, [cartItems])
+    // useEffect(()=> {
+    //     console.log("cart items", cartItems)
+    // }, [cartItems])
 
     return (
         <CartContext.Provider value={{cartItems, cartLoading, getCartItems}}>

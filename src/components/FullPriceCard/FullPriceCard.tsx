@@ -1,10 +1,14 @@
 import PrimaryButton from '@src/components/PrimaryButton/PrimaryButton';
-import { useCartProvider } from '@src/providers/CartProvider/useCartProvider'
-import { getFullPrice } from '@src/utils/exportFunctions';
-import React from 'react'
 import { FormattedMessage } from 'react-intl';
 
-export default function CartFullPrice({fullPrice}: {fullPrice: number}) {
+interface FullPriceCardPropType {
+    fullPrice: number;
+    onClick: ()=> void;
+    loading?: boolean;
+    buttonText: string;
+}
+
+export default function FullPriceCard({fullPrice, onClick, loading, buttonText}: FullPriceCardPropType) {
 
     // const {cartItems} = useCartProvider();
 
@@ -25,7 +29,7 @@ export default function CartFullPrice({fullPrice}: {fullPrice: number}) {
                     <h3 className='firago-semibold text-base leading-[19px] text-orange-primary'>{fullPrice} ₾</h3>
                 </div>
             </div>
-            <PrimaryButton height={50} width="100%"><p className="firago-bold text-sm leading-[17px] text-white"><FormattedMessage id="next"/></p></PrimaryButton>
+            <PrimaryButton onClick={onClick} height={50} width="100%" loading={loading}><p className="firago-bold text-sm leading-[17px] text-white"><FormattedMessage id={buttonText}/></p></PrimaryButton>
         </div>
     )
 }

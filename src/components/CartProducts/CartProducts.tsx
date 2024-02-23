@@ -5,7 +5,7 @@ export default function CartProducts() {
 
     const {cartItems} = useCartProvider();
     const cartProducts = cartItems?.map((cartItem) => {
-        return <CartProductItem product={cartItem.cartProduct}/>
+        return <CartProductItem key={cartItem.id} product={cartItem.cartProduct}/>
     })
 
     return (

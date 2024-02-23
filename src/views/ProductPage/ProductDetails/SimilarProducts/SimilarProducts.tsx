@@ -21,7 +21,7 @@ export default function SimilarProducts({category, productId}: SimilarProductsPr
     }, [products])
 
     const similarProductDivs = similarProducts?.map((prod) => {
-        return <ProductCard product={prod}/>
+        return <ProductCard key={prod.id} product={prod}/>
     })
 
     const settings = {

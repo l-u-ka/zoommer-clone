@@ -43,11 +43,11 @@ export default function ProfilePageMobile({selected, setSelected} : {selected: P
       {selected === PROFILE_MENU_ENUM.ON_MENU && (
         <div className='w-full'>
           <div className='flex justify-between' onClick={()=>setSelected(PROFILE_MENU_ENUM.ON_EDITING)}>
-            <h3 className='firago-normal text-sm leading-[17px] mb-[30px] cursor-pointer'><FormattedMessage id='edit.profile'/></h3>
+            <h3 className='firago-normal text-sm leading-[17px] mb-[30px] cursor-pointer dark:text-white-400'><FormattedMessage id='edit.profile'/></h3>
             <img src={lefrArrow} className='rotate-180 h-3'/>
           </div>
           <div className='flex justify-between' onClick={()=>setSelected(PROFILE_MENU_ENUM.ON_WISHLIST)}>
-            <h3 className='firago-normal text-sm leading-[17px] cursor-pointer'><FormattedMessage id='wishlist'/></h3>
+            <h3 className='firago-normal text-sm leading-[17px] cursor-pointer dark:text-white-400'><FormattedMessage id='wishlist'/></h3>
             <img src={lefrArrow} className='rotate-180 h-3'/>
           </div>
         </div>

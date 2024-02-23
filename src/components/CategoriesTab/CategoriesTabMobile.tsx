@@ -14,7 +14,7 @@ export default function CategoriesTabMobile({ isOpen }: {isOpen: boolean }) {
     })
 
     return (
-        <div className={`absolute top-[52px] left-0 flex flex-col h-screen bg-white-600 transition-all duration-300 ${
+        <div className={` absolute top-[52px] left-0 flex flex-col h-screen bg-white-600 transition-all duration-300 ${
             isOpen ? "translate-x-0" : "-translate-x-full"
           }`}>{categorieTabs}</div>
     )

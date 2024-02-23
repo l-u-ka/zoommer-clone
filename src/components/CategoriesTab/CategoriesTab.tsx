@@ -18,7 +18,7 @@ export default function CategoriesTab() {
     
 
   return (
-    <div className=" hidden lg:block w-[246px] rounded-xl shadow-lg dark:bg-[#f28f6a]">
+    <div className=" hidden h-fit lg:block min-w-[246px] rounded-xl shadow-lg dark:bg-[#f28f6a]">
         {tabItems}
     </div>
   )
