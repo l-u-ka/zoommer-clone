@@ -42,7 +42,7 @@ export default function HomeSlider() {
         return (
           <img
             className={className}
-            style={{ ...style, display: "block", width:'50px', height: '50px', position:'absolute', top: '50%', left: '790px', zIndex: 1, boxShadow: 'rgba(0, 0, 0, 0.2) 0px 2px 10px', borderRadius: '50%' }}
+            style={{ ...style, display: "block", width:'50px', height: '50px', position:'absolute', top: '50%', right: '10px', zIndex: 1, boxShadow: 'rgba(0, 0, 0, 0.2) 0px 2px 10px', borderRadius: '50%' }}
             onClick={onClick}
             src={righrArrow}
           />

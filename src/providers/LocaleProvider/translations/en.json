@@ -61,6 +61,8 @@
     "sort.title.desc": "Title: Z - A",
     "for.sale": "Products for Sale",
     "price": "Price",
+    "amount": "Amount",
+    "date": "Date",
     "similar.products": "Similar Products",
     "product.not.found": "Unfortunately, product could not be found",
     "products.not.found": "Products could not be found",
@@ -104,5 +106,6 @@
     "congrats.bought.success": "Congratulations, purchase was successful!",
     "close": "Close",
     "go.back": "Go Back",
-    "purchase.history": "Purchase History"
+    "purchase.history": "Purchase History",
+    "delivery.price": "Delivery Price"
 }

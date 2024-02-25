@@ -5,7 +5,7 @@ import { useGlobalProvider } from '@src/providers/GlobalProvider/useGlobalProvid
 import { FormattedMessage, useIntl } from 'react-intl';
 import goBackIcon from '@src/assets/icons/category-left-arr.png'
 import { useNavigate } from 'react-router-dom';
-import FullPriceCardMobilePurchase from '@src/components/FullPriceCard/FullPriceCardMobile/FullPriceCardMobilePurchase';
+import MobilePurchaseCard from '@src/views/BuyPage/MobilePurchaseCard/MobilePurchaseCard';
 
 interface AddressFormValues {
     city: string;
@@ -124,7 +124,7 @@ export default function AddressForm({setOnAddress}: {setOnAddress: (value: React
                     <FullPriceCard fullPrice={totalPurchasePrice} onClick={handleClick} buttonText="next"/>
             </div>
             <div className='block lg:hidden w-full absolute left-0 top-[400px]'>
-                <FullPriceCardMobilePurchase fullPrice={totalPurchasePrice} onClick={handleClick} buttonText='next'/>
+                <MobilePurchaseCard fullPrice={totalPurchasePrice} onClick={handleClick} buttonText='next'/>
             </div>
         </div>
     )

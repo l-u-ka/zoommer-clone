@@ -10,7 +10,7 @@ import Cards, { Focused } from 'react-credit-cards-2';
 import 'react-credit-cards-2/dist/es/styles-compiled.css';
 import { FormattedMessage, useIntl } from 'react-intl';
 import goBackIcon from '@src/assets/icons/category-left-arr.png'
-import FullPriceCardMobilePurchase from '@src/components/FullPriceCard/FullPriceCardMobile/FullPriceCardMobilePurchase';
+import MobilePurchaseCard from '@src/views/BuyPage/MobilePurchaseCard/MobilePurchaseCard';
 
 interface CardFormType {
     number: string;
@@ -198,7 +198,7 @@ export default function CardForm({setOnAddress, setSuccessModal}: {setOnAddress:
                 <FullPriceCard fullPrice={totalPurchasePrice} onClick={handleClick} loading={buyLoading} buttonText='pay'/>
             </div>
             <div className='block lg:hidden w-full absolute left-0 top-[650px] md:top-[450px]'>
-                <FullPriceCardMobilePurchase fullPrice={totalPurchasePrice} onClick={handleClick} loading={buyLoading} buttonText='pay'/>
+                <MobilePurchaseCard fullPrice={totalPurchasePrice} onClick={handleClick} loading={buyLoading} buttonText='pay'/>
             </div>
         </div>
     )

@@ -10,7 +10,7 @@ import AddressForm from './AddressForm/AddressForm';
 import CardForm from './CardForm/CardForm';
 import { useThemeProvider } from '@src/providers/ThemeProvider/useThemeProvider';
 import SuccessModal from './SuccessModal/SuccessModal';
-import FullPriceCardMobilePurchase from '@src/components/FullPriceCard/FullPriceCardMobile/FullPriceCardMobilePurchase';
+import MobilePurchaseCard from '@src/views/BuyPage/MobilePurchaseCard/MobilePurchaseCard';
 
 
 export default function BuyPage() {

@@ -8,6 +8,7 @@ import EditProfile from "./EditProfile/EditProfile";
 import ProfilePageMobile from "./ProfilePageMobile";
 import Wishlist from "./Wishlist/Wishlist";
 import { useMediaQuery } from "react-responsive";
+import PurchaseHistory from "./PurchaseHistory/PurchaseHistory";
 
 
 export enum PROFILE_MENU_ENUM {
@@ -81,7 +82,8 @@ export default function ProfilePage() {
                     <div className="flex">
                         <div className="flex flex-col min-w-[220px]">
                             <h4 onClick={() => setSelected(PROFILE_MENU_ENUM.ON_EDITING)} className={`cursor-pointer ${selected === PROFILE_MENU_ENUM.ON_EDITING ? "firago-bold" : "firago-normal opacity-80"} text-black dark:text-white-400 text-sm leading-[17px] mb-7`}><FormattedMessage id={PROFILE_MENU_ENUM.ON_EDITING}/></h4>
-                            <h4 onClick={() => setSelected(PROFILE_MENU_ENUM.ON_WISHLIST)} className={`cursor-pointer ${selected === PROFILE_MENU_ENUM.ON_WISHLIST ? "firago-bold" : "firago-normal opacity-80"} text-black dark:text-white-400 text-sm leading-[17px]`}><FormattedMessage id={PROFILE_MENU_ENUM.ON_WISHLIST}/></h4>
+                            <h4 onClick={() => setSelected(PROFILE_MENU_ENUM.ON_WISHLIST)} className={`cursor-pointer ${selected === PROFILE_MENU_ENUM.ON_WISHLIST ? "firago-bold" : "firago-normal opacity-80"} text-black dark:text-white-400 text-sm leading-[17px] mb-7`}><FormattedMessage id={PROFILE_MENU_ENUM.ON_WISHLIST}/></h4>
+                            <h4 onClick={() => setSelected(PROFILE_MENU_ENUM.ON_PURCHASE_HISTORY)} className={`cursor-pointer ${selected === PROFILE_MENU_ENUM.ON_PURCHASE_HISTORY ? "firago-bold" : "firago-normal opacity-80"} text-black dark:text-white-400 text-sm leading-[17px]`}><FormattedMessage id={PROFILE_MENU_ENUM.ON_PURCHASE_HISTORY}/></h4>
                             <h4 className="text-orange-primary cursor-pointer firago-normal leading-[17px] text-sm opacity-80 block mt-60" 
                                 onClick={showLogoutModal}><FormattedMessage id="logout"/></h4>
                                 {isLogoutModal && <LogoutModal modalOpen={isLogoutModal} closeModal={closeLogoutModal}/>}
@@ -91,6 +93,7 @@ export default function ProfilePage() {
                                 <h2 className="mb-[30px] firago-semibold text-lg leading-[22px] text-black-main dark:text-white-400"><FormattedMessage id={selected}/></h2>
                                 {(selected === PROFILE_MENU_ENUM.ON_EDITING) && <EditProfile/>}
                                 {(selected === PROFILE_MENU_ENUM.ON_WISHLIST) && <Wishlist/>}
+                                {(selected === PROFILE_MENU_ENUM.ON_PURCHASE_HISTORY) && <PurchaseHistory/>}
                             </div>
                     </div>
                 </div>

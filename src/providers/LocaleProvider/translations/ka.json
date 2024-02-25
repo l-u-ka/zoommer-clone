@@ -61,6 +61,8 @@
     "sort.title.desc": "სათაური: Z - A",
     "for.sale": "ფასდაკლებული პროდუქტები",
     "price": "ფასი",
+    "amount": "რაოდენობა",
+    "date": "თარიღი",
     "similar.products": "მსგავსი პროდუქტები",
     "product.not.found": "სამწუხაროდ, პროდუქტი ვერ მოიძებნა",
     "products.not.found": "პროდუქტები ვერ მოიძებნა",
@@ -104,5 +106,6 @@
     "congrats.bought.success": "გილოცავთ, შეძენა წარმატებით დასრულდა!",
     "close": "დახურვა",
     "go.back": "უკან დაბრუნება",
-    "purchase.history": "შენაძენის ისტორია"
+    "purchase.history": "შენაძენის ისტორია",
+    "delivery.price": "მიტანის ღირებულება"
 }

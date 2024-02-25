@@ -62,3 +62,7 @@
 .rccs {
   @apply md:!m-0;
 }
+
+.shadow-top {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px -4px 4px;
+}
