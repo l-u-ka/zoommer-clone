@@ -24,7 +24,7 @@ export function useGetCartItems() {
     useEffect(() => {
         if(authStage === Auth_Stage_Enum.AUTHORIZED) {
             getCartItems();
-        }
+        } else setCartItems([]);
     }, [authStage])
 
     return {cartItems, getCartItems, cartLoading}

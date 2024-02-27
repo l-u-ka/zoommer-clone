@@ -70,13 +70,14 @@ export default function Products() {
       <div className='w-full flex flex-col lg:flex-row lg:justify-between items-start lg:items-center'>
         <div className='inline-flex items-center cursor-pointer' onClick={()=> {navigate(-1)}}>
           <img src={goBackIcon} alt='go back icon' className='h-full mr-[22px]'/>
-          <h2 className='firago-bold text-base leading-[19px] text-black dark:text-orange-primary'>{category}</h2>
+          <h2 className='firago-bold text-base leading-[19px] text-black-main dark:text-dark-black-main'>{category}</h2>
         </div>
+        {/* mobile sort */}
         <div className='hidden lg:block w-40 h-10'>
           <SortProducts setSortOrder={setSortOrder} sortOrder={sortOrder}/>
         </div>
         <div className='w-full lg:hidden mt-4'>
-          <hr className="border border-solid border-white-400 mb-4"/>
+          <hr className="border border-solid border-border-white dark:border-border-dark-white mb-4"/>
           <div className='flex items-center justify-between'>
             <div className='w-full h-10 mr-8'>
               <SortProducts setSortOrder={setSortOrder} sortOrder={sortOrder}/>
@@ -94,7 +95,7 @@ export default function Products() {
           </div>
         </div>
       </div>
-      <hr className="mt-[24px] mb-[30px] border border-solid border-white-400"/>
+      <hr className="mt-[24px] mb-[30px] border border-solid border-border-white dark:border-border-dark-white"/>
       <div>
           <div>
             <div className='w-full flex'>
@@ -103,7 +104,7 @@ export default function Products() {
               </div>
               {productsLoading && <h3 className='ml-6'>Loading...</h3>}
               {(!productsLoading && products.length > 0) && <ProductsList products={products} totalProducts={totalProducts as number}/>}
-              {(!productsLoading && products.length === 0) && <h2 className='pl-8 dark:text-white-400 firago-semibold text-lg leading-[20px]'><FormattedMessage id='products.not.found'/></h2>}
+              {(!productsLoading && products.length === 0) && <h2 className='pl-8 text-black-main dark:text-dark-black-main firago-semibold text-lg leading-[20px]'><FormattedMessage id='products.not.found'/></h2>}
             </div>
           </div>
       </div>

@@ -36,17 +36,17 @@ export default function ProductCard({product} : {product: ProductType}) {
                 {(addLoading || removeLoading) && <div>loading...</div>}
             </div>
             <div>
-                {!product.salePrice && <p className="firago-semibold text-base leading-[19px] mb-[10px] dark:text-orange-primary">{product.price} ₾</p>}
+                {!product.salePrice && <p className="firago-semibold text-base leading-[19px] mb-[10px] text-black-main dark:text-dark-black-main">{product.price} ₾</p>}
                 {product.salePrice && (
                     <div className="flex">
-                        <p className="firago-semibold text-base leading-[19px] mb-[10px] dark:text-orange-primary mr-2">{product.salePrice} ₾</p>
-                        <p className="relative firago-normal text-xs text-black-07 dark:text-white-400">
+                        <p className="firago-semibold text-base leading-[19px] mb-[10px] text-orange-main dark:text-text-dark-orange-main mr-2">{product.salePrice} ₾</p>
+                        <p className="relative firago-normal text-xs text-black-07 dark:text-dark-black-07">
                             {product.price} ₾
-                            <span className="absolute top-2 left-0 right-0 h-[1px] bg-orange-primary transform translate-y-[-50%]"></span>
+                            <span className="absolute top-2 left-0 right-0 h-[1px] bg-orange-main transform translate-y-[-50%]"></span>
                         </p>
                     </div>
                 )}
-                <h3 onClick={()=>navigate(`/products/${product.category_name}/${product.id}`)}  className="max-w-40 firago-medium text-xs leading-[18px] opacity-80 cursor-pointer dark:text-orange-primary">{product.title}</h3>
+                <h3 onClick={()=>navigate(`/products/${product.category_name}/${product.id}`)}  className="max-w-40 firago-medium text-xs leading-[18px] opacity-80 cursor-pointer text-black-main dark:text-dark-black-main">{product.title}</h3>
             </div>
             <AddCartButton height={40} borderRadius={4} productId={product.id}/>
         </div>

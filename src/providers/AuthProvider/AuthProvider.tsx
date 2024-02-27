@@ -13,6 +13,8 @@ export function AuthProvider({children} : PropsWithChildren) {
     const [authStage, setAuthStage] = useState<Auth_Stage_Enum>(Auth_Stage_Enum.PENDING);
     const [userData, setUserData] = useState<TUserData>();
 
+    console.log("AUTH STAGE IS: ", authStage)
+
     function setAuthData(tokens: TAuthRequest) {
         const tokenData:TUserData = jwtDecode(tokens.access_token);
         setUserData(tokenData);

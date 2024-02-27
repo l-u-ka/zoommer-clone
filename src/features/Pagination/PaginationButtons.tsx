@@ -18,8 +18,8 @@ export default function PaginationButtons({totalProducts}: {totalProducts: numbe
     algorithm: !lightMode ? darkAlgorithm : defaultAlgorithm,
     "components": {
       "Pagination": {
-        "colorPrimary": "rgb(236, 94, 42)",
-        "colorPrimaryHover": "rgb(236, 94, 42)"
+        "colorPrimary": lightMode ? "rgb(236, 94, 42) !important" : "#c1471c !important",
+        "colorPrimaryHover": lightMode ? "rgb(236, 94, 42) !important" : "#c1471c !important",
       }
     }
   }

@@ -1,3 +1,4 @@
+import { useThemeProvider } from "@src/providers/ThemeProvider/useThemeProvider";
 import { Button, ConfigProvider } from "antd";
 import { ReactNode } from "react";
 
@@ -10,16 +11,17 @@ interface PrimaryButtonProps {
 }
 
 
-
 export default function PrimaryButton({width, height, onClick, children, loading}: PrimaryButtonProps) {
+
+    const {lightMode} = useThemeProvider();
 
     const customTheme = {
         // algorithm: !lightMode ? darkAlgorithm : defaultAlgorithm,
         "components": {
           "Button": {
-            "colorPrimary": "rgb(236, 94, 42)",
-            "colorPrimaryHover": "rgb(236, 94, 42)",
-            "colorPrimaryActive": "rgb(236, 94, 42)",
+            "colorPrimary": lightMode ? "rgb(236, 94, 42) !important" : "#c1471c !important",
+            "colorPrimaryHover": lightMode ? "#c1471c !important" : "rgb(236, 94, 42) !important",
+            "colorPrimaryActive": lightMode ? "#c1471c !important" : "rgb(236, 94, 42) !important",
             "borderRadius": 12,
             "controlHeight": height,
             "controlHeightLG": height,

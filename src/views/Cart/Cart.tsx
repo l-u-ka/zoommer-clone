@@ -48,11 +48,11 @@ export default function Cart() {
   console.log("CART ITEMS: ", cartItems)
 
   return (
-    <div className="custom-container pt-[30px] pb-[60px] min-h-screen">
+    <div className="custom-container pt-[30px] pb-[60px]">
       {cartItems.length > 0 ? (
         <>
-          <h2 className="firago-bold text-2xl leading-[29px] opacity-60 text-black dark:text-white-400"><FormattedMessage id="there.are"/> {cartItems.length} <FormattedMessage id="products.in.cart"/></h2>
-          <hr className="mt-[24px] mb-[30px] border border-solid border-white-400"/>
+          <h2 className="firago-bold text-2xl leading-[29px] text-black-main dark:text-dark-black-main"><FormattedMessage id="there.are"/> {cartItems.length} <FormattedMessage id="products.in.cart"/></h2>
+          <hr className="mt-[24px] mb-[30px] border border-solid border-border-white dark:border-border-dark-white"/>
           <div className="flex relative">
             <div className="w-full mb-32"><CartProducts/></div>
             <div className="min-w-[400px] ml-[50px] hidden lg:block">

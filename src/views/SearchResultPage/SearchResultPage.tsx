@@ -24,8 +24,8 @@ export default function SearchResultPage() {
   return (
     <div className='custom-container pt-[30px] pb-[60px] min-h-[700px]'>
       <div className='mb-10'>
-        <h4 className='firago-medium text-black-06 text-xs leading-[14px] mb-[15px] dark:text-white-400'><FormattedMessage id="search.result"/></h4>
-        {!searchLoading && <h3 className='firago-medium text-base leading-[14px] dark:text-white-400'> მოიძებნა {searchedProducts?.length} შედეგი <span className=' text-orange-primary'>{searchValue}</span></h3>}
+        <h4 className='firago-medium text-black-06 dark:text-dark-black-06 text-xs leading-[14px] mb-[15px]'><FormattedMessage id="search.result"/></h4>
+        {!searchLoading && <h3 className='firago-medium text-base leading-[14px] text-black-main dark:text-dark-black-main'> <FormattedMessage id='found'/> {searchedProducts?.length} <FormattedMessage id='results'/> <span className=' text-orange-main dark:text-text-dark-orange-main'>{searchValue}</span></h3>}
       </div>
       {searchLoading && <div>Loading...</div>}
       {(!searchLoading && searchedProducts.length >= 1) && (

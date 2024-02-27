@@ -73,7 +73,7 @@ export default function CardForm({setOnAddress, setSuccessModal}: {setOnAddress:
             <div className='w-full'>
                 <div className='inline-flex items-center mb-[30px] cursor-pointer' onClick={()=>{setOnAddress(true)}}>
                     <img alt='go back icon' src={goBackIcon} className='h-full mr-[20px]' />
-                    <h2 className='firago-bold text-base leading-[19px] text-black-08 dark:text-white-400'><FormattedMessage id="go.back"/></h2>
+                    <h2 className='firago-bold text-base leading-[19px] text-black-08 dark:text-dark-black-8'><FormattedMessage id="go.back"/></h2>
                 </div>
                 <div className='w-full flex flex-col md:flex-row-reverse justify-between'>
                     <Cards

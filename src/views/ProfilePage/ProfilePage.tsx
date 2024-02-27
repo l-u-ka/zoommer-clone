@@ -9,6 +9,7 @@ import ProfilePageMobile from "./ProfilePageMobile";
 import Wishlist from "./Wishlist/Wishlist";
 import { useMediaQuery } from "react-responsive";
 import PurchaseHistory from "./PurchaseHistory/PurchaseHistory";
+import { useThemeProvider } from "@src/providers/ThemeProvider/useThemeProvider";
 
 
 export enum PROFILE_MENU_ENUM {
@@ -24,6 +25,7 @@ export default function ProfilePage() {
     const [isLogoutModal, setIsLogoutModal] = useState<boolean>(false);
     const [selected, setSelected] = useState<PROFILE_MENU_ENUM>(PROFILE_MENU_ENUM.ON_EDITING);
     const isDesktop = useMediaQuery({ minWidth: 1024 });
+    const {lightMode} = useThemeProvider();
 
     function showLogoutModal() {
         setIsLogoutModal(true);
@@ -36,32 +38,26 @@ export default function ProfilePage() {
         // algorithm: !lightMode ? darkAlgorithm : defaultAlgorithm,
         "components": {
           "Input": {
-            "activeBorderColor": "rgb(236, 94, 42)",
-            "hoverBorderColor": "rgb(236, 94, 42)",
+            "activeBorderColor": "rgb(236, 94, 42) !important",
+            "hoverBorderColor": "rgb(236, 94, 42) !important",
             "paddingInline": 14,
             "paddingBlock": 16,
             "borderRadius": 12,
-            "colorBorder": "rgb(242, 242, 242)",
-            "colorBgContainer": "rgb(242, 242, 242) !important",
+            "colorBorder": lightMode ? "rgb(242, 242, 242) !important" : "#34383a !important",
+            "colorBgContainer": lightMode ? "rgb(242, 242, 242) !important" :  "rgb(33,36,38) !important",
+            "activeBg": lightMode ? "rgb(255, 255, 255) !important" : "rgb(24, 26, 27) !important",
             "lineHeight": 1.0625,
-            "colorTextPlaceholder": "rgba(0, 0, 0, 0.6)",
+            "colorTextPlaceholder": lightMode ? "rgba(0, 0, 0, 0.6) !important" : "rgba(232, 230, 227, 0.6) !important",
             "activeShadow": "0",
-          },
-          "Button": {
-            "colorPrimary": "rgb(236, 94, 42)",
-            "colorPrimaryHover": "rgb(236, 94, 42)",
-            "colorPrimaryActive": "rgb(236, 94, 42)",
-            "borderRadius": 12,
-            "controlHeight": 50,
-            "controlHeightLG": 50,
-            "controlHeightSM": 30,
-            "lineHeight": 1.75,
-            "defaultBorderColor": "rgb(250, 84, 28)",
+            "colorText": lightMode ? "#000 !important" : "#e8e6e3 !important",
+            "colorError": lightMode ? "rgba(255,0,0,.8)" : "rgba(255, 26, 26, 0.8)",
+            "colorBgContainerDisabled": lightMode ? "rgba(242, 242, 242, 0.4) !important" :  "rgba(33,36,38, 0.4) !important",
           },
           "Modal": {
             "borderRadiusLG": 20,
-            "borderRadiusSM": 10
-          },
+            "borderRadiusSM": 10,
+            "contentBg": lightMode ? "#FFFFFF !important" : "rgb(24, 26, 27) !important"
+          }
         }
       }
 
@@ -72,25 +68,25 @@ export default function ProfilePage() {
 
     return (
         <ConfigProvider theme={customTheme}>
-            <div className="custom-container pt-[30px] pb-[60px] min-h-screen">
+            <div className="custom-container pt-[30px] pb-[60px]">
                 <div className="hidden lg:block">
                     <div className="flex items-center">
                         <img src={profileIcon} alt="profile icon" className="w-6 mr-3"/>
-                        <h1 className="text-2xl firago-bold leading-[29px] text-black-main dark:text-white-400"> <FormattedMessage id="hello"/>, {userData?.first_name}</h1>
+                        <h1 className="text-2xl firago-bold leading-[29px] text-black-main dark:text-dark-black-main"> <FormattedMessage id="hello"/>, {userData?.first_name}</h1>
                     </div>
-                    <hr className="mt-[20px] mb-[30px] border border-solid border-white-400"/>
+                    <hr className="mt-[20px] mb-[30px] border border-solid border-border-white dark:border-border-dark-white"/>
                     <div className="flex">
                         <div className="flex flex-col min-w-[220px]">
-                            <h4 onClick={() => setSelected(PROFILE_MENU_ENUM.ON_EDITING)} className={`cursor-pointer ${selected === PROFILE_MENU_ENUM.ON_EDITING ? "firago-bold" : "firago-normal opacity-80"} text-black dark:text-white-400 text-sm leading-[17px] mb-7`}><FormattedMessage id={PROFILE_MENU_ENUM.ON_EDITING}/></h4>
-                            <h4 onClick={() => setSelected(PROFILE_MENU_ENUM.ON_WISHLIST)} className={`cursor-pointer ${selected === PROFILE_MENU_ENUM.ON_WISHLIST ? "firago-bold" : "firago-normal opacity-80"} text-black dark:text-white-400 text-sm leading-[17px] mb-7`}><FormattedMessage id={PROFILE_MENU_ENUM.ON_WISHLIST}/></h4>
-                            <h4 onClick={() => setSelected(PROFILE_MENU_ENUM.ON_PURCHASE_HISTORY)} className={`cursor-pointer ${selected === PROFILE_MENU_ENUM.ON_PURCHASE_HISTORY ? "firago-bold" : "firago-normal opacity-80"} text-black dark:text-white-400 text-sm leading-[17px]`}><FormattedMessage id={PROFILE_MENU_ENUM.ON_PURCHASE_HISTORY}/></h4>
-                            <h4 className="text-orange-primary cursor-pointer firago-normal leading-[17px] text-sm opacity-80 block mt-60" 
+                            <h4 onClick={() => setSelected(PROFILE_MENU_ENUM.ON_EDITING)} className={`cursor-pointer ${selected === PROFILE_MENU_ENUM.ON_EDITING ? "firago-bold" : "firago-normal opacity-80"} text-black-main dark:text-dark-black-main text-sm leading-[17px] mb-7`}><FormattedMessage id={PROFILE_MENU_ENUM.ON_EDITING}/></h4>
+                            <h4 onClick={() => setSelected(PROFILE_MENU_ENUM.ON_WISHLIST)} className={`cursor-pointer ${selected === PROFILE_MENU_ENUM.ON_WISHLIST ? "firago-bold" : "firago-normal opacity-80"} text-black-main dark:text-dark-black-main text-sm leading-[17px] mb-7`}><FormattedMessage id={PROFILE_MENU_ENUM.ON_WISHLIST}/></h4>
+                            <h4 onClick={() => setSelected(PROFILE_MENU_ENUM.ON_PURCHASE_HISTORY)} className={`cursor-pointer ${selected === PROFILE_MENU_ENUM.ON_PURCHASE_HISTORY ? "firago-bold" : "firago-normal opacity-80"} text-black-main dark:text-dark-black-main text-sm leading-[17px]`}><FormattedMessage id={PROFILE_MENU_ENUM.ON_PURCHASE_HISTORY}/></h4>
+                            <h4 className="text-orange-main cursor-pointer firago-normal leading-[17px] text-sm opacity-80 block mt-60" 
                                 onClick={showLogoutModal}><FormattedMessage id="logout"/></h4>
                                 {isLogoutModal && <LogoutModal modalOpen={isLogoutModal} closeModal={closeLogoutModal}/>}
                             </div>
-                            <hr className="mr-[100px] border border-solid border-white-400"/>
+                            <hr className="mr-[100px] border border-solid border-border-white dark:border-border-dark-white"/>
                             <div className="w-full">
-                                <h2 className="mb-[30px] firago-semibold text-lg leading-[22px] text-black-main dark:text-white-400"><FormattedMessage id={selected}/></h2>
+                                <h2 className="mb-[30px] firago-semibold text-lg leading-[22px] text-black-main dark:text-dark-black-main"><FormattedMessage id={selected}/></h2>
                                 {(selected === PROFILE_MENU_ENUM.ON_EDITING) && <EditProfile/>}
                                 {(selected === PROFILE_MENU_ENUM.ON_WISHLIST) && <Wishlist/>}
                                 {(selected === PROFILE_MENU_ENUM.ON_PURCHASE_HISTORY) && <PurchaseHistory/>}

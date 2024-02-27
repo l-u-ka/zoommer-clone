@@ -65,6 +65,11 @@ export default function Navigation() {
         setSearchInput(false);
         setShowOverlay(false);
     }
+    function handleCartClick() {
+        if (authStage === Auth_Stage_Enum.AUTHORIZED) {
+            navigate("/cart");
+        } else setLoginModalOpen(true);
+    }
 
     useEffect(()=> {
         if (categoriesTabModal || searchInput) {
@@ -83,7 +88,7 @@ export default function Navigation() {
 
     function handleMouseLeave(event: React.MouseEvent<HTMLElement>) {
         const { clientX, clientY } = event;
-        const { left, top, width, height } = event.currentTarget.getBoundingClientRect();
+        const { left, top, width } = event.currentTarget.getBoundingClientRect();
     
         if (clientX < left) {
             closeCartModal();
@@ -108,7 +113,7 @@ export default function Navigation() {
     }
 
     return (
-        <div className="w-[100%] bg-white-07 sticky top-0 dark:bg-[#1f1f1f] z-40">
+        <div className="w-[100%] sticky top-0 bg-light-theme-secondary-bg dark:bg-dark-theme-secondary-bg z-40">
             <div className='hidden lg:block'>
                 <div className="custom-container py-3 items-center grid grid-flow-col auto-cols-max justify-between relative">
                     <img src={headerLogo} alt='main logo' className='h-[28px] lg:h-[40px] cursor-pointer' onClick={()=>navigate("/")}/>
@@ -118,7 +123,7 @@ export default function Navigation() {
                             <NavButton text={'navigation'} type={BUTTON_TYPE_ENUM.PRIMARY} icon={dotsIcon} onClick={()=>navigate("/all-categories")}/>
                             <NavSearch/>
                             <>
-                                <NavButton text={'cart'} type={BUTTON_TYPE_ENUM.DEFAULT} icon={cartIcon} cartItems={cartItems.length} onClick={()=>navigate("/cart")} onMouseEnter={showCartModal} onMouseLeave={handleMouseLeave}  /*onMouseEnter={showCartModal} onMouseLeave={closeCartModal}*//>
+                                <NavButton text={'cart'} type={BUTTON_TYPE_ENUM.DEFAULT} icon={cartIcon} cartItems={cartItems.length} onClick={handleCartClick} onMouseEnter={showCartModal} onMouseLeave={handleMouseLeave}  /*onMouseEnter={showCartModal} onMouseLeave={closeCartModal}*//>
                                 {cartModal && <CartModal closeModal={handleMouseLeaveModal}/>}
                             </>
                             <div>

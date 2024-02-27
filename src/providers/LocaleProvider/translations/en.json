@@ -107,5 +107,9 @@
     "close": "Close",
     "go.back": "Go Back",
     "purchase.history": "Purchase History",
-    "delivery.price": "Delivery Price"
+    "delivery.price": "Delivery Price",
+    "view.all": "View All",
+    "found": "Found",
+    "results": "Results",
+    "home": "Home"
 }

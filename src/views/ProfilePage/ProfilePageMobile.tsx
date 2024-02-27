@@ -24,41 +24,41 @@ export default function ProfilePageMobile({selected, setSelected} : {selected: P
         {selected === PROFILE_MENU_ENUM.ON_MENU && (
           <div className="flex items-center">
             <img src={profileIcon} alt="profile icon" className="w-6 mr-3"/>
-            <h1 className="firago-medium text-base leading-[19px] text-black-main dark:text-white-400"> <FormattedMessage id="hello"/>, {userData?.first_name}</h1>
+            <h1 className="firago-medium text-base leading-[19px] text-black-main dark:text-dark-black-main"> <FormattedMessage id="hello"/>, {userData?.first_name}</h1>
           </div>
         )}
         {selected === PROFILE_MENU_ENUM.ON_EDITING && (
           <div className='flex items-center cursor-pointer' onClick={() => setSelected(PROFILE_MENU_ENUM.ON_MENU)}>
             <img src={lefrArrow} className='h3 mr-3'/>
-            <h1 className="firago-medium text-base leading-[19px] text-black-main dark:text-white-400"> <FormattedMessage id="edit.profile"/></h1>
+            <h1 className="firago-medium text-base leading-[19px] text-black-main dark:text-dark-black-main"> <FormattedMessage id="edit.profile"/></h1>
           </div>
         )}
         {selected === PROFILE_MENU_ENUM.ON_WISHLIST && (
           <div className='flex items-center cursor-pointer' onClick={() => setSelected(PROFILE_MENU_ENUM.ON_MENU)}>
             <img src={lefrArrow} className='h3 mr-3'/>
-            <h1 className="firago-medium text-base leading-[19px] text-black-main dark:text-white-400"> <FormattedMessage id="wishlist"/></h1>
+            <h1 className="firago-medium text-base leading-[19px] text-black-main dark:text-dark-black-main"> <FormattedMessage id="wishlist"/></h1>
           </div>
         )}
         {selected === PROFILE_MENU_ENUM.ON_PURCHASE_HISTORY && (
           <div className='flex items-center cursor-pointer' onClick={() => setSelected(PROFILE_MENU_ENUM.ON_MENU)}>
             <img src={lefrArrow} className='h3 mr-3'/>
-            <h1 className="firago-medium text-base leading-[19px] text-black-main dark:text-white-400"> <FormattedMessage id="purchase.history"/></h1>
+            <h1 className="firago-medium text-base leading-[19px] text-black-main dark:text-dark-black-main"> <FormattedMessage id="purchase.history"/></h1>
           </div>
         )}
       </div>
-      <hr className="mt-[20px] mb-[30px] border border-solid border-white-400"/>
+      <hr className="mt-[20px] mb-[30px] border border-solid border-border-white dark:border-border-dark-white"/>
       {selected === PROFILE_MENU_ENUM.ON_MENU && (
         <div className='w-full'>
           <div className='flex justify-between cursor-pointer' onClick={()=>setSelected(PROFILE_MENU_ENUM.ON_EDITING)}>
-            <h3 className='firago-normal text-sm leading-[17px] mb-[30px] dark:text-white-400'><FormattedMessage id='edit.profile'/></h3>
+            <h3 className='firago-normal text-sm leading-[17px] mb-[30px] text-black-main dark:text-dark-black-main'><FormattedMessage id='edit.profile'/></h3>
             <img src={lefrArrow} className='rotate-180 h-3'/>
           </div>
           <div className='flex justify-between cursor-pointer' onClick={()=>setSelected(PROFILE_MENU_ENUM.ON_WISHLIST)}>
-            <h3 className='firago-normal text-sm leading-[17px] mb-[30px] dark:text-white-400'><FormattedMessage id='wishlist'/></h3>
+            <h3 className='firago-normal text-sm leading-[17px] mb-[30px] text-black-main dark:text-dark-black-main'><FormattedMessage id='wishlist'/></h3>
             <img src={lefrArrow} className='rotate-180 h-3'/>
           </div>
           <div className='flex justify-between cursor-pointer' onClick={()=>setSelected(PROFILE_MENU_ENUM.ON_PURCHASE_HISTORY)}>
-            <h3 className='firago-normal text-sm leading-[17px] cursor-pointer dark:text-white-400'><FormattedMessage id='purchase.history'/></h3>
+            <h3 className='firago-normal text-sm leading-[17px] cursor-pointer text-black-main dark:text-dark-black-main'><FormattedMessage id='purchase.history'/></h3>
             <img src={lefrArrow} className='rotate-180 h-3'/>
           </div>
         </div>

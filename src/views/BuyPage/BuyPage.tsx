@@ -24,29 +24,38 @@ export default function BuyPage() {
 
     const {lightMode} = useThemeProvider();
     const {defaultAlgorithm, darkAlgorithm} = theme;
+    
+    /* "red-08": "rgba(255,0,0,.8)",
+        "dark-red-08": "rgba(255, 26, 26, 0.8)", */
 
     const configTheme = {
         // algorithm: !lightMode ? darkAlgorithm : defaultAlgorithm,
         "components": {
+            "Form": {
+                "colorError": lightMode ? "rgba(255,0,0,.8)" : "rgba(255, 26, 26, 0.8)",
+            },
             "Input": {
               "controlHeight": 50,
-              "colorBgContainer": "rgb(242, 242, 242)",
-              "activeBg": "rgb(255, 255, 255)",
+              "colorBgContainer": lightMode ? "rgb(242, 242, 242)" :  "rgb(33,36,38)",
+              "activeBg": lightMode ? "rgb(255, 255, 255)" : "rgb(24, 26, 27)",
               "activeBorderColor": "rgb(236, 94, 42)",
-              "colorBorder": "rgb(242, 242, 242)",
+              "colorBorder": lightMode ? "rgb(242, 242, 242)" : "#34383a",
               "hoverBorderColor": "rgb(236, 94, 42)",
               "activeShadow": "",
               "errorActiveShadow": "",
               "warningActiveShadow": "",
               "borderRadius": 12,
               "fontSize": 14,
-              "colorTextPlaceholder": "rgba(0, 0, 0, 0.6)",
+              "colorTextPlaceholder": lightMode ? "rgba(0, 0, 0, 0.6)" : "rgba(232, 230, 227, 0.6)",
+              "colorText": lightMode ? "#000" : "#e8e6e3",
+              "colorError": lightMode ? "rgba(255,0,0,.8)" : "rgba(255, 26, 26, 0.8)",
             },
             "Select": {
                 "controlHeight": 85,
-                "colorBgContainer": "rgb(242, 242, 242)",
-                "colorBgElevated": "rgb(242, 242, 242)",
-                "optionActiveBg": "rgb(255, 255, 255)",
+                "colorBgContainer": lightMode ? "rgb(242, 242, 242)" :  "rgb(33,36,38)",
+                "colorBgElevated": lightMode ? "rgb(242, 242, 242)" :  "rgb(33,36,38)",
+                "optionActiveBg": lightMode ? "rgb(255, 255, 255)" : "rgb(24, 26, 27)",
+                "colorBorder": lightMode ? "rgb(242, 242, 242)" : "#34383a",
                 "optionSelectedBg": "rgba(236, 94, 42, 0.8)",
                 "colorPrimary": "rgb(236, 94, 42)",
                 "colorPrimaryHover": "rgb(236, 94, 42)",
@@ -54,10 +63,54 @@ export default function BuyPage() {
                 "controlOutline": "rgba(255, 255, 255, 0)",
                 "fontSize": 16,
                 "borderRadius": 12,
-                "colorTextPlaceholder": "rgba(0, 0, 0, 0.6)",
+                "colorTextPlaceholder": lightMode ? "rgba(0, 0, 0, 0.6)" : "rgba(232, 230, 227, 0.6)",
+                "colorText": lightMode ? "#000" : "#e8e6e3",
+                "colorError": lightMode ? "rgba(255,0,0,.8)" : "rgba(255, 26, 26, 0.8)",
               }
           }
     }
+
+    /*
+"Input": {
+          "activeBorderColor": "rgb(236, 94, 42)",
+          "hoverBorderColor": "rgb(236, 94, 42)",
+          "paddingInline": 14,
+          "paddingBlock": 16,
+          "borderRadius": 12,
+          "colorBorder": "rgb(242, 242, 242)",
+          "colorBgContainer": lightMode ? "rgb(242, 242, 242)" :  "rgb(33,36,38)",
+          "lineHeight": 1.0625,
+          "colorTextPlaceholder": lightMode ? "rgba(0, 0, 0, 0.6)" : "rgba(232, 230, 227, 0.6)",
+          "activeShadow": "0",
+          "colorText": lightMode ? "#000" : "#e8e6e3"
+        },
+        "Button": {
+          "colorPrimary": lightMode ? "rgb(236, 94, 42) !important" : "#c1471c !important",
+          "colorPrimaryHover": lightMode ? "#c1471c !important" : "rgb(236, 94, 42) !important",
+          "colorPrimaryActive": lightMode ? "#c1471c !important" : "rgb(236, 94, 42) !important",
+          "borderRadius": 12,
+          "controlHeight": 50,
+          "controlHeightLG": 50,
+          "controlHeightSM": 30,
+          "lineHeight": 1.0625
+        },
+        "Select": {
+          "colorBgElevated": lightMode ? "rgb(242, 242, 242)" : "rgb(33,36,38)",
+          "optionActiveBg": "rgb(255, 255, 255)",
+          "optionSelectedBg": "rgba(236, 94, 42, 0.8)",
+          "colorPrimary": "#000",
+          "colorPrimaryHover": "rgb(236, 94, 42)",
+          "boxShadowSecondary": "",
+          "controlOutline": "rgba(255, 255, 255, 0)",
+          "colorTextPlaceholder": "rgba(0, 0, 0, 0.6)",
+        },
+        "Modal": {
+          "borderRadiusLG": 20,
+          "borderRadiusSM": 10,
+          "contentBg": lightMode ? "#FFFFFF" : "rgb(24, 26, 27)"
+        },
+      }
+    */
 
     console.log("IS ON ADDRESS: ",onAdress)
     console.log("Total Amount: ",totalPurchaseAmount);
@@ -73,9 +126,9 @@ export default function BuyPage() {
 
     return (
         <ConfigProvider theme={configTheme}>
-            <div className="custom-container pt-[30px] pb-[60px] min-h-screen">
-                <h2 className='firago-bold text-2xl leading-[29px] dark:text-white-400'><FormattedMessage id='order.details'/></h2>
-                <hr className="mt-[24px] mb-[30px] border border-solid border-white-400"/>
+            <div className="custom-container pt-[30px] pb-[60px]">
+                <h2 className='firago-bold text-2xl leading-[29px] text-black-main dark:text-dark-black-main'><FormattedMessage id='order.details'/></h2>
+                <hr className="mt-[24px] mb-[30px] border border-solid border-border-white dark:border-border-dark-white"/>
                 {!(totalPurchaseAmount === 0 || totalPurchasePrice === 0) && (
                     <div className='flex'>
                     <div className='w-full'>

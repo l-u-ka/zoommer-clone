@@ -13,39 +13,40 @@ interface FormValues extends RegistrationFormInput {
 
 export default function RegistrationForm({closeModal}: {closeModal: ()=> void}) {
 
-  const [registerInput, setRegisterInput] = useState<RegistrationFormInput>({
-    first_name: '',
-    last_name: '',
-    email: '',
-    phone_number: '',
-    password: ''
-  });
+  // const [registerInput, setRegisterInput] = useState<RegistrationFormInput>({
+  //   first_name: '',
+  //   last_name: '',
+  //   email: '',
+  //   phone_number: '',
+  //   password: ''
+  // });
   const [isError, setIsError] = useState<string>('');
   const [isLoading, setLoading] = useState<boolean>(false);
   const {Option} = Select;
-  const [form] = Form.useForm();
+  const [registrationForm] = Form.useForm();
   const {formatMessage} = useIntl();
   const {setAuthData} = useAuthProvider();
 
   // console.log(registerInput)
 
   function onFinish(changedValues: FormValues) {
-    const {prefix, confirm_password, ...filtered} = changedValues;
-    setRegisterInput(() => ({
-      ...filtered,
-    }));
+    // const {prefix, confirm_password, ...filtered} = changedValues;
+    // setRegisterInput(() => ({
+    //   ...filtered,
+    // }));
+    registerUser(changedValues.first_name, changedValues.last_name, changedValues.email, changedValues.password, changedValues.phone_number)
   }
   
-  async function registerUser() {
+  async function registerUser(first_name: string, last_name:string, email: string, password:string, phone_number: string) {
     try {
       setIsError('')
       setLoading(true);
       const response = await axios.post("http://localhost:3000/auth/register", {
-        "first_name": registerInput.first_name,
-        "last_name": registerInput.last_name,
-        "email": registerInput.email,
-        "password": registerInput.password,
-        "phone_number": registerInput.phone_number
+        "first_name": first_name,
+        "last_name": last_name,
+        "email": email,
+        "password": password,
+        "phone_number": phone_number
     })
       // console.log("Registered successfully:", response.data);
       // form.resetFields();
@@ -59,12 +60,12 @@ export default function RegistrationForm({closeModal}: {closeModal: ()=> void}) 
     }
   }
 
-  useEffect(()=> {
-    const isNotEmpty = Object.values(registerInput).every(element => element !== '');
-    if (isNotEmpty) {
-      registerUser();
-    }
-  }, [registerInput])
+  // useEffect(()=> {
+  //   const isNotEmpty = Object.values(registerInput).every(element => element !== '');
+  //   if (isNotEmpty) {
+  //     registerUser();
+  //   }
+  // }, [registerInput])
 
 
   // function onValuesChange(changedValues: FormValues) {
@@ -110,7 +111,7 @@ export default function RegistrationForm({closeModal}: {closeModal: ()=> void}) 
     
     <Form<FormValues>
       // {...formItemLayout}
-      form={form}
+      form={registrationForm}
       name="register"
       onFinish={onFinish}
       // onValuesChange={onValuesChange}

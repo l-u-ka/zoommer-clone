@@ -92,7 +92,7 @@ export default function AddressForm({setOnAddress}: {setOnAddress: (value: React
             <div className='w-full'>
                 <div className='inline-flex items-center mb-[30px] cursor-pointer' onClick={()=>{navigate(-1)}}>
                     <img alt='go back icon' src={goBackIcon} className='h-full mr-[20px]' />
-                    <h2 className='firago-bold text-base leading-[19px] text-black-08 dark:text-white-400'><FormattedMessage id="go.back"/></h2>
+                    <h2 className='firago-bold text-base leading-[19px] text-black-08 dark:text-dark-black-8'><FormattedMessage id="go.back"/></h2>
                 </div>
                 <Form<AddressFormValues>
                     form={addressForm}
@@ -107,9 +107,6 @@ export default function AddressForm({setOnAddress}: {setOnAddress: (value: React
                             allowClear
                             
                         >
-                            {/* <Option value="tbilisi">Tbilisi</Option>
-                            <Option value="batumi">Batumi</Option>
-                            <Option value="kutaisi">Kutaisi</Option> */}
                             {cityOptions.map(cityOpt => {
                                 return <Option key={cityOpt.id} value={cityOpt.value}>{cityOpt.name}</Option>
                             })}

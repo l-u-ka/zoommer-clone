@@ -55,7 +55,7 @@ export default function FeaturedTab({categoryName} : {categoryName: string}) {
     return (
       (!productsLoading && products.length > 0) && (
         <div className="relative">
-            <h3 className="mb-4 dark:text-orange-primary">{categoryName}</h3>
+            <h3 className="mb-4 text-black-main opacity-80 firago-semibold text-base leading-[20px] dark:text-dark-black-main">{categoryName}</h3>
               <Slider {...settings}>
                   {featuredProducts}
               </Slider>

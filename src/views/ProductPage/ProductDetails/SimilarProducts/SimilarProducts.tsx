@@ -28,8 +28,8 @@ export default function SimilarProducts({category, productId}: SimilarProductsPr
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: similarProducts?.length,
-        slidesToScroll: similarProducts?.length,
+        slidesToShow: 3,
+        slidesToScroll: 3,
         swipeToSlide: true,
         arrows: false
     };
@@ -39,7 +39,7 @@ export default function SimilarProducts({category, productId}: SimilarProductsPr
             {productsLoading && <h3>Loading...</h3>}
             {(!productsLoading && similarProducts?.length > 0) && (
                 <div> 
-                    <h3 className="firago-semibold text-lg leading-6 dark:text-orange-primary mb-4"><FormattedMessage id="similar.products"/></h3>
+                    <h3 className="firago-semibold text-base leading-5 text-black-08 dark:text-dark-black-8 mb-5"><FormattedMessage id="similar.products"/></h3>
                     <Slider {...settings}>
                         {similarProductDivs}
                     </Slider>

@@ -13,7 +13,7 @@ export function PublicLayout() {
   // console.log(userData, authStage);
 
   return (
-    <div className="dark:bg-dark-theme-bg">
+    <div className="bg-light-theme-bg dark:bg-dark-theme-bg min-h-screen">
       <Navigation/>
       <div className="relative">
         <Outlet/>

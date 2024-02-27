@@ -3,9 +3,10 @@ import useGetUserInfo from "@src/hooks/useGetUserInfo";
 import { useAuthProvider } from "@src/providers/AuthProvider/useAuthProvider";
 import { privateAxios } from "@src/utils/privateAxios";
 import { Button, Form, Input, message } from "antd";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import editIcon from '@src/assets/icons/edit-icon.png'
+import PrimaryButton from "@src/components/PrimaryButton/PrimaryButton";
 
 interface TEdit_Form_Values {
     edit_first_name: string;
@@ -30,6 +31,33 @@ export default function EditProfile() {
     //     rtl: true,
     //     prefixCls: 'my-message',
     // });
+
+    // const firstNameRef = useRef(null); // Create a ref for the input element
+    // const lastNameRef = useRef(null);
+    // const emailRef = useRef(null);
+    // const phoneNumberRef = useRef(null);
+    
+    // // Remaining code...
+
+    // // Function to focus the input when edit icon is clicked
+    // const handleEditIconClick = (fieldName: EDITING_FORM_ENUM) => {
+    //     setIsEditing(fieldName);
+    //     // Programmatically focus the input
+    //     // if (inputRef.current) {
+    //     //     inputRef.current.focus();
+    //     // }
+    //     if (fieldName === EDITING_FORM_ENUM.FIRST_NAME) {
+    //         // if (firstNameRef.current) firstNameRef.current.focus();
+    //         firstNameRef?.current?.focus();
+    //     } else if (fieldName === EDITING_FORM_ENUM.LAST_NAME) {
+    //        lastNameRef?.current?.focus();
+    //     } else if (fieldName === EDITING_FORM_ENUM.EMAIL) {
+    //         emailRef?.current?.focus();
+    //     } else if (fieldName === EDITING_FORM_ENUM.PHONE_NUMBER) {
+    //         phoneNumberRef?.current?.focus();
+    //     }
+        
+    // };
 
     function handleFinish(values:TEdit_Form_Values) {
         updateUserInfo(values);
@@ -97,7 +125,7 @@ export default function EditProfile() {
     return (
         <div className="flex flex-col lg:w-[400px] w-full">
             {contextHolder}
-            {/* <h3 className="mb-[30px] firago-semibold text-lg leading-[22px] text-black-main dark:text-white-400"><FormattedMessage id="edit.profile"/></h3> */}
+            {/* <h3 className="mb-[30px] firago-semibold text-lg leading-[22px] text-black-main-main dark:text-white-400"><FormattedMessage id="edit.profile"/></h3> */}
             <Form<TEdit_Form_Values>
                  // {...formItemLayout}
                 form={form}
@@ -116,6 +144,7 @@ export default function EditProfile() {
                         onBlur={()=> {
                             if(isEditing === EDITING_FORM_ENUM.FIRST_NAME) setIsEditing(undefined)
                         }}
+                        // ref={firstNameRef}
                         addonAfter={<img src={editIcon} alt="edit input icon" className="cursor-pointer" onClick={()=>setIsEditing(EDITING_FORM_ENUM.FIRST_NAME)}/>}
                 />
             </Form.Item>
@@ -129,6 +158,7 @@ export default function EditProfile() {
                         onBlur={()=> {
                             if(isEditing === EDITING_FORM_ENUM.LAST_NAME) setIsEditing(undefined)
                         }}
+                        // ref={lastNameRef}
                         addonAfter={<img src={editIcon} alt="edit input icon" className="cursor-pointer" onClick={()=>setIsEditing(EDITING_FORM_ENUM.LAST_NAME)}/>}
                 />
             </Form.Item>
@@ -148,6 +178,7 @@ export default function EditProfile() {
                     onBlur={()=> {
                             if(isEditing === EDITING_FORM_ENUM.EMAIL) setIsEditing(undefined)
                     }}
+                    // ref={emailRef}
                     addonAfter={<img src={editIcon} alt="edit input icon" className="cursor-pointer" onClick={()=>setIsEditing(EDITING_FORM_ENUM.EMAIL)}/>}
                 />
             </Form.Item>
@@ -173,12 +204,15 @@ export default function EditProfile() {
                         onBlur={()=> {
                             if(isEditing === EDITING_FORM_ENUM.PHONE_NUMBER) setIsEditing(undefined)
                         }}
+                        // ref={phoneNumberRef}
                         addonAfter={<img src={editIcon} alt="edit input icon" className="cursor-pointer" onClick={()=>setIsEditing(EDITING_FORM_ENUM.PHONE_NUMBER)}/>}
                 />
             </Form.Item>
             <Form.Item className="mb-0">
                                     {/* {updateMessage && <p className={`firago-medium text-base leading-5 ${updateMessage==="update.success" ? 'text-green-600' : 'text-red-08'}`}><FormattedMessage id={`${updateMessage}`}/></p>} */}
-                <Button loading={updateLoading} type="primary" className="w-full mt-4" htmlType="submit"><FormattedMessage id="update"/></Button>
+                {/* <Button loading={updateLoading} type="primary" className="w-full mt-4" htmlType="submit"><FormattedMessage id="update"/></Button> */}
+                <PrimaryButton loading={updateLoading} height={50} width="100%" onClick={()=>{form.submit()}}><h3 className="firago-bold text-sm leading-[17px] text-white dark:black-main"><FormattedMessage id="update"/></h3></PrimaryButton>
+
             </Form.Item>
         </Form>
     </div>

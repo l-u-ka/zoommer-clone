@@ -5,7 +5,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 * {
   margin: 0;
   padding: 0;
@@ -38,13 +37,25 @@
 .custom-input .ant-input,
 .custom-input .ant-input-password,
 .custom-addon .ant-select-selection-item {
-  @apply firago-medium text-black;
+  @apply firago-medium;
 }
-.custom-input .ant-form-item-explain-error, .ant-form-item-explain-error {
+
+.custom-addon .ant-input-wrapper .ant-input-group-addon {
+  @apply !bg-[#d9d9d9];
+}
+
+.custom-addon .ant-select-selection-item {
+  @apply text-black-main;
+}
+
+.custom-input .ant-form-item-explain-error,
+.ant-form-item-explain-error {
   @apply firago-bold;
 }
 
-.custom-select .ant-select-selection-item, .custom-select .ant-select-selection-placeholder, .ant-select-item-option-content{
+.custom-select .ant-select-selection-item,
+.custom-select .ant-select-selection-placeholder,
+.ant-select-item-option-content {
   @apply firago-bold;
 }
 
@@ -53,7 +64,7 @@
   @apply bg-[rgb(242,242,242)] !important;
 }
 .custom-addon .ant-select-arrow {
-  @apply dark:text-black opacity-95;
+  @apply dark:text-black-main opacity-95;
 }
 .custom-button {
   @apply firago-bold leading-[17px] text-sm;

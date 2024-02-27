@@ -6,29 +6,30 @@ import { publicAxios } from "@src/utils/publicAxios";
 import { useAuthProvider } from "@src/providers/AuthProvider/useAuthProvider";
 
 export default function AuthorizationForm({closeModal}: {closeModal: ()=> void}) {
-  const [authInput, setAuthInput] = useState<AuthorizationFormInput>({
-    email: '',
-    password: ''
-  });
-  const [form] = Form.useForm();
+  // const [authInput, setAuthInput] = useState<AuthorizationFormInput>({
+  //   email: '',
+  //   password: ''
+  // });
+  const [loginForm] = Form.useForm();
   const {formatMessage} = useIntl();
   const [isLoading, setLoading] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
   const {setAuthData} = useAuthProvider();
 
   function onFinish(changedValues:AuthorizationFormInput) {
-    setAuthInput(() => ({
-      ...changedValues
-    }));
+    // setAuthInput(() => ({
+    //   ...changedValues
+    // }));
+    userLogin(changedValues.email, changedValues.password)
   }
 
-  async function userLogin() {
+  async function userLogin(email: string, password:string) {
     try {
       setLoading(true);
       setIsError(false)
       const response = await publicAxios.post("/auth/login", {
-        email: authInput.email,
-        password: authInput.password
+        email: email,
+        password: password
       })
       // form.resetFields();
       setAuthData(response.data);
@@ -41,12 +42,12 @@ export default function AuthorizationForm({closeModal}: {closeModal: ()=> void})
     }
   }
 
-  useEffect(()=> {
-    const isNotEmpty = Object.values(authInput).every(element => element !== '');
-    if (isNotEmpty) {
-      userLogin();
-    }
-  }, [authInput])
+  // useEffect(()=> {
+  //   const isNotEmpty = Object.values(authInput).every(element => element !== '');
+  //   if (isNotEmpty) {
+  //     userLogin();
+  //   }
+  // }, [authInput])
 
   // function onValuesChange(changedValues:LoginFormValues) {
   //   const {prefix, ...filtered} = changedValues;
@@ -83,7 +84,7 @@ export default function AuthorizationForm({closeModal}: {closeModal: ()=> void})
     
     <Form
       // {...formItemLayout}
-      form={form}
+      form={loginForm}
       name="authorize"
       onFinish={onFinish}
       // onValuesChange={onValuesChange}

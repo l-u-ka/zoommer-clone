@@ -2,6 +2,7 @@ import { useThemeProvider } from "@src/providers/ThemeProvider/useThemeProvider"
 import { Button, ConfigProvider, Modal, theme } from "antd"
 import { FormattedMessage } from "react-intl";
 import closeIcon from '@src/assets/icons/mobile-modal-close.png'
+import PrimaryButton from "../PrimaryButton/PrimaryButton";
 
 interface AlreadyInCartModalProps {
     modalOpen: boolean;
@@ -16,17 +17,17 @@ export default function AlreadyInCartModal({modalOpen, closeModal}:AlreadyInCart
     const configStyle = {
         algorithm: !lightMode ? darkAlgorithm : defaultAlgorithm,
         "components": {
-            "Button": {
-              "colorPrimary": "rgb(236, 94, 42)",
-              "colorPrimaryHover": "rgb(236, 94, 42)",
-              "colorPrimaryActive": "rgb(236, 94, 42)",
-              "borderRadius": 12,
-              "controlHeight": 50,
-              "controlHeightLG": 50,
-              "controlHeightSM": 30,
-              "lineHeight": 1.75,
-              "defaultBorderColor": "rgb(250, 84, 28)",
-            },
+            // "Button": {
+            //   "colorPrimary": "rgb(236, 94, 42)",
+            //   "colorPrimaryHover": "rgb(236, 94, 42)",
+            //   "colorPrimaryActive": "rgb(236, 94, 42)",
+            //   "borderRadius": 12,
+            //   "controlHeight": 50,
+            //   "controlHeightLG": 50,
+            //   "controlHeightSM": 30,
+            //   "lineHeight": 1.75,
+            //   "defaultBorderColor": "rgb(250, 84, 28)",
+            // },
             "Modal": {
               "borderRadiusLG": 20,
               "borderRadiusSM": 10
@@ -38,11 +39,12 @@ export default function AlreadyInCartModal({modalOpen, closeModal}:AlreadyInCart
         <ConfigProvider theme={configStyle}>
             <Modal centered open={modalOpen} onCancel={closeModal} maskClosable={false} footer={false} className="max-w-[400px]" closeIcon={<img className="relative top-[-8px] w-auto" src={closeIcon} alt="modal close icon"/>}>
                 <div>
-                    <h3 className="firago-medium text-base leading-[19px] text-center mb-[15px] text-black-main dark:text-white"><FormattedMessage id="warning"/>!</h3>
-                    <hr className="border border-solid border-white-400"/>
-                    <h3 className="mt-[40px] mb-[20px] firago-semibold text-base leading-[19px] text-center text-black-06 dark:text-white-400"><FormattedMessage id="already.in.cart"/></h3>
+                    <h3 className="firago-medium text-base leading-[19px] text-center mb-[15px] text-black-main dark:text-dark-black-main"><FormattedMessage id="warning"/>!</h3>
+                    <hr className="border border-solid border-border-white dark:border-border-dark-white"/>
+                    <h3 className="mt-[40px] mb-[20px] firago-semibold text-base leading-[19px] text-center text-black-06 dark:text-dark-black-06"><FormattedMessage id="already.in.cart"/></h3>
                     <div className="flex justify-between mt-[40px]">
-                        <Button type="primary" className="w-full custom-button hover:scale-95 transition-all ease-in-out" onClick={closeModal}><FormattedMessage id="understood"/></Button>
+                        {/* <Button type="primary" className="w-full custom-button hover:scale-95 transition-all ease-in-out" onClick={closeModal}><FormattedMessage id="understood"/></Button> */}
+                        <PrimaryButton width="100%" height={50} onClick={closeModal}><h3 className="firago-bold text-base leading-[19px] text-white "><FormattedMessage id="understood"/></h3></PrimaryButton>
                     </div>
                 </div>
             </Modal>

@@ -48,11 +48,11 @@ export default function BuyProductMobile({product}: {product: ProductType}) {
   // }, [totalPurchaseAmount, totalPurchasePrice])
 
   return (
-        <div className="flex justify-between items-center lg:hidden w-full fixed left-0 bottom-[70px] py-2 bg-orange-primary z-10 p-2">
-             <h3 className="text-white firago-bold text-xl leading-6">{product.salePrice ? product.salePrice : product.price} ₾</h3>
+        <div className="flex justify-between items-center lg:hidden w-full fixed left-0 bottom-[70px] py-2 bg-orange-main dark:bg-dark-orange-main z-10 p-2">
+             <h3 className="text-white dark:text-black-main firago-bold text-xl leading-6">{product.salePrice ? product.salePrice : product.price} ₾</h3>
              <div className="flex items-center">
-                <button onClick={()=>{isInCart(product.id) ? setShowModal(true) : addToCart(product.id)}} className="h-9 w-9 inline-flex items-center justify-center rounded-md border-none hover:scale-105 cursor-pointer mr-3"><img src={cartIcon} alt="mobile cart icon" className="w-4"/></button>
-                <button onClick={handleClick} className="h-9 w-[100px] inline-flex items-center justify-center rounded-md border-none hover:scale-105 cursor-pointer firago-bold text-orange-primary text-sm leading-[17px]"><FormattedMessage id="buy.product"/></button>
+                <button onClick={()=>{isInCart(product.id) ? setShowModal(true) : addToCart(product.id)}} className="h-9 w-9 dark:bg-dark-white-400 inline-flex items-center justify-center rounded-md border-none hover:scale-110 cursor-pointer mr-3 transition-all duration-300 ease-in-out"><img src={cartIcon} alt="mobile cart icon" className="w-4"/></button>
+                <button onClick={handleClick} className="h-9 w-[100px] dark:bg-dark-white-400 inline-flex items-center justify-center rounded-md border-none hover:scale-110 cursor-pointer firago-bold text-orange-main dark:text-text-dark-orange-main text-sm leading-[17px] transition-all duration-300 ease-in-out"><FormattedMessage id="buy.product"/></button>
              </div>
              {<AlreadyInCartModal closeModal={closeModal} modalOpen={showModal}/>}
         </div>

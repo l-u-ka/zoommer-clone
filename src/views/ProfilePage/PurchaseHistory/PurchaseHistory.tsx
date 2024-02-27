@@ -21,13 +21,13 @@ export default function PurchaseHistory() {
         {(!boughtProductsLoading && boughtProducts.length > 0) && (
             <div className='grid grid-cols-1 md:grid-cols-2 gap-12'>
                 {boughtProducts?.map((boughtProduct) => {
-                return <div key={boughtProduct.id} className='w-full bg-white-400 p-4 rounded-xl flex justify-between'>
+                return <div key={boughtProduct.id} className='w-full bg-white-400 dark:bg-dark-white-400 p-4 rounded-xl flex justify-between'>
                     <div className='min-w-[140px]'> 
-                        <h3 className='mb-4 firago-medium text-black-08 text-base leading-[19xp]'><FormattedMessage id='price'/>: <span className='firago-bold text-black'> {boughtProduct.totalPrice} ₾</span></h3>
-                        <h3 className='firago-medium text-black-08 text-base leading-[19xp]'><FormattedMessage id='amount'/>:  <span className='firago-bold text-black'> {boughtProduct.totalItems}</span></h3>
+                        <h3 className='mb-4 firago-medium text-black-08 dark:text-dark-black-8 text-base leading-[19xp]'><FormattedMessage id='price'/>: <span className='firago-bold text-black-main dark:text-dark-black-main'> {boughtProduct.totalPrice} ₾</span></h3>
+                        <h3 className='firago-medium text-black-08 dark:text-dark-black-8 text-base leading-[19xp]'><FormattedMessage id='amount'/>:  <span className='firago-bold text-black-main dark:text-dark-black-main'> {boughtProduct.totalItems}</span></h3>
                     </div>
                     <div className=''>
-                        <h3 className='firago-medium text-black-08 text-base leading-[19xp]'><FormattedMessage id='date'/>: <span className='firago-bold text-black'> {modifyDate(boughtProduct.created_at)}</span></h3>
+                        <h3 className='firago-medium text-black-08 dark:text-dark-black-8 text-base leading-[19xp]'><FormattedMessage id='date'/>: <span className='firago-bold text-black-main dark:text-dark-black-main'> {modifyDate(boughtProduct.created_at)}</span></h3>
                     </div>
                 </div>
             })}

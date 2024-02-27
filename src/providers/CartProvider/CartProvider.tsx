@@ -5,6 +5,7 @@ import { useGetCartItems } from "@src/hooks/useGetCartItems";
 export function CartProvider({children} : PropsWithChildren) {
 
     const {cartItems, cartLoading, getCartItems} = useGetCartItems();
+    console.log("CART ITEMS ARE :", cartItems)
 
     // useEffect(()=> {
     //     console.log("cart items", cartItems)
