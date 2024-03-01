@@ -54,7 +54,7 @@ export default function NavSearch() {
       <div className='flex items-center relative w-full mt-3 lg:w-[460px] lg:mt-0'>
           <img src={searchIcon} alt='search icon' className='absolute left-3 w-[20px]'/>
           <div onFocus={showModal} ref={modalRef} className='w-full'>
-            <input  onChange={(e) => setValueDebounced(e.target.value)} ref={searchElement} type="text" placeholder={formatMessage({id: 'search'})} className='py-[12px] pl-[40px] pr-5 w-full border-solid border rounded-xl text-sm firago-normal text-black-main dark:text-dark-black-main bg-light-theme-bg border-orange-main dark:bg-dark-theme-bg'/>
+            <input  onChange={(e) => setValueDebounced(e.target.value)} ref={searchElement} type="text" placeholder={formatMessage({id: 'search'})} className='py-[12px] pl-[40px] pr-5 w-full border-solid border rounded-xl text-sm firago-normal text-black-main dark:text-dark-black-main bg-light-theme-bg border-orange-main dark:bg-dark-theme-bg transition-colors duration-300 ease-in-out'/>
             {isModalOpen && <InputSearch searchInput={searchValue} closeModal={closeModal}/>}
           </div>
       </div>

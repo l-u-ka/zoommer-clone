@@ -8,7 +8,7 @@ export default function CategoriesTabMobile({ isOpen }: {isOpen: boolean }) {
     const navigate = useNavigate();
 
     const categorieTabs = categories.map((cat : CategoryType) => {
-        return <div key={cat.id} onClick={()=>navigate(`/products/${cat.name}`)} className="cursor-pointer bg-white-400 dark:bg-dark-white-400 hover:bg-gray-seconday dark:hover:bg-dark-gray-seconday max-w-20 h-[76px] text-center p-2 opacity-100 flex flex-col justify-end">
+        return <div key={cat.id} onClick={()=>navigate(`/products/${cat.name}`)} className="cursor-pointer bg-white-400 dark:bg-dark-white-400 hover:bg-gray-seconday dark:hover:bg-dark-gray-seconday transition-colors duration-300 ease-in-out max-w-20 h-[76px] text-center p-2 opacity-100 flex flex-col justify-end">
             <p className="firago-semibold text-[10px] leading-3 text-black-08 dark:text-dark-black-8">{cat.name}</p>
         </div>
     })

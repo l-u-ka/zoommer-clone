@@ -8,9 +8,8 @@ export default function CategoriesTab() {
 
     const tabItems = categories.map((cat:CategoryType, index: number) => {
         const isLastItem = index === categories.length - 1;
-    
         return (
-            <div key={cat.id} className="w-fullcursor-pointer hover:bg-white-400 dark:hover:bg-dark-black-06 px-[10px] first:rounded-t-xl last:rounded-b-xl" onClick={()=> navigate(`/products/${cat.name}`)}>
+            <div key={cat.id} className="w-fullcursor-pointer hover:bg-white-400 dark:hover:bg-dark-black-06 transition-colors duration-300 ease-in-out px-[10px] first:rounded-t-xl last:rounded-b-xl" onClick={()=> navigate(`/products/${cat.name}`)}>
                 <p className={`border-0 ${!isLastItem ? 'border-b' : 'border-b-0'} border-solid border-border-white dark:border-border-dark-white dark:border-dark-black-06 py-3 cursor-pointer firago-medium text-xs leading-[14px] text-black-08 dark:text-dark-black-8 opacity-80`}>{cat.name}</p>
             </div>
         );
@@ -18,7 +17,7 @@ export default function CategoriesTab() {
     
 
   return (
-    <div className=" hidden h-fit lg:block min-w-[246px] rounded-xl shadow-lg dark:bg-dark-white-400">
+    <div className=" hidden h-fit lg:block min-w-[246px] rounded-xl shadow-lg dark:bg-dark-white-400 transition-colors duration-300 ease-in-out">
         {tabItems}
     </div>
   )

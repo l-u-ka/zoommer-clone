@@ -5,11 +5,12 @@ import goBackIcon from '@src/assets/icons/category-left-arr.png'
 import ProductsList from './ProductsList/ProductsList';
 import FilterProducts from '@src/features/FilterProducts/FilterProducts';
 import { useProductFiltersProvider } from '@src/providers/ProductFiltersProvider/useProductFiltersProvider';
-import { useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import SortProducts from '@src/features/SortProducts/SortProducts';
 import { FormattedMessage } from 'react-intl';
 import filterIcon from '@src/assets/icons/filter.png'
 import FilterProductsMobile from '@src/features/FilterProducts/FilterProductsMobile';
+import ProductCardSkeleton from '@src/components/Skeletons/ProductCardSkeleton/ProductCardSkeleton';
 
 export default function Products() {
   
@@ -29,13 +30,16 @@ export default function Products() {
     setFilterModal(false);
   };
 
+  const productCartSkeletons:ReactNode[] = [];
+  for (let i = 0; i < pageSize; i++) productCartSkeletons.push(<ProductCardSkeleton key={i}/>)
+
   function sortProducts() {
   switch (sortOrder) {
     case SORT_BY_ENUM.PRICE_ASC:
-      setProducts([...products.sort((a, b) => a.price - b.price)]);
+      setProducts([...products.sort((a, b) => (a.salePrice || a.price) - ( b.salePrice || b.price))]);
       break;
     case SORT_BY_ENUM.PRICE_DESC:
-      setProducts([...products.sort((a, b) => b.price - a.price)]);
+      setProducts([...products.sort((a, b) => (b.salePrice || b.price) - ( a.salePrice || a.price))]);
       break;
     case SORT_BY_ENUM.TITLE_ASC:
       setProducts([...products.sort((a, b) => a.title.localeCompare(b.title))]);
@@ -43,11 +47,13 @@ export default function Products() {
     case SORT_BY_ENUM.TITLE_DESC:
       setProducts([...products.sort((a, b) => b.title.localeCompare(a.title))]);
       break;
+    case SORT_BY_ENUM.DEFAULT:
+      setProducts([...products.sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime())]);  // sort how the products are first set in the array (most recent at the beginning)
     default:
       break;
   }
 }
-
+  console.log(products)
 
   useEffect(()=> {
     if (products) {
@@ -72,10 +78,11 @@ export default function Products() {
           <img src={goBackIcon} alt='go back icon' className='h-full mr-[22px]'/>
           <h2 className='firago-bold text-base leading-[19px] text-black-main dark:text-dark-black-main'>{category}</h2>
         </div>
-        {/* mobile sort */}
+        {/* desktop sort */}
         <div className='hidden lg:block w-40 h-10'>
           <SortProducts setSortOrder={setSortOrder} sortOrder={sortOrder}/>
         </div>
+        {/* mobile sort and filter */}
         <div className='w-full lg:hidden mt-4'>
           <hr className="border border-solid border-border-white dark:border-border-dark-white mb-4"/>
           <div className='flex items-center justify-between'>
@@ -84,13 +91,13 @@ export default function Products() {
             </div>
             {/* add mobile filter button below*/}
             <div className='w-full'>
-              <button className='w-full h-10 border-none px-5 rounded-[30px] cursor-pointer shadow-md' onClick={showFilterModal}>
+              <button className='w-full h-10 border-none px-5 rounded-[30px] cursor-pointer shadow-md bg-light-theme-secondary-bg dark:bg-dark-theme-secondary-bg transition-colors duration-300 ease-in-out' onClick={showFilterModal}>
                 <div className='flex justify-start items-center'>
                   <img alt='filter icon' src={filterIcon} className='w-5 mr-[10px]'/>
-                  <p className='firago-medium text-xs leading-[14px]'><FormattedMessage id='filter'/></p>
+                  <p className='firago-medium text-xs leading-[14px] text-black-main dark:text-dark-black-main'><FormattedMessage id='filter'/></p>
                 </div>
               </button>
-              <FilterProductsMobile isModalOpen={filterModal} handleCancel={handleFilterCancel}/>
+              <FilterProductsMobile isModalOpen={filterModal} handleCancel={handleFilterCancel} setSortOrder={setSortOrder}/>
             </div>
           </div>
         </div>
@@ -100,9 +107,9 @@ export default function Products() {
           <div>
             <div className='w-full flex'>
               <div className='w-[350px] min-w-[350px] hidden lg:block'>
-                <FilterProducts/>
+                <FilterProducts setSortOrder={setSortOrder}/>
               </div>
-              {productsLoading && <h3 className='ml-6'>Loading...</h3>}
+              {productsLoading && <div className=' w-full pl-8 lg:w-[760px] xl:w-[800px] grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 gap-6 ml-auto'>{productCartSkeletons}</div>}
               {(!productsLoading && products.length > 0) && <ProductsList products={products} totalProducts={totalProducts as number}/>}
               {(!productsLoading && products.length === 0) && <h2 className='pl-8 text-black-main dark:text-dark-black-main firago-semibold text-lg leading-[20px]'><FormattedMessage id='products.not.found'/></h2>}
             </div>

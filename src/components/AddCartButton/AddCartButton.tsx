@@ -35,12 +35,6 @@ export default function AddCartButton({height, borderRadius, productId} : {heigh
   const {authStage} = useAuthProvider();
   const {setLoginModalOpen} = useGlobalProvider();
 
-  // function removeProduct(productId: string) {
-  //   const result = cartItems.find(item => item.cartProduct.id === productId);
-  //   console.log(result);
-  //   if(result) removeFromCart(result.id)
-  // }
-
   function isInCart(productId: string) {
     const result = cartItems.find(item => item.cartProduct.id === productId);
     if (result) return true;
@@ -59,7 +53,6 @@ export default function AddCartButton({height, borderRadius, productId} : {heigh
   }
 
   return (
-    // <button style={{height: height}} className="border-none bg-[#f28f6a] rounded cursor-pointer hover:scale-95 transition-all ease-in-out">
     <ConfigProvider theme={customTheme}>
         <Button type="primary" className="flex justify-center items-center hover:scale-95 transition-all ease-in-out w-full" loading={addToCartLoading} onClick={handleCllick}>
           <div className="inline-flex items-center mx-auto">
@@ -69,6 +62,5 @@ export default function AddCartButton({height, borderRadius, productId} : {heigh
         </Button>
         {<AlreadyInCartModal closeModal={closeModal} modalOpen={showModal}/>}
       </ConfigProvider>
-    // </button>
   )
 }

@@ -13,10 +13,15 @@ import PurchaseHistory from './PurchaseHistory/PurchaseHistory';
 //   EDIT_PROFILE = "edit_profile",
 //   WISHLIST = "wislist"
 // }
-export default function ProfilePageMobile({selected, setSelected} : {selected: PROFILE_MENU_ENUM, setSelected: React.Dispatch<React.SetStateAction<PROFILE_MENU_ENUM>>}) {
+export default function ProfilePageMobile({selected, setSelected, updateLoading, setUpdateLoading} : {selected: PROFILE_MENU_ENUM, setSelected: React.Dispatch<React.SetStateAction<PROFILE_MENU_ENUM>>, updateLoading: boolean, setUpdateLoading: React.Dispatch<React.SetStateAction<boolean>>}) {
 
   // const [selected, setSelected] = useState<MOBILE_MENU_SELECT_ENUM>(MOBILE_MENU_SELECT_ENUM.MENU);
   const {userData} = useAuthProvider();
+
+  function handleMenuSelect(selectOption: PROFILE_MENU_ENUM) {
+    setSelected(selectOption)
+    localStorage.setItem('selected', selectOption)
+  }
   
   return (
     <div>
@@ -28,19 +33,19 @@ export default function ProfilePageMobile({selected, setSelected} : {selected: P
           </div>
         )}
         {selected === PROFILE_MENU_ENUM.ON_EDITING && (
-          <div className='flex items-center cursor-pointer' onClick={() => setSelected(PROFILE_MENU_ENUM.ON_MENU)}>
+          <div className='flex items-center cursor-pointer' onClick={() => handleMenuSelect(PROFILE_MENU_ENUM.ON_MENU)}>
             <img src={lefrArrow} className='h3 mr-3'/>
             <h1 className="firago-medium text-base leading-[19px] text-black-main dark:text-dark-black-main"> <FormattedMessage id="edit.profile"/></h1>
           </div>
         )}
         {selected === PROFILE_MENU_ENUM.ON_WISHLIST && (
-          <div className='flex items-center cursor-pointer' onClick={() => setSelected(PROFILE_MENU_ENUM.ON_MENU)}>
+          <div className='flex items-center cursor-pointer' onClick={() => handleMenuSelect(PROFILE_MENU_ENUM.ON_MENU)}>
             <img src={lefrArrow} className='h3 mr-3'/>
             <h1 className="firago-medium text-base leading-[19px] text-black-main dark:text-dark-black-main"> <FormattedMessage id="wishlist"/></h1>
           </div>
         )}
         {selected === PROFILE_MENU_ENUM.ON_PURCHASE_HISTORY && (
-          <div className='flex items-center cursor-pointer' onClick={() => setSelected(PROFILE_MENU_ENUM.ON_MENU)}>
+          <div className='flex items-center cursor-pointer' onClick={() => handleMenuSelect(PROFILE_MENU_ENUM.ON_MENU)}>
             <img src={lefrArrow} className='h3 mr-3'/>
             <h1 className="firago-medium text-base leading-[19px] text-black-main dark:text-dark-black-main"> <FormattedMessage id="purchase.history"/></h1>
           </div>
@@ -49,22 +54,22 @@ export default function ProfilePageMobile({selected, setSelected} : {selected: P
       <hr className="mt-[20px] mb-[30px] border border-solid border-border-white dark:border-border-dark-white"/>
       {selected === PROFILE_MENU_ENUM.ON_MENU && (
         <div className='w-full'>
-          <div className='flex justify-between cursor-pointer' onClick={()=>setSelected(PROFILE_MENU_ENUM.ON_EDITING)}>
+          <div className='flex justify-between cursor-pointer' onClick={()=>handleMenuSelect(PROFILE_MENU_ENUM.ON_EDITING)}>
             <h3 className='firago-normal text-sm leading-[17px] mb-[30px] text-black-main dark:text-dark-black-main'><FormattedMessage id='edit.profile'/></h3>
             <img src={lefrArrow} className='rotate-180 h-3'/>
           </div>
-          <div className='flex justify-between cursor-pointer' onClick={()=>setSelected(PROFILE_MENU_ENUM.ON_WISHLIST)}>
+          <div className='flex justify-between cursor-pointer' onClick={()=>handleMenuSelect(PROFILE_MENU_ENUM.ON_WISHLIST)}>
             <h3 className='firago-normal text-sm leading-[17px] mb-[30px] text-black-main dark:text-dark-black-main'><FormattedMessage id='wishlist'/></h3>
             <img src={lefrArrow} className='rotate-180 h-3'/>
           </div>
-          <div className='flex justify-between cursor-pointer' onClick={()=>setSelected(PROFILE_MENU_ENUM.ON_PURCHASE_HISTORY)}>
+          <div className='flex justify-between cursor-pointer' onClick={()=>handleMenuSelect(PROFILE_MENU_ENUM.ON_PURCHASE_HISTORY)}>
             <h3 className='firago-normal text-sm leading-[17px] cursor-pointer text-black-main dark:text-dark-black-main'><FormattedMessage id='purchase.history'/></h3>
             <img src={lefrArrow} className='rotate-180 h-3'/>
           </div>
         </div>
       )}
       {selected === PROFILE_MENU_ENUM.ON_EDITING && (
-          <EditProfile/>
+          <EditProfile updateLoading={updateLoading} setUpdateLoading={setUpdateLoading}/>
       )}
       {selected === PROFILE_MENU_ENUM.ON_WISHLIST && (
         <Wishlist/>

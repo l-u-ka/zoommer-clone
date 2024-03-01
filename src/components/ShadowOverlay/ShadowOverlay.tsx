@@ -7,8 +7,8 @@ function ShadowOverlay() {
         left: 0,
         width: "100%",
         height: "100%",
-        backgroundColor: "rgba(0, 0, 0, 0.7)", // Adjust the alpha value for transparency
-        zIndex: 30, // Adjust the index to ensure it overlays other components
+        backgroundColor: "rgba(0, 0, 0, 0.7)",
+        zIndex: 30,
       }}
     >
     </div>

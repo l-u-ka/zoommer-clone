@@ -16,7 +16,6 @@ export default function PrimaryButton({width, height, onClick, children, loading
     const {lightMode} = useThemeProvider();
 
     const customTheme = {
-        // algorithm: !lightMode ? darkAlgorithm : defaultAlgorithm,
         "components": {
           "Button": {
             "colorPrimary": lightMode ? "rgb(236, 94, 42) !important" : "#c1471c !important",

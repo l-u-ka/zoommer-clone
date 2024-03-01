@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { FormattedMessage } from "react-intl";
 import goToProductArr from '@src/assets/icons/right-path.png'
 import { Link, useNavigate } from "react-router-dom";
+import LoadingSpinner from "@src/components/LoadingSpinner/LoadingSpinner";
 
 export default function InputSearch({searchInput, closeModal}: {searchInput: string, closeModal: ()=>void}) {
 
@@ -48,15 +49,15 @@ export default function InputSearch({searchInput, closeModal}: {searchInput: str
 
   return (
     <div className="w-full lg:w-[600px] max-h-[500px] p-5 rounded-xl bg-light-theme-bg dark:bg-dark-theme-bg border border-solid border-orange-main absolute top-[60px] lg:top-[60px] lg:left-[-70px]">
-        <div className="w-full flex justify-between">
-          <h4 className="firago-medium text-sm leading-[17px] text-black-08 dark:text-dark-black-8"><FormattedMessage id="search.result"/>:</h4>
-          {(searchInput?.length > 3 && !searchLoading && searchedProducts?.length >= 1) && <Link onClick={closeModal} to={`/products/search/${searchInput}`} className="no-underline firago-medium text-sm leading-[17px] text-orange-main"><FormattedMessage id="view.all"/></Link>}
+        <div className="w-full flex mb-4">
+          <h4 className="firago-medium text-base leading-[19px] text-black-08 dark:text-dark-black-8"><FormattedMessage id="search.result"/>:</h4>
+          {searchLoading && <div className="max-w-10 text-left flex justify-center"><LoadingSpinner size={20} fullscreen={false} custom={true}/></div>}
+          {(searchInput?.length > 3 && !searchLoading && searchedProducts?.length >= 1) && <Link onClick={closeModal} to={`/products/search/${searchInput}`} className="no-underline ml-auto firago-medium text-sm leading-[17px] text-orange-main"><FormattedMessage id="view.all"/></Link>}
         </div>
-        {searchLoading && <h3>Loading...</h3>}
-        {(!searchLoading && searchedProducts?.length >=1) && <div className="grid gap-3 mt-3">
+        {(!searchLoading && searchedProducts?.length >=1) && <div className="grid gap-3">
             {searchedProductDivs}
           </div>}
-        {(searchInput?.length > 3 && !searchLoading && searchedProducts?.length < 1) && <div className="firago-medium text-black-08 dark:text-dark-black-8 text-sm leading-[17px] mt-3"><FormattedMessage id="product.not.found"/></div>}
+        {(searchInput?.length > 3 && !searchLoading && searchedProducts?.length < 1) && <div className="firago-medium text-black-08 dark:text-dark-black-8 text-sm leading-[17px]"><FormattedMessage id="product.not.found"/></div>}
     </div>
   )
 }

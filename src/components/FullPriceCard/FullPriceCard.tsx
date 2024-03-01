@@ -10,11 +10,9 @@ interface FullPriceCardPropType {
 
 export default function FullPriceCard({fullPrice, onClick, loading, buttonText}: FullPriceCardPropType) {
 
-    // const {cartItems} = useCartProvider();
-
     return (
         <div className=''>
-            <div className=' bg-white-400 dark:bg-dark-white-400 sticky top-0 shadow-lg py-5 rounded-xl mb-[30px]'>
+            <div className=' bg-white-400 dark:bg-dark-white-400 transition-colors duration-300 ease-in-out sticky top-0 shadow-lg py-5 rounded-xl mb-[30px]'>
                 <div className='flex justify-between mx-4 mb-5'>
                     <h3 className='firago-medium text-base leading-[19px] text-black-main dark:text-dark-black-main opacity-60'>ღირებულება</h3>
                     <h3 className='firago-semibold text-base leading-[19px] text-black-main dark:text-dark-black-main'>{fullPrice} ₾</h3>

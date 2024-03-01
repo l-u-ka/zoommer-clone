@@ -68,8 +68,9 @@ export default function HomeSlider() {
         slidesToShow: isDesktop ? 1 : isMobile ? 3 : 2,
         slidesToScroll: isDesktop ? 1 : isMobile ? 3 : 2,
         swipeToSlide: true,
-        nextArrow: isDesktop ? <SampleNextArrow /> : false,
-        prevArrow: isDesktop ? <SamplePrevArrow /> : false,
+        arrows: isDesktop ? true : false,
+        nextArrow: <SampleNextArrow />,
+        prevArrow: <SamplePrevArrow />,
       };
 
     return (

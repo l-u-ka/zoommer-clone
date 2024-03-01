@@ -4,20 +4,16 @@ import { Button, ConfigProvider, Modal, theme } from "antd"
 import { FormattedMessage } from "react-intl";
 import closeIcon from '@src/assets/icons/mobile-modal-close.png'
 
-
 interface LogoutModalProps {
     modalOpen: boolean;
     closeModal: () => void;
 }
 
-
 export default function LogoutModal({modalOpen, closeModal}:LogoutModalProps) {
 
     const {logout} = useAuthProvider();
     const {lightMode} = useThemeProvider();
-    const {defaultAlgorithm, darkAlgorithm} = theme;
     const modalStyle = {
-        // algorithm: !lightMode ? darkAlgorithm : defaultAlgorithm,
         "components": {
             "Button": {
                 "colorPrimary": lightMode ? "rgb(236, 94, 42) !important" : "#c1471c !important",

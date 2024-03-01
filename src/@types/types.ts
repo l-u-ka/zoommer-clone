@@ -83,8 +83,6 @@ export interface TUserData {
   phone_number: string;
 }
 
-
-
 export enum SORT_BY_ENUM {
   DEFAULT = "sort.default",
   PRICE_ASC = "sort.price.asc",

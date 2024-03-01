@@ -5,6 +5,7 @@ import Slider from "react-slick";
 import leftArrow from '@src/assets/icons/slider-left-btn.png'
 import righrArrow from '@src/assets/icons/slider-right-btn.png'
 import { useMediaQuery } from "react-responsive";
+import ProductCardSkeleton from "@src/components/Skeletons/ProductCardSkeleton/ProductCardSkeleton";
 
 
 export default function FeaturedTab({categoryName} : {categoryName: string}) {
@@ -15,7 +16,10 @@ export default function FeaturedTab({categoryName} : {categoryName: string}) {
     const featuredProducts = products.map((product:ProductType) => {
         return <ProductCard key={product.id} product={product}/>
     })
-
+    // const featuredProductSkeletons = products.map(() => {
+    //   return <ProductCardSkeleton/>
+    // })
+    
 
     function SampleNextArrow(props:any) {
         const { className, style, onClick } = props;
@@ -53,10 +57,11 @@ export default function FeaturedTab({categoryName} : {categoryName: string}) {
       };
 
     return (
-      (!productsLoading && products.length > 0) && (
+      products.length > 0 && (
         <div className="relative">
             <h3 className="mb-4 text-black-main opacity-80 firago-semibold text-base leading-[20px] dark:text-dark-black-main">{categoryName}</h3>
               <Slider {...settings}>
+                  {/* {productsLoading ? featuredProductSkeletons : featuredProducts} */}
                   {featuredProducts}
               </Slider>
         </div>

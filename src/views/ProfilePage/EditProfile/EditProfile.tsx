@@ -2,7 +2,7 @@ import { EDITING_FORM_ENUM } from "@src/@types/types";
 import useGetUserInfo from "@src/hooks/useGetUserInfo";
 import { useAuthProvider } from "@src/providers/AuthProvider/useAuthProvider";
 import { privateAxios } from "@src/utils/privateAxios";
-import { Button, Form, Input, message } from "antd";
+import { Button, Form, Input, Skeleton, message } from "antd";
 import { useEffect, useRef, useState } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import editIcon from '@src/assets/icons/edit-icon.png'
@@ -15,12 +15,12 @@ interface TEdit_Form_Values {
     edit_phone_number: string;
 } 
 
-export default function EditProfile() {
+export default function EditProfile({updateLoading, setUpdateLoading}: {updateLoading: boolean, setUpdateLoading: React.Dispatch<React.SetStateAction<boolean>>}) {
     const [form] = Form.useForm();
     const {formatMessage} = useIntl();
     const [isEditing, setIsEditing] = useState<EDITING_FORM_ENUM>();
     const {userData, getNewTokens} = useAuthProvider();
-    const [updateLoading, setUpdateLoading] = useState<boolean>(false);
+    
     // const [updateMessage, setUpdateMessage] = useState<string>("");
     const {userInfo, getUserInfo} = useGetUserInfo();
     const [messageApi, contextHolder] = message.useMessage();
@@ -126,7 +126,14 @@ export default function EditProfile() {
         <div className="flex flex-col lg:w-[400px] w-full">
             {contextHolder}
             {/* <h3 className="mb-[30px] firago-semibold text-lg leading-[22px] text-black-main-main dark:text-white-400"><FormattedMessage id="edit.profile"/></h3> */}
-            <Form<TEdit_Form_Values>
+            {(updateLoading) && <div className="grid grid-cols-1 gap-6">
+                <Skeleton.Input active block size="large" style={{height:'50px'}}/>
+                <Skeleton.Input active block size="large" style={{height:'50px'}}/>
+                <Skeleton.Input active block size="large" style={{height:'50px'}}/>
+                <Skeleton.Input active block size="large" style={{height:'50px'}}/>
+                <Skeleton.Button active block size="large" style={{height:'50px'}}/>
+            </div>}
+            {!(updateLoading) && <Form<TEdit_Form_Values>
                  // {...formItemLayout}
                 form={form}
                 name="edit_profile"
@@ -214,7 +221,7 @@ export default function EditProfile() {
                 <PrimaryButton loading={updateLoading} height={50} width="100%" onClick={()=>{form.submit()}}><h3 className="firago-bold text-sm leading-[17px] text-white dark:black-main"><FormattedMessage id="update"/></h3></PrimaryButton>
 
             </Form.Item>
-        </Form>
+        </Form>}
     </div>
   )
 }

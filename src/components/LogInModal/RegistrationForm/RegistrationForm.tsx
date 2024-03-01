@@ -13,13 +13,6 @@ interface FormValues extends RegistrationFormInput {
 
 export default function RegistrationForm({closeModal}: {closeModal: ()=> void}) {
 
-  // const [registerInput, setRegisterInput] = useState<RegistrationFormInput>({
-  //   first_name: '',
-  //   last_name: '',
-  //   email: '',
-  //   phone_number: '',
-  //   password: ''
-  // });
   const [isError, setIsError] = useState<string>('');
   const [isLoading, setLoading] = useState<boolean>(false);
   const {Option} = Select;
@@ -27,13 +20,7 @@ export default function RegistrationForm({closeModal}: {closeModal: ()=> void}) 
   const {formatMessage} = useIntl();
   const {setAuthData} = useAuthProvider();
 
-  // console.log(registerInput)
-
   function onFinish(changedValues: FormValues) {
-    // const {prefix, confirm_password, ...filtered} = changedValues;
-    // setRegisterInput(() => ({
-    //   ...filtered,
-    // }));
     registerUser(changedValues.first_name, changedValues.last_name, changedValues.email, changedValues.password, changedValues.phone_number)
   }
   
@@ -48,8 +35,6 @@ export default function RegistrationForm({closeModal}: {closeModal: ()=> void}) 
         "password": password,
         "phone_number": phone_number
     })
-      // console.log("Registered successfully:", response.data);
-      // form.resetFields();
       setAuthData(response.data)
       closeModal();
     } catch (e) {
@@ -60,44 +45,6 @@ export default function RegistrationForm({closeModal}: {closeModal: ()=> void}) 
     }
   }
 
-  // useEffect(()=> {
-  //   const isNotEmpty = Object.values(registerInput).every(element => element !== '');
-  //   if (isNotEmpty) {
-  //     registerUser();
-  //   }
-  // }, [registerInput])
-
-
-  // function onValuesChange(changedValues: FormValues) {
-  //   const {prefix, confirmPassword, ...filtered} = changedValues;
-  //   setRegisterInput((prev) => ({
-  //     ...prev,
-  //     ...filtered,
-  //   }));
-  // }
-  
-  // const formItemLayout = {
-  //   labelCol: {
-  //     xs: { span: 24 },
-  //     sm: { span: 8 },
-  //   },
-  //   wrapperCol: {
-  //     xs: { span: 24 },
-  //     sm: { span: 16 },
-  //   },
-  // };
-  // const tailFormItemLayout = {
-  //   wrapperCol: {
-  //     xs: {
-  //       span: 24,
-  //       offset: 0,
-  //     },
-  //     sm: {
-  //       span: 16,
-  //       offset: 8,
-  //     },
-  //   },
-  // };
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>
       <Select style={{ width: 80}} >
@@ -110,11 +57,9 @@ export default function RegistrationForm({closeModal}: {closeModal: ()=> void}) 
   return (
     
     <Form<FormValues>
-      // {...formItemLayout}
       form={registrationForm}
       name="register"
       onFinish={onFinish}
-      // onValuesChange={onValuesChange}
       initialValues={{prefix: '995' }}
       style={{ maxWidth: 600 }}
       scrollToFirstError
@@ -225,8 +170,7 @@ export default function RegistrationForm({closeModal}: {closeModal: ()=> void}) 
         <Input.Password placeholder={formatMessage({id: "confirm.password"})}/>
       </Form.Item>
 
-      <Form.Item > {/*{...tailFormItemLayout}*/}
-        {/* <Button type="primary" htmlType="submit" style={{backgroundColor: '#ec5e2a'}} className="custom-button"> */}
+      <Form.Item >
         {isError && <div className="firago-bold text-red-08 text-sm leading-[17px] mb-2"><FormattedMessage id={`${isError}`}/></div>}
         <Button loading={isLoading} type="primary" htmlType="submit" style={{backgroundColor: '#ec5e2a'}} className="custom-button w-full">
           <FormattedMessage id="register"/>

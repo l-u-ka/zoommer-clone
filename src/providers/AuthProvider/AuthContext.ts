@@ -8,12 +8,12 @@ export enum Auth_Stage_Enum {
 }
 
 interface TAuthContext {
-    authStage: Auth_Stage_Enum,
-    setAuthStage: React.Dispatch<React.SetStateAction<Auth_Stage_Enum>>,
-    userData?: TUserData, 
-    setAuthData: (e:TAuthRequest)=> void,
-    logout: () => void,
-    getNewTokens: (token:string) => Promise<void>,
+    authStage: Auth_Stage_Enum;
+    setAuthStage: React.Dispatch<React.SetStateAction<Auth_Stage_Enum>>;
+    userData?: TUserData;
+    setAuthData: (e:TAuthRequest)=> void;
+    logout: () => void;
+    getNewTokens: (token:string) => Promise<void>;
 }
 
 export const AuthContext = createContext<TAuthContext>({

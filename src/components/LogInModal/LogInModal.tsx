@@ -15,10 +15,8 @@ interface ModalProps {
 export default function LogInModal({modalOpen, closeModal} : ModalProps) {
     const [onAuthorization, setOnAuthorization] = useState<boolean>(true);
     const {lightMode} = useThemeProvider();
-    const {defaultAlgorithm, darkAlgorithm} = theme;
 
     const customTheme = {
-      // algorithm: !lightMode ? darkAlgorithm : defaultAlgorithm,
       "components": {
         "Form": {
           "colorError": lightMode ? "rgba(255,0,0,.8)" : "rgba(255, 26, 26, 0.8)",

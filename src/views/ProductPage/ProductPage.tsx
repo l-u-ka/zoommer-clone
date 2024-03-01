@@ -5,6 +5,7 @@ import ProductDetails from "./ProductDetails/ProductDetails";
 import BuyProduct from "@src/features/BuyProduct/BuyProduct";
 import BuyProductMobile from "@src/features/BuyProduct/BuyProductMobile";
 import { FormattedMessage } from "react-intl";
+import ProductPageSkeleton from "../../components/Skeletons/ProductPageSkeleton/ProductPageSkeleton";
 
 export default function ProductPage() {
 
@@ -13,8 +14,8 @@ export default function ProductPage() {
     const navigate = useNavigate();
 
     return (
-      <div className="custom-container py-[30px]">
-        {singleProductLoading && <h3>Loading...</h3>}
+      <div className="custom-container py-[30px] min-h-[700px]">
+        {singleProductLoading && <ProductPageSkeleton/>}
         {(!singleProductLoading && product) && (
           <div className="w-full flex justify-between relative">
             <div className="w-full lg:max-w-[600px] xl:max-w-[740px]">

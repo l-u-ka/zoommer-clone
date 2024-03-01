@@ -15,7 +15,7 @@ export default function ProductsList({products, totalProducts} : ProductsListPro
 
     return (
         <div>
-            <div className=' w-full pl-8 lg:w-[760px] xl:w-[800px] grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-6 ml-auto'>{productCards}</div>
+            <div className=' w-full pl-8 lg:w-[760px] xl:w-[800px] grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 gap-6 ml-auto'>{productCards}</div>
             <div className='flex justify-center mt-14'>
                   <PaginationButtons totalProducts={totalProducts as number} />
             </div>

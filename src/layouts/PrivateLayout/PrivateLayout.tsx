@@ -10,7 +10,7 @@ export function PrivateLayout() {
   const {showOverlay} = useGlobalProvider();
 
   return (
-    <div className="bg-light-theme-bg dark:bg-dark-theme-bg min-h-screen">
+    <div className="bg-light-theme-bg dark:bg-dark-theme-bg transition-colors duration-300 ease-in-out min-h-screen">
       <Navigation/>
       <div className="relative">
         <Outlet/>

@@ -4,8 +4,10 @@ import { Slider, Checkbox, CheckboxProps, ConfigProvider } from 'antd';
 import { useProductFiltersProvider } from '@src/providers/ProductFiltersProvider/useProductFiltersProvider';
 import { useState } from 'react';
 import { useThemeProvider } from '@src/providers/ThemeProvider/useThemeProvider';
+import { SORT_BY_ENUM } from '@src/@types/types';
+import closeIcon from '@src/assets/icons/close.png'
 
-export default function FilterProducts({closeModal} : {closeModal?: ()=>void}) {
+export default function FilterProducts({closeModal, setSortOrder} : {closeModal?: ()=>void, setSortOrder:React.Dispatch<React.SetStateAction<SORT_BY_ENUM>>}) {
 
     const {setMaxPrice, setMinPrice, defaultMinPrice, defaultMaxPrice, setIsForSale, isForSale} = useProductFiltersProvider();
     const [isForSaleChecked, setIsForSaleChecked] = useState(false); 
@@ -36,6 +38,7 @@ export default function FilterProducts({closeModal} : {closeModal?: ()=>void}) {
       setSliderValue([defaultMinPrice, defaultMaxPrice]);
       setIsForSale(false);
       setIsForSaleChecked(false);
+      setSortOrder(SORT_BY_ENUM.DEFAULT)
     }
 
     const configTheme = {
@@ -66,7 +69,10 @@ export default function FilterProducts({closeModal} : {closeModal?: ()=>void}) {
       <ConfigProvider theme={configTheme}>
         <div /*className='w-[350px] min-w-[350px] hidden lg:block' */ className='w-full'>
           <div className='flex justify-between items-center'>
-            <h2 className='firago-medium text-base leading-[19px] text-black-main dark:text-dark-black-main'><FormattedMessage id='filter'/></h2>
+            <div className='flex items-center'>
+              <img src={closeIcon} alt='close filter modal icon' className=' cursor-pointer block lg:hidden w-3 mr-2' onClick={closeModal}/>
+              <h2 className='firago-medium text-base leading-[19px] text-black-main dark:text-dark-black-main'><FormattedMessage id='filter'/></h2>
+            </div>
             <div className='inline-flex items-center cursor-pointer'>
               <img src={clearIcon} alt='clear filet icon' className='w-full mr-2'/>
               <h2 className='firago-medium text-xs leading-[14px] opacity-60 text-black-main dark:text-dark-black-main' onClick={clearFilters}><FormattedMessage id='clear'/></h2>

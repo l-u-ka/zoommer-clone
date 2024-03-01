@@ -1,5 +1,5 @@
 import { useThemeProvider } from "@src/providers/ThemeProvider/useThemeProvider";
-import { Button, ConfigProvider, Modal, theme } from "antd"
+import {ConfigProvider, Modal, theme } from "antd"
 import { FormattedMessage } from "react-intl";
 import closeIcon from '@src/assets/icons/mobile-modal-close.png'
 import PrimaryButton from "../PrimaryButton/PrimaryButton";
@@ -10,24 +10,12 @@ interface AlreadyInCartModalProps {
 }
 
 export default function AlreadyInCartModal({modalOpen, closeModal}:AlreadyInCartModalProps) {
-
     const {lightMode} = useThemeProvider();
     const {defaultAlgorithm, darkAlgorithm} = theme;
 
     const configStyle = {
         algorithm: !lightMode ? darkAlgorithm : defaultAlgorithm,
         "components": {
-            // "Button": {
-            //   "colorPrimary": "rgb(236, 94, 42)",
-            //   "colorPrimaryHover": "rgb(236, 94, 42)",
-            //   "colorPrimaryActive": "rgb(236, 94, 42)",
-            //   "borderRadius": 12,
-            //   "controlHeight": 50,
-            //   "controlHeightLG": 50,
-            //   "controlHeightSM": 30,
-            //   "lineHeight": 1.75,
-            //   "defaultBorderColor": "rgb(250, 84, 28)",
-            // },
             "Modal": {
               "borderRadiusLG": 20,
               "borderRadiusSM": 10

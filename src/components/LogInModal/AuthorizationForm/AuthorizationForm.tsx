@@ -1,15 +1,11 @@
 import { Form, Input, Button } from "antd"
 import { AuthorizationFormInput } from "@src/@types/types"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { FormattedMessage, useIntl } from "react-intl"
 import { publicAxios } from "@src/utils/publicAxios";
 import { useAuthProvider } from "@src/providers/AuthProvider/useAuthProvider";
 
 export default function AuthorizationForm({closeModal}: {closeModal: ()=> void}) {
-  // const [authInput, setAuthInput] = useState<AuthorizationFormInput>({
-  //   email: '',
-  //   password: ''
-  // });
   const [loginForm] = Form.useForm();
   const {formatMessage} = useIntl();
   const [isLoading, setLoading] = useState<boolean>(false);
@@ -17,10 +13,7 @@ export default function AuthorizationForm({closeModal}: {closeModal: ()=> void})
   const {setAuthData} = useAuthProvider();
 
   function onFinish(changedValues:AuthorizationFormInput) {
-    // setAuthInput(() => ({
-    //   ...changedValues
-    // }));
-    userLogin(changedValues.email, changedValues.password)
+    userLogin(changedValues.email, changedValues.password);
   }
 
   async function userLogin(email: string, password:string) {
@@ -31,7 +24,6 @@ export default function AuthorizationForm({closeModal}: {closeModal: ()=> void})
         email: email,
         password: password
       })
-      // form.resetFields();
       setAuthData(response.data);
       closeModal();
     } catch(e) {
@@ -41,53 +33,13 @@ export default function AuthorizationForm({closeModal}: {closeModal: ()=> void})
       setLoading(false);
     }
   }
-
-  // useEffect(()=> {
-  //   const isNotEmpty = Object.values(authInput).every(element => element !== '');
-  //   if (isNotEmpty) {
-  //     userLogin();
-  //   }
-  // }, [authInput])
-
-  // function onValuesChange(changedValues:LoginFormValues) {
-  //   const {prefix, ...filtered} = changedValues;
-  //   setAuthInput((prev) => ({
-  //     ...prev,
-  //     ...filtered,
-  //   }));
-  // }
-  
-  // const formItemLayout = {
-  //   labelCol: {
-  //     xs: { span: 24 },
-  //     sm: { span: 8 },
-  //   },
-  //   wrapperCol: {
-  //     xs: { span: 24 },
-  //     sm: { span: 16 },
-  //   },
-  // };
-  // const tailFormItemLayout = {
-  //   wrapperCol: {
-  //     xs: {
-  //       span: 24,
-  //       offset: 0,
-  //     },
-  //     sm: {
-  //       span: 16,
-  //       offset: 8,
-  //     },
-  //   },
-  // };
   
   return (
     
     <Form
-      // {...formItemLayout}
       form={loginForm}
       name="authorize"
       onFinish={onFinish}
-      // onValuesChange={onValuesChange}
       initialValues={{prefix: '995' }}
       style={{ maxWidth: 600 }}
       scrollToFirstError
