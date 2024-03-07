@@ -4,7 +4,7 @@ import { ProductFiltersContext } from "./ProductFiltersContext";
 export function ProductFiltersProvider({children}: PropsWithChildren) {
 
     const defaultMinPrice:number = 0;
-    const defaultMaxPrice:number = 5000;
+    const defaultMaxPrice:number = 12000;
 
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [pageSize, setPageSize] = useState<number>(12);

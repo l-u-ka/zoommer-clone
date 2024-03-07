@@ -2,8 +2,6 @@ import { FormattedMessage } from "react-intl";
 import { BUTTON_TYPE_ENUM } from "@src/@types/types";
 
 interface NavItemProps {
-    // color: string;
-    // textColor: string;
     type: BUTTON_TYPE_ENUM;
     text: string;
     icon: string;

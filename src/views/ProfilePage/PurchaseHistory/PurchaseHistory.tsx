@@ -1,6 +1,6 @@
 import { useGetBoughtProducts } from '@src/hooks/useGetBoughtProducts'
 import { Skeleton } from 'antd';
-import React, { ReactNode } from 'react'
+import { ReactNode } from 'react'
 import { FormattedMessage } from 'react-intl';
 
 export default function PurchaseHistory() {

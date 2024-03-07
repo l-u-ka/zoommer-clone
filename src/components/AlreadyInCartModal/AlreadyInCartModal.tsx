@@ -31,7 +31,6 @@ export default function AlreadyInCartModal({modalOpen, closeModal}:AlreadyInCart
                     <hr className="border border-solid border-border-white dark:border-border-dark-white"/>
                     <h3 className="mt-[40px] mb-[20px] firago-semibold text-base leading-[19px] text-center text-black-06 dark:text-dark-black-06"><FormattedMessage id="already.in.cart"/></h3>
                     <div className="flex justify-between mt-[40px]">
-                        {/* <Button type="primary" className="w-full custom-button hover:scale-95 transition-all ease-in-out" onClick={closeModal}><FormattedMessage id="understood"/></Button> */}
                         <PrimaryButton width="100%" height={50} onClick={closeModal}><h3 className="firago-bold text-base leading-[19px] text-white "><FormattedMessage id="understood"/></h3></PrimaryButton>
                     </div>
                 </div>

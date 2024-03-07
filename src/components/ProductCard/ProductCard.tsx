@@ -9,33 +9,28 @@ import { useRemoveFromWishlist } from "@src/hooks/useRemoveFromWishlist";
 import { useAuthProvider } from "@src/providers/AuthProvider/useAuthProvider";
 import { Auth_Stage_Enum } from "@src/providers/AuthProvider/AuthContext";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
-import { useState } from "react";
-
 
 export default function ProductCard({product} : {product: ProductType}) {
 
     const navigate = useNavigate();
     const {addToWishlist, addLoading} = useAddToWishlist();
     const {removeFromWishlist, removeLoading} = useRemoveFromWishlist();
-    const {wishlistItems, wishlistLoading} = useWishlistProvider();
+    const {wishlistItems} = useWishlistProvider();
     const {authStage} = useAuthProvider();
-    const [isLoading, setIsLoading] = useState<boolean>(false);
-
+  
     function removeItem(id: string) {
         const item = wishlistItems.find(item => item.likedProduct.id === id);
         if (item) removeFromWishlist(item.id)
     }
 
     function isInWishlist(id:string) {
-        // setIsLoading(true);
         const result = wishlistItems.find(item => item.likedProduct.id === id);
-        // setIsLoading(false);
         if (result) return true;
         else return false;
     }
 
     return (
-            <div className='col-span-1 max-w-36 md:max-w-[165px] h-[300px] flex flex-col justify-between relative'>
+            <div className='col-span-1 max-w-36 md:max-w-[165px] h-[300px] flex flex-col justify-between relative mx-auto'>
                 <img onClick={()=>navigate(`/products/${product.category_name}/${product.id}`)}  src={product.image} alt="product image" className="w-full h-[165px] object-cover cursor-pointer"/> 
                 <div className={`${authStage === Auth_Stage_Enum.AUTHORIZED ? 'flex' : 'hidden'} w-7 h-7 bg-white-400 rounded-[50%] absolute top-1 right-1 items-center justify-center`}>
                     {(addLoading || removeLoading) ? <LoadingSpinner size={28} fullscreen={false} custom={true}/>

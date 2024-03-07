@@ -2,7 +2,6 @@ import { useThemeProvider } from "@src/providers/ThemeProvider/useThemeProvider"
 import sunIcon from '@src/assets/icons/sun.png'
 import moonIcon from '@src/assets/icons/moon.png'
 
-
 export default function ToggleThemeButton() {
   const {lightMode, toggleLightMode} = useThemeProvider();
 

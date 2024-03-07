@@ -23,7 +23,6 @@ import { useCartProvider } from '@src/providers/CartProvider/useCartProvider'
 
 export default function Navigation() {
 
-    // const [loginModal, setLoginModal] = useState<boolean>(false);
     const {loginModalOpen, setLoginModalOpen} = useGlobalProvider();
     const {cartItems} = useCartProvider();
     const {authStage} = useAuthProvider();
@@ -101,7 +100,7 @@ export default function Navigation() {
 
     function handleMouseLeaveModal(event: React.MouseEvent<HTMLElement>) {
         const { clientX, clientY } = event;
-        const { left, top, width, height } = event.currentTarget.getBoundingClientRect();
+        const { left, top, width} = event.currentTarget.getBoundingClientRect();
     
         if (clientX < left) {
             closeCartModal();
@@ -139,7 +138,6 @@ export default function Navigation() {
                     </div>
                 </div>
             </div>
-            {/* search on mobile mode*/}
             <div className='block lg:hidden'>
                 <div className='custom-container py-3 relative'>
                     <div className='grid grid-flow-col items-center justify-between'>

@@ -5,7 +5,12 @@ import { FormattedMessage } from "react-intl";
 import dropdownArrow from '@src/assets/icons/arrow-up-black.png'
 import { useThemeProvider } from "@src/providers/ThemeProvider/useThemeProvider";
 
-export default function SortProducts({sortOrder ,setSortOrder}: {sortOrder: SORT_BY_ENUM,setSortOrder: (sortOrder: SORT_BY_ENUM)=>void}) {
+interface SortProductsProps {
+  sortOrder: SORT_BY_ENUM;
+  setSortOrder: (sortOrder: SORT_BY_ENUM)=>void
+}
+
+export default function SortProducts({sortOrder ,setSortOrder}: SortProductsProps) {
 
     const [isDropped, setIsDropped] = useState<boolean>(false);
     const {lightMode} = useThemeProvider();
@@ -15,7 +20,7 @@ export default function SortProducts({sortOrder ,setSortOrder}: {sortOrder: SORT
     }, [sortOrder])
 
     const menuStyles:CSSProperties = {
-        // border: '1px solid #ec5e2a',
+        border: `1px solid ${lightMode ? '#ec5e2a' : '#c1471c'} `,
         width: '100%',
         backgroundColor: lightMode ? 'rgba(237, 235, 235)' : 'rgba(35, 38, 39)',
         // color: lightMode ? '#000 !important' : '#e8e6e3 !important'

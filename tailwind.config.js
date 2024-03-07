@@ -5,7 +5,10 @@ export default {
   theme: {
     extend: {
       colors: {
+        "light-theme-bg": "#FFFFFF",
         "light-theme-secondary-bg": "rgba(237, 235, 235, 0.74)",
+        "dark-theme-bg": "rgb(24, 26, 27)", //#181a1b
+        "dark-theme-secondary-bg": "rgba(35, 38, 39, 0.8)", //#1f1f1f
         "white-600": "#d9d9d9",
         "white-400": "#f2f2f2",
         "dark-white-400": "rgba(33,36,38)", //"#1f2223",
@@ -21,9 +24,6 @@ export default {
         "orange-main": "#ec5e2a",
         "dark-orange-main": "#c1471c",
         "text-dark-orange-main": "#ee6b3b",
-        "light-theme-bg": "#FFFFFF",
-        "dark-theme-bg": "rgb(24, 26, 27)", //#181a1b
-        "dark-theme-secondary-bg": "rgba(35, 38, 39, 0.8)", //#1f1f1f
         "light-theme-bg": "#fff",
         "black-04": "rgba(0,0,0,.4)",
         "black-06": "rgba(0,0,0,.6)",
@@ -42,6 +42,7 @@ export default {
         "gray-shadow": "rgba(102, 102, 102, 0.12)",
         "border-white": "#f2f2f2",
         "border-dark-white": "#34383a",
+        "scrollbar-orange": "rgba(236, 94, 42, 0.5)"
       },
       // container: {
       //   center: true,

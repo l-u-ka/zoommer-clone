@@ -13,9 +13,7 @@ export default function NavSearch() {
   const modalRef = useRef<HTMLDivElement>(null);
   const [searchValue, setSearchValue] = useState<string>('');
   const setValueDebounced = useDebounce(setSearchValue, 300);
-
   const {setShowOverlay} = useGlobalProvider();
-  // console.log(searchValue)
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -25,8 +23,6 @@ export default function NavSearch() {
         modalRef.current &&
         !modalRef.current.contains(event.target as Node)
       ) {
-        // setIsModalOpen(false);
-        // setShowOverlay(false);
         closeModal();
       }
     };

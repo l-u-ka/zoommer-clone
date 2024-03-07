@@ -33,7 +33,7 @@ export default function FilterProductsMobile({isModalOpen, handleCancel, setSort
 
     return (
         <ConfigProvider theme={configTheme}>
-            <Modal open={isModalOpen} onCancel={handleCancel} footer={false} width={'75vw'} closeIcon={false}
+            <Modal open={isModalOpen} onCancel={handleCancel} maskClosable={false} footer={false} width={'75vw'} closeIcon={false}
                 style={{
                     margin: 0,
                     top: 0,

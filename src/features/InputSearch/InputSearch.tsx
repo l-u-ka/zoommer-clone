@@ -1,14 +1,17 @@
 import useSearchProducts from "@src/hooks/useSearchProducts";
-import { useProductsProvider } from "@src/providers/ProductsProvider/useProductsProvider";
 import { useEffect } from "react";
 import { FormattedMessage } from "react-intl";
 import goToProductArr from '@src/assets/icons/right-path.png'
 import { Link, useNavigate } from "react-router-dom";
 import LoadingSpinner from "@src/components/LoadingSpinner/LoadingSpinner";
 
-export default function InputSearch({searchInput, closeModal}: {searchInput: string, closeModal: ()=>void}) {
+interface InputSearchProps {
+  searchInput: string,
+  closeModal: ()=>void
+}
 
-  // const {searchProducts, searchedProducts, searchLoading, setSearchedProducts} = useProductsProvider();
+export default function InputSearch({searchInput, closeModal}: InputSearchProps) {
+
   const {searchedProducts, searchLoading, searchProducts, setSearchedProducts} = useSearchProducts();
   console.log(searchedProducts)
   const navigate = useNavigate()

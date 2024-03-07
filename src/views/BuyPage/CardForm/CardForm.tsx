@@ -11,6 +11,7 @@ import 'react-credit-cards-2/dist/es/styles-compiled.css';
 import { FormattedMessage, useIntl } from 'react-intl';
 import goBackIcon from '@src/assets/icons/category-left-arr.png'
 import MobilePurchaseCard from '@src/views/BuyPage/MobilePurchaseCard/MobilePurchaseCard';
+import { usePurchaseProvider } from '@src/providers/PurchaseProvider/usePurchaseProvider';
 
 interface CardFormType {
     number: string;
@@ -19,10 +20,15 @@ interface CardFormType {
     cvc: string;
 }
 
-export default function CardForm({setOnAddress, setSuccessModal}: {setOnAddress: (value: React.SetStateAction<boolean>) => void, setSuccessModal: React.Dispatch<React.SetStateAction<boolean>> }) {
+interface CardFormProps {
+    setOnAddress: (value: React.SetStateAction<boolean>) => void;
+    setSuccessModal: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export default function CardForm({setOnAddress, setSuccessModal}: CardFormProps) {
 
     const [cardForm] = Form.useForm();
-    const {totalPurchaseAmount, totalPurchasePrice, setTotalPurchaseAmount, setTotalPurchasePrice, isBuyingFromCart, setIsBuyingFromCart} = useGlobalProvider();
+    const {totalPurchaseAmount, totalPurchasePrice, setTotalPurchaseAmount, setTotalPurchasePrice, isBuyingFromCart, setIsBuyingFromCart} = usePurchaseProvider();
     const {buyProduct, isSuccessful, buyLoading} = useBuyProduct();
     const [cardDetails, setCardDetails] = useState({
         number: '',

@@ -36,16 +36,6 @@ export default function LogInModal({modalOpen, closeModal} : ModalProps) {
           "colorText": lightMode ? "#000" : "#e8e6e3",
           "colorError": lightMode ? "rgba(255,0,0,.8)" : "rgba(255, 26, 26, 0.8)",
         },
-        "Button": {
-          "colorPrimary": lightMode ? "rgb(236, 94, 42) !important" : "#c1471c !important",
-          "colorPrimaryHover": lightMode ? "#c1471c !important" : "rgb(236, 94, 42) !important",
-          "colorPrimaryActive": lightMode ? "#c1471c !important" : "rgb(236, 94, 42) !important",
-          "borderRadius": 12,
-          "controlHeight": 50,
-          "controlHeightLG": 50,
-          "controlHeightSM": 30,
-          "lineHeight": 1.0625
-        },
         "Select": {
           "colorBgElevated": lightMode ? "rgb(242, 242, 242)" : "rgb(33,36,38)",
           "optionActiveBg": lightMode ? "rgb(255, 255, 255)" : "rgb(24, 26, 27)",
@@ -68,7 +58,7 @@ export default function LogInModal({modalOpen, closeModal} : ModalProps) {
 
   return (
     <ConfigProvider theme={customTheme} >
-        <Modal open={modalOpen} footer={false} onCancel={closeModal} maskClosable={false} className="custom-modal" closeIcon={<img className="relative top-[-8px]" src={closeIcon} alt="modal close icon"/>}>
+        <Modal open={modalOpen} footer={false} onCancel={closeModal} className=" !w-[400px] md:!w-[440px] top-[80px]" maskClosable={false} style={{}} closeIcon={<img className="relative top-[-8px]" src={closeIcon} alt="modal close icon"/>}>
             <div className="flex">
                 <div className="w-1/2 cursor-pointer" onClick={()=>setOnAuthorization(true)}>
                     <p className={`${onAuthorization ? 'firago-bold text-orange-main dark:text-text-dark-orange-main' : 'firago-medium'} text-center text-black-main dark:text-dark-black-main text-base leading-[19px] mt-2 mb-[14px]`}><FormattedMessage id="authorization"/></p>

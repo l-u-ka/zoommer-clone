@@ -1,15 +1,13 @@
 import { PropsWithChildren, useEffect, useState } from "react";
 import { ProductsContext } from "./ProductsContext";
 import useGetCategories from "@src/hooks/useGetCategories";
-import useSearchProducts from "@src/hooks/useSearchProducts";
 
 
 export function ProductsProvider({children}: PropsWithChildren) {
 
-    const {categories} = useGetCategories();
-    // const {searchedProducts, searchProducts, searchLoading, setSearchedProducts} = useSearchProducts();
+    const {categories, categoriesLoading} = useGetCategories();
     
     return (
-        <ProductsContext.Provider value={{categories /*, searchedProducts, searchProducts, searchLoading, setSearchedProducts*/}}>{children}</ProductsContext.Provider>
+        <ProductsContext.Provider value={{categories, categoriesLoading}}>{children}</ProductsContext.Provider>
     )
 }

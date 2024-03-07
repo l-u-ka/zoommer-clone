@@ -6,6 +6,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import goBackIcon from '@src/assets/icons/category-left-arr.png'
 import { useNavigate } from 'react-router-dom';
 import MobilePurchaseCard from '@src/views/BuyPage/MobilePurchaseCard/MobilePurchaseCard';
+import { usePurchaseProvider } from '@src/providers/PurchaseProvider/usePurchaseProvider';
 
 interface AddressFormValues {
     city: string;
@@ -63,7 +64,7 @@ const cityOptions:cityOptionType[] = [
 
 
 export default function AddressForm({setOnAddress}: {setOnAddress: (value: React.SetStateAction<boolean>) => void}) {
-    const {totalPurchaseAmount, totalPurchasePrice} = useGlobalProvider();
+    const {totalPurchasePrice} = usePurchaseProvider();
     const { Option } = Select;
     const [addressForm] = Form.useForm();
     const {formatMessage} = useIntl();

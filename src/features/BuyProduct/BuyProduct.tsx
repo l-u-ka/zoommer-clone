@@ -4,13 +4,14 @@ import PrimaryButton from "@src/components/PrimaryButton/PrimaryButton";
 import { Auth_Stage_Enum } from "@src/providers/AuthProvider/AuthContext";
 import { useAuthProvider } from "@src/providers/AuthProvider/useAuthProvider";
 import { useGlobalProvider } from "@src/providers/GlobalProvider/useGlobalProvider";
+import { usePurchaseProvider } from "@src/providers/PurchaseProvider/usePurchaseProvider";
 import { FormattedMessage } from "react-intl";
 import { useNavigate } from "react-router-dom";
 
 export default function BuyProduct({product}: {product: ProductType}) {
 
     const navigate = useNavigate();
-    const {setTotalPurchasePrice, setTotalPurchaseAmount, setIsBuyingFromCart} = useGlobalProvider();
+    const {setTotalPurchasePrice, setTotalPurchaseAmount, setIsBuyingFromCart} = usePurchaseProvider();
     const {authStage} = useAuthProvider();
     const {setLoginModalOpen} = useGlobalProvider();
 

@@ -1,8 +1,7 @@
 import ProductCard from '@src/components/ProductCard/ProductCard';
 import ProductCardSkeleton from '@src/components/Skeletons/ProductCardSkeleton/ProductCardSkeleton';
 import useSearchProducts from '@src/hooks/useSearchProducts';
-import { useProductsProvider } from '@src/providers/ProductsProvider/useProductsProvider'
-import React, { ReactNode, useEffect } from 'react'
+import { ReactNode, useEffect } from 'react'
 import { FormattedMessage } from 'react-intl';
 import { useParams } from 'react-router-dom';
 
@@ -20,9 +19,6 @@ export default function SearchResultPage() {
     productSkeletons.push(<ProductCardSkeleton key={i}/>)
   }
 
-  // console.log(searchedProducts)
-  
-  // const {searchedProducts} = useProductsProvider();
   const searchedProductCards = searchedProducts?.map(prod=> {
     return <ProductCard key={prod.id} product={prod} />
   })

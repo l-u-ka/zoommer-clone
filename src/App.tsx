@@ -13,6 +13,7 @@ const ProfilePage = lazy(()=> import("@src/views/ProfilePage/ProfilePage"));
 const AllCategories = lazy(()=> import("@src/views/AllCategories/AllCategories"));
 const SearchResultsPage = lazy(()=> import("@src/views/SearchResultPage/SearchResultPage"));
 const BuyPage = lazy(()=>import("@src/views/BuyPage/BuyPage"))
+const ErrorPage = lazy(()=>import("@src/views/ErrorPage/ErrorPage"))
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/products/:category/:prodId" element={<ProductPage/>}/>
           <Route path="/products/search/:searchValue" element={<SearchResultsPage/>}/>
           <Route path="/all-categories" element={<AllCategories/>}/>
+          <Route path="*" element={<ErrorPage/>}/>
         </Route>
         <Route element={<PrivateLayout/>}>
           <Route path="/cart" element={<PrivateRoute children={<Cart/>}/>}/>

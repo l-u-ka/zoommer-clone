@@ -111,5 +111,8 @@
     "view.all": "View All",
     "found": "Found",
     "results": "Results",
-    "home": "Home"
+    "home": "Home",
+    "product.could.not.load": "Product Could Not Load",
+    "go.back.home": "Go Back to Home Page",
+    "purchase.history.empty": "Purchase History is Empty"
 }

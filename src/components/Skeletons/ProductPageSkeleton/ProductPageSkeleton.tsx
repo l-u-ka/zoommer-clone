@@ -1,7 +1,7 @@
 import ProductCardSkeleton from '@src/components/Skeletons/ProductCardSkeleton/ProductCardSkeleton';
 import { Skeleton } from 'antd';
 import Slider from "react-slick";
-import React, { ReactNode } from 'react'
+import { ReactNode } from 'react'
 
 export default function ProductPageSkeleton() {
 

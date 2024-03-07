@@ -26,9 +26,5 @@ export function useGetWishlistItems() {
         if(authStage === Auth_Stage_Enum.AUTHORIZED) getWishlistItems();
     }, [authStage])
 
-    // useEffect(()=> {
-    //    if(userData) getWishlistItems();
-    // }, [userData])
-
     return {wishlistItems, getWishlistItems, wishlistLoading}
 }

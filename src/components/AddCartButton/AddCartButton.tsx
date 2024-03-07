@@ -10,7 +10,13 @@ import { useGlobalProvider } from "@src/providers/GlobalProvider/useGlobalProvid
 import { Auth_Stage_Enum } from "@src/providers/AuthProvider/AuthContext"
 import { useThemeProvider } from "@src/providers/ThemeProvider/useThemeProvider"
 
-export default function AddCartButton({height, borderRadius, productId} : {height: number, borderRadius: number, productId: string}) {
+interface AddCartButtonProps {
+  height: number;
+  borderRadius: number; 
+  productId: string
+}
+
+export default function AddCartButton({height, borderRadius, productId} : AddCartButtonProps) {
 
   const {lightMode} = useThemeProvider();
 

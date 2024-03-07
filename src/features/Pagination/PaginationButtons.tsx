@@ -7,7 +7,6 @@ export default function PaginationButtons({totalProducts}: {totalProducts: numbe
   const {currentPage, setCurrentPage, pageSize} = useProductFiltersProvider()
 
   const onChange: PaginationProps['onChange'] = (page) => {
-    //console.log(page);
     setCurrentPage(page)
   };
 

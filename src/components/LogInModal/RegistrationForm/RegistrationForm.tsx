@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { FormattedMessage, useIntl } from "react-intl"
 import axios from "axios";
 import { useAuthProvider } from "@src/providers/AuthProvider/useAuthProvider";
+import PrimaryButton from "@src/components/PrimaryButton/PrimaryButton";
 
 interface FormValues extends RegistrationFormInput {
   confirm_password:string;
@@ -172,9 +173,7 @@ export default function RegistrationForm({closeModal}: {closeModal: ()=> void}) 
 
       <Form.Item >
         {isError && <div className="firago-bold text-red-08 text-sm leading-[17px] mb-2"><FormattedMessage id={`${isError}`}/></div>}
-        <Button loading={isLoading} type="primary" htmlType="submit" style={{backgroundColor: '#ec5e2a'}} className="custom-button w-full">
-          <FormattedMessage id="register"/>
-        </Button>
+        <PrimaryButton loading={isLoading} width="100%" height={50} onClick={() => registrationForm.submit()}><p className="firago-bold text-sm leading-[17px]"><FormattedMessage id="register"/></p></PrimaryButton>
       </Form.Item>
     </Form>
   )

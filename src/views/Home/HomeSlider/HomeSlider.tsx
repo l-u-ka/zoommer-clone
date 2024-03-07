@@ -1,4 +1,3 @@
-import React from 'react'
 import Slider from "react-slick";
 import leftArrow from '@src/assets/icons/slider-left-btn.png'
 import righrArrow from '@src/assets/icons/slider-right-btn.png'

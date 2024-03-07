@@ -1,27 +1,24 @@
-import { CategoryType } from "@src/@types/types";
 import CategoriesTab from "@src/components/CategoriesTab/CategoriesTab";
-import useGetCategories from "@src/hooks/useGetCategories";
-import FeaturedTab from "./FeaturedTab/FeaturedTab";
 import HomeSlider from "./HomeSlider/HomeSlider";
+import Featured from "./Featured/Featured";
+import useGetCategories from "@src/hooks/useGetCategories";
+import HomePageSkeleton from "@src/components/Skeletons/HomePageSkeleton/HomePageSkeleton";
 
 export default function Home() {
 
-  const {categories} = useGetCategories();
-  const featuredTabs = categories.map((cat:CategoryType, index:number)=> {
-    // if (index < 2) {
-      return <FeaturedTab key={cat.id} categoryName={cat.name}/>
-    // } else return null;
-  })
+  const {categoriesLoading} = useGetCategories();
+  
 
     return (
       <div className="custom-container pt-[30px] pb-[60px] min-h-[700px]">
-        <div className="flex">
-          <CategoriesTab/>
-          <HomeSlider/>
-        </div>
-        <div className="grid grid-cols-1 gap-[60px] mt-10">
-          {featuredTabs}
-        </div>
+        {categoriesLoading ? <HomePageSkeleton/> : (
+        <>
+          <div className="flex">
+            <CategoriesTab/>
+            <HomeSlider/>
+          </div>
+          {!categoriesLoading && <Featured/>}
+        </>)}
       </div>
   );
 }

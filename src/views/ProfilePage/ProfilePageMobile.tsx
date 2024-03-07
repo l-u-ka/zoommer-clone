@@ -8,14 +8,8 @@ import Wishlist from './Wishlist/Wishlist';
 import { PROFILE_MENU_ENUM } from './ProfilePage';
 import PurchaseHistory from './PurchaseHistory/PurchaseHistory';
 
-// enum MOBILE_MENU_SELECT_ENUM {
-//   MENU = "menu",
-//   EDIT_PROFILE = "edit_profile",
-//   WISHLIST = "wislist"
-// }
 export default function ProfilePageMobile({selected, setSelected, updateLoading, setUpdateLoading} : {selected: PROFILE_MENU_ENUM, setSelected: React.Dispatch<React.SetStateAction<PROFILE_MENU_ENUM>>, updateLoading: boolean, setUpdateLoading: React.Dispatch<React.SetStateAction<boolean>>}) {
 
-  // const [selected, setSelected] = useState<MOBILE_MENU_SELECT_ENUM>(MOBILE_MENU_SELECT_ENUM.MENU);
   const {userData} = useAuthProvider();
 
   function handleMenuSelect(selectOption: PROFILE_MENU_ENUM) {

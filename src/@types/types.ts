@@ -30,6 +30,7 @@ export interface CategoryType {
   created_at: string;
   updated_at: string;
   name: string;
+  image: string;
 }
 
 export interface ProductType {

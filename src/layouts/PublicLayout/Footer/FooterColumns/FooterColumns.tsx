@@ -56,16 +56,6 @@ export default function FooterColumns() {
                     })}
             </div>
         })}
-            {/* <div className="grid grid-cols-1 gap-5">
-                <div>
-                    <p className="mb-[15px]">გამოგვყევი</p>
-                    <hr className="mb-[5px] border border-solid border-orange-main"/>
-                </div>
-                <a href="">Facebook</a>
-                <a href="">Youtube</a>
-                <a href="">Instagram</a>
-                <a href="">Tik Tok</a>
-            </div> */}
         </div>
   )
 }

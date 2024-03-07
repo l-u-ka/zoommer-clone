@@ -1,7 +1,12 @@
 import PrimaryButton from "@src/components/PrimaryButton/PrimaryButton";
 import { FormattedMessage } from "react-intl";
 
-export default function FullPriceCardMobile({fullPrice, onClick}: {fullPrice: number, onClick: ()=> void}) {
+interface FullPriceCardMobileProps {
+  fullPrice: number; 
+  onClick: ()=> void
+}
+
+export default function FullPriceCardMobile({fullPrice, onClick}: FullPriceCardMobileProps) {
 
   return (
     <div className='fixed left-0 bottom-[70px] w-full bg-white-400 dark:bg-dark-white-400 lg:hidden p-5 shadow-xl flex justify-between shadow-top'>

@@ -36,7 +36,6 @@ export default function ProfilePage() {
     }
 
     const customTheme = {
-        // algorithm: !lightMode ? darkAlgorithm : defaultAlgorithm,
         "components": {
           "Input": {
             "activeBorderColor": "rgb(236, 94, 42) !important",
