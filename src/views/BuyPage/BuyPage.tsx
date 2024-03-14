@@ -1,4 +1,3 @@
-import { useGlobalProvider } from '@src/providers/GlobalProvider/useGlobalProvider';
 import { useEffect, useState } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { useNavigate } from 'react-router-dom';
@@ -8,6 +7,7 @@ import CardForm from './CardForm/CardForm';
 import { useThemeProvider } from '@src/providers/ThemeProvider/useThemeProvider';
 import SuccessModal from './SuccessModal/SuccessModal';
 import { usePurchaseProvider } from '@src/providers/PurchaseProvider/usePurchaseProvider';
+import { useAutoAnimate } from '@formkit/auto-animate/react';
 
 export default function BuyPage() {
 
@@ -67,6 +67,8 @@ export default function BuyPage() {
         if (openSuccessModal === false && (totalPurchaseAmount === 0 || totalPurchasePrice === 0)) navigate('/')
     }, [openSuccessModal, totalPurchaseAmount, totalPurchasePrice])
 
+    const [parent] = useAutoAnimate({duration: 300, easing: 'ease-in-out'})
+
     return (
         <ConfigProvider theme={configTheme}>
             <div className="custom-container pt-[30px] pb-[60px]">
@@ -74,11 +76,11 @@ export default function BuyPage() {
                 <hr className="mt-[24px] mb-[30px] border border-solid border-border-white dark:border-border-dark-white"/>
                 {!(totalPurchaseAmount === 0 || totalPurchasePrice === 0) && (
                     <div className='flex'>
-                    <div className='w-full'>
-                        {onAdress && <AddressForm setOnAddress={setOnAddress}/>}
-                        {!onAdress && <CardForm setOnAddress={setOnAddress} setSuccessModal={setOpenSuccessModal}/>}
+                        <div className='w-full' ref={parent}>
+                            {onAdress && <AddressForm setOnAddress={setOnAddress}/>}
+                            {!onAdress && <CardForm setOnAddress={setOnAddress} setSuccessModal={setOpenSuccessModal}/>}
+                        </div>
                     </div>
-                </div>
                 )}
                 <SuccessModal modalOpen={openSuccessModal} closeModal={closeModal}/>
             </div>

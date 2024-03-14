@@ -1,13 +1,13 @@
 import { CartITem } from "@src/@types/types"
 import { createContext } from "react"
 
-interface TCartContext {
+interface CartContext {
     cartItems: CartITem[];
     cartLoading: boolean;
     getCartItems:() => Promise<void>;
 }
 
-export const CartContext = createContext<TCartContext>({
+export const CartContext = createContext<CartContext>({
     cartItems: [],
     cartLoading: false,
     getCartItems: async () => {}

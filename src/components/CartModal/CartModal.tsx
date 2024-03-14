@@ -1,14 +1,13 @@
-import emptyCart from '@src/assets/icons/emptybag.png'
 import { useNavigate } from "react-router-dom";
 import { FormattedMessage } from "react-intl";
 import { useCartProvider } from "@src/providers/CartProvider/useCartProvider";
-import CartProducts from '../CartProducts/CartProducts';
 import { getFullPrice } from '@src/utils/exportFunctions';
 import { useGlobalProvider } from '@src/providers/GlobalProvider/useGlobalProvider';
 import { useAuthProvider } from '@src/providers/AuthProvider/useAuthProvider';
-import { Auth_Stage_Enum } from '@src/providers/AuthProvider/AuthContext';
+import { AuthStageEnum } from '@src/providers/AuthProvider/AuthContext';
+import CartProducts from '../CartProducts/CartProducts';
 import PrimaryButton from '../PrimaryButton/PrimaryButton';
-
+import emptyCart from '@src/assets/icons/emptybag.png'
 interface CartModalProps {
     closeModal?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
 }
@@ -19,8 +18,9 @@ export default function CartModal({closeModal} : CartModalProps) {
     const {setLoginModalOpen} = useGlobalProvider();
     const {authStage} = useAuthProvider();
 
+    /* if user want to navigate to cart page and is not authorized - shod login modal */
     function handleClick() {
-        if (authStage === Auth_Stage_Enum.AUTHORIZED) navigate("/cart");
+        if (authStage === AuthStageEnum.AUTHORIZED) navigate("/cart");
         else setLoginModalOpen(true);
     }
 

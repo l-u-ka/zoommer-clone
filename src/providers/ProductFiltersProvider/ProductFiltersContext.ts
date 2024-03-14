@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-interface ProductFiltersContextType {
+interface ProductFiltersContext {
   currentPage: number;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
   pageSize: number;
@@ -15,7 +15,7 @@ interface ProductFiltersContextType {
   defaultMaxPrice: number;
 }
 
-export const ProductFiltersContext = createContext<ProductFiltersContextType>({
+export const ProductFiltersContext = createContext<ProductFiltersContext>({
   currentPage: 1,
   setCurrentPage: () => {},
   pageSize: 12,

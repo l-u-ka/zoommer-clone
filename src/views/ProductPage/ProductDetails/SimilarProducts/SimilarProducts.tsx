@@ -1,4 +1,4 @@
-import { ProductType } from "@src/@types/types";
+import { Product } from "@src/@types/types";
 import ProductCard from "@src/components/ProductCard/ProductCard";
 import useGetProducts from "@src/hooks/useGetProducts";
 import { useEffect, useState } from "react";
@@ -10,10 +10,19 @@ interface SimilarProductsProps {
     productId: string;
 }
 
-export default function SimilarProducts({category, productId}: SimilarProductsProps) {
+const settings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    swipeToSlide: true,
+    arrows: false
+};
 
+export default function SimilarProducts({category, productId}: SimilarProductsProps) {
     const {products} = useGetProducts({categoryName: category})
-    const [similarProducts, setSimilarProducts] = useState<ProductType[]>([]);
+    const [similarProducts, setSimilarProducts] = useState<Product[]>([]);
 
     useEffect(()=> {
         const filteredProducts = products.filter(product => product.id !== productId);
@@ -23,16 +32,6 @@ export default function SimilarProducts({category, productId}: SimilarProductsPr
     const similarProductDivs = similarProducts?.map((prod) => {
         return <ProductCard key={prod.id} product={prod}/>
     })
-
-    const settings = {
-        dots: false,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 3,
-        slidesToScroll: 3,
-        swipeToSlide: true,
-        arrows: false
-    };
 
     return (
         <div>

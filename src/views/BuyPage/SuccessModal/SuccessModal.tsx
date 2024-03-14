@@ -1,5 +1,5 @@
 import { useThemeProvider } from '@src/providers/ThemeProvider/useThemeProvider';
-import { ConfigProvider, Modal, ThemeConfig, theme } from 'antd';
+import { ConfigProvider, Modal, ThemeConfig} from 'antd';
 import closeIcon from '@src/assets/icons/mobile-modal-close.png'
 import { FormattedMessage } from 'react-intl';
 import successImg from '@src/assets/icons/successImg.png'
@@ -11,12 +11,9 @@ interface SuccessModalProps {
 }
 
 export default function SuccessModal({modalOpen, closeModal} : SuccessModalProps) {
-    
     const {lightMode} = useThemeProvider();
-    // const {defaultAlgorithm, darkAlgorithm} = theme;
 
     const configStyle:ThemeConfig = {
-        // algorithm: !lightMode ? darkAlgorithm : defaultAlgorithm,
         "components": {
             "Modal": {
               "borderRadiusLG": 20,

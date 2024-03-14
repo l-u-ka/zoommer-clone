@@ -1,7 +1,9 @@
+import { ProfileMenuEnum } from '@src/@types/types';
 import { useGetBoughtProducts } from '@src/hooks/useGetBoughtProducts'
 import { Skeleton } from 'antd';
 import { ReactNode } from 'react'
 import { FormattedMessage } from 'react-intl';
+
 
 export default function PurchaseHistory() {
 
@@ -19,6 +21,7 @@ export default function PurchaseHistory() {
 
   return (
     <div>
+        <h2 className="mb-[30px] firago-semibold text-lg leading-[22px] text-black-main dark:text-dark-black-main hidden lg:block"><FormattedMessage id={ProfileMenuEnum.ON_PURCHASE_HISTORY}/></h2>
         {boughtProductsLoading && <div className='grid grid-cols-1 md:grid-cols-2 gap-12'>{historySkeletons}</div>}
         {(!boughtProductsLoading && boughtProducts.length === 0) && <div><FormattedMessage id='purchase.history.empty'/></div>}
         {(!boughtProductsLoading && boughtProducts.length > 0) && (

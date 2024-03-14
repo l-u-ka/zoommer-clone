@@ -1,17 +1,17 @@
-import { Menu, Dropdown, Button } from "antd";
-import { CSSProperties } from "react";
+import {Dropdown, Button } from "antd";
+import {CSSProperties} from "react";
 import type { MenuProps } from 'antd';
 import flagGeo from '@src/assets/icons/flag-geo.png'
 import flagEng from '@src/assets/icons/flag-eng.png'
-import {LANGUAGE_ENUM, TFlags} from '@src/@types/types'
+import {LanguageEnum, Flags} from '@src/@types/types'
 import { useLocaleProvider } from "@src/providers/LocaleProvider/useLocaleProvider";
 import { useThemeProvider } from "@src/providers/ThemeProvider/useThemeProvider";
 
 
 
-const flags:TFlags = {
-  [LANGUAGE_ENUM.KA]: flagGeo,
-  [LANGUAGE_ENUM.EN]: flagEng,
+const flags:Flags = {
+  [LanguageEnum.KA]: flagGeo,
+  [LanguageEnum.EN]: flagEng,
 }
 
 export default function LanguageSelector() {
@@ -33,14 +33,14 @@ export default function LanguageSelector() {
       { key: '1', 
         label: <p className="firago-medium text-black dark:!text-dark-black-main">GEO</p>, 
         onClick: () => {
-          setLocale(LANGUAGE_ENUM.KA)
-          localStorage.setItem('locale', LANGUAGE_ENUM.KA)
+          setLocale(LanguageEnum.KA)
+          localStorage.setItem('locale', LanguageEnum.KA)
       }},
       { key: '2', 
         label: <p className="firago-medium text-black dark:!text-dark-black-main">ENG</p>, 
         onClick: () => {
-          setLocale(LANGUAGE_ENUM.EN)
-          localStorage.setItem('locale', LANGUAGE_ENUM.EN)
+          setLocale(LanguageEnum.EN)
+          localStorage.setItem('locale', LanguageEnum.EN)
       }},
     ];
    

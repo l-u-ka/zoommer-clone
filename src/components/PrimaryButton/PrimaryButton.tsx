@@ -10,9 +10,7 @@ interface PrimaryButtonProps {
     loading?: boolean;
 }
 
-
 export default function PrimaryButton({width, height, onClick, children, loading}: PrimaryButtonProps) {
-
     const {lightMode} = useThemeProvider();
 
     const customTheme = {

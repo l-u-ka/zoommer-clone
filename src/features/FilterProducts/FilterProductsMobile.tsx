@@ -2,18 +2,17 @@ import { ConfigProvider, Modal } from "antd";
 import { useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 import FilterProducts from "./FilterProducts";
-import { SORT_BY_ENUM } from "@src/@types/types";
+import { SortEnum } from "@src/@types/types";
 import { useThemeProvider } from "@src/providers/ThemeProvider/useThemeProvider";
 
 
 interface FilterProductsMobileProps {
     isModalOpen: boolean;
     handleCancel: ()=>void;
-    setSortOrder: React.Dispatch<React.SetStateAction<SORT_BY_ENUM>>;
+    setSortOrder: React.Dispatch<React.SetStateAction<SortEnum>>;
 }
 
 export default function FilterProductsMobile({isModalOpen, handleCancel, setSortOrder}: FilterProductsMobileProps) {
-
     const isDesktop = useMediaQuery({ minWidth: 1024 });
     const {lightMode} = useThemeProvider();
 
@@ -26,14 +25,12 @@ export default function FilterProductsMobile({isModalOpen, handleCancel, setSort
     }
 
     useEffect(()=> {
-        if (isDesktop) {
-            handleCancel();
-        }
-    }, [isDesktop])
+        if (isDesktop) handleCancel();
+    }, [isDesktop])  // if user changes from mobile to desktop, close the modal
 
     return (
         <ConfigProvider theme={configTheme}>
-            <Modal open={isModalOpen} onCancel={handleCancel} maskClosable={false} footer={false} width={'75vw'} closeIcon={false}
+            <Modal open={isModalOpen} onCancel={handleCancel} maskClosable={true} footer={false} width={'75vw'} closeIcon={false}
                 style={{
                     margin: 0,
                     top: 0,
@@ -48,7 +45,7 @@ export default function FilterProductsMobile({isModalOpen, handleCancel, setSort
                 }}
                 >
                 <div className="w-full">
-                <FilterProducts closeModal={handleCancel} setSortOrder={setSortOrder}/>
+                    <FilterProducts closeModal={handleCancel} setSortOrder={setSortOrder}/>
                 </div>
             </Modal>
         </ConfigProvider>

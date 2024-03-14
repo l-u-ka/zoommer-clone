@@ -1,22 +1,23 @@
-import { ProductType } from "@src/@types/types";
+import { Product } from "@src/@types/types";
 import AddCartButton from "@src/components/AddCartButton/AddCartButton";
 import PrimaryButton from "@src/components/PrimaryButton/PrimaryButton";
-import { Auth_Stage_Enum } from "@src/providers/AuthProvider/AuthContext";
+import { AuthStageEnum } from "@src/providers/AuthProvider/AuthContext";
 import { useAuthProvider } from "@src/providers/AuthProvider/useAuthProvider";
 import { useGlobalProvider } from "@src/providers/GlobalProvider/useGlobalProvider";
 import { usePurchaseProvider } from "@src/providers/PurchaseProvider/usePurchaseProvider";
 import { FormattedMessage } from "react-intl";
 import { useNavigate } from "react-router-dom";
 
-export default function BuyProduct({product}: {product: ProductType}) {
+export default function BuyProduct({product}: {product: Product}) {
 
     const navigate = useNavigate();
     const {setTotalPurchasePrice, setTotalPurchaseAmount, setIsBuyingFromCart} = usePurchaseProvider();
     const {authStage} = useAuthProvider();
     const {setLoginModalOpen} = useGlobalProvider();
 
+     /* after use clicks to buy the product, set purchase amount and price of the product, save it in local storage and navigate no buy product page */
     function handleClick() {
-        if (authStage === Auth_Stage_Enum.AUTHORIZED) {
+        if (authStage === AuthStageEnum.AUTHORIZED) {
             setTotalPurchaseAmount(1);
             setTotalPurchasePrice(product.salePrice || product.price);
             localStorage.setItem('purchaseAmount', JSON.stringify(1));

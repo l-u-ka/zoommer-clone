@@ -1,24 +1,29 @@
 import { useEffect, useState } from 'react'
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { useLocation, useNavigate} from 'react-router-dom'
 import NavButton from '@src/layouts/PublicLayout/Navigation/NavButton/NavButton'
 import NavSearch from './NavSearch/NavSearch'
 import CategoriesTabMobile from '@src/components/CategoriesTab/CategoriesTabMobile'
 import headerLogo from '@src/assets/icons/main-logo.png'
 import dotsIcon from '@src/assets/icons/dots.png'
-import cartIcon from '@src/assets/icons/header-cart.png'
-import userIcon from '@src/assets/icons/user-icon.png'
+import cartIcon from '@src/assets/icons/light/cart.png'
+import cartIconDark from '@src/assets/icons/dark/cart.png'
+import userIcon from '@src/assets/icons/light/user-icon.png'
+import userIconDark from '@src/assets/icons/dark/user-icon.png'
 import LogInModal from '@src/components/LogInModal/LogInModal'
 import CartModal from '@src/components/CartModal/CartModal'
-import searchIcon2 from '@src/assets/icons/search.png'
-import cartIcon2 from '@src/assets/icons/cart.svg'
-import burgerIcon from '@src/assets/icons/burger-icon.png'
-import burgerCloseIcon from '@src/assets/icons/close.png'
-import { BUTTON_TYPE_ENUM } from '@src/@types/types'
+import searchIcon from '@src/assets/icons/light/search.png'
+import searchIconDark from '@src/assets/icons/dark/search.png'
+import burgerIcon from '@src/assets/icons/light/burger-icon.png'
+import burgerIconDark from '@src/assets/icons/dark/burger-icon.png'
+import burgerCloseIcon from '@src/assets/icons/light/close.png'
+import burgerCloseIconDark from '@src/assets/icons/dark/close.png'
+import { ButtonEnum } from '@src/@types/types'
 import { useAuthProvider } from '@src/providers/AuthProvider/useAuthProvider'
-import { Auth_Stage_Enum } from '@src/providers/AuthProvider/AuthContext'
+import { AuthStageEnum } from '@src/providers/AuthProvider/AuthContext'
 import { useGlobalProvider } from '@src/providers/GlobalProvider/useGlobalProvider'
 import { useMediaQuery } from 'react-responsive'
 import { useCartProvider } from '@src/providers/CartProvider/useCartProvider'
+import { useThemeProvider } from '@src/providers/ThemeProvider/useThemeProvider'
 
 
 export default function Navigation() {
@@ -33,6 +38,7 @@ export default function Navigation() {
     const [cartModal, setCartModal] = useState<boolean>(false);
     const [categoriesTabModal, setCategoriesTabModal] = useState<boolean>(false);
     const [searchInput, setSearchInput] = useState<boolean>(false);
+    const {lightMode} = useThemeProvider();
 
     function showLoginModal() {
         setLoginModalOpen(true);
@@ -65,11 +71,12 @@ export default function Navigation() {
         setShowOverlay(false);
     }
     function handleCartClick() {
-        if (authStage === Auth_Stage_Enum.AUTHORIZED) {
+        if (authStage === AuthStageEnum.AUTHORIZED) {
             navigate("/cart");
         } else setLoginModalOpen(true);
     }
 
+    /* if location changes, close seach result element and categories tab modal */
     useEffect(()=> {
         if (categoriesTabModal || searchInput) {
             closeCategoriesTabModal();
@@ -77,6 +84,7 @@ export default function Navigation() {
         }
     }, [location.pathname])
 
+    /* if user changes from mobile to desktop, close them */
     useEffect(()=> {
         if (isDesktop) {
             closeSearchInput();
@@ -84,7 +92,7 @@ export default function Navigation() {
         }
     }, [isDesktop])
 
-
+    /* close cart modal when user leaves on all directions except downwards */
     function handleMouseLeave(event: React.MouseEvent<HTMLElement>) {
         const { clientX, clientY } = event;
         const { left, top, width } = event.currentTarget.getBoundingClientRect();
@@ -97,7 +105,8 @@ export default function Navigation() {
             closeCartModal();
         }
     }
-
+    
+    /* close cart modal when user leaves modal on all directions except upwards */
     function handleMouseLeaveModal(event: React.MouseEvent<HTMLElement>) {
         const { clientX, clientY } = event;
         const { left, top, width} = event.currentTarget.getBoundingClientRect();
@@ -119,18 +128,18 @@ export default function Navigation() {
                     <div>
                         <div className=' w-[100%] grid grid-flow-col gap-3 items-center'>
                             {/* <Button text={'navigation'} color={'#ec5e2a'} textColor={'white'} icon={dotsIcon}/> */}
-                            <NavButton text={'navigation'} type={BUTTON_TYPE_ENUM.PRIMARY} icon={dotsIcon} onClick={()=>navigate("/all-categories")}/>
+                            <NavButton text={'navigation'} type={ButtonEnum.PRIMARY} icon={dotsIcon} onClick={()=>navigate("/all-categories")}/>
                             <NavSearch/>
                             <>
-                                <NavButton text={'cart'} type={BUTTON_TYPE_ENUM.DEFAULT} icon={cartIcon} cartItems={cartItems.length} onClick={handleCartClick} onMouseEnter={showCartModal} onMouseLeave={handleMouseLeave}  /*onMouseEnter={showCartModal} onMouseLeave={closeCartModal}*//>
+                                <NavButton text={'cart'} type={ButtonEnum.DEFAULT} icon={lightMode ? cartIcon : cartIconDark} cartItems={cartItems.length} onClick={handleCartClick} onMouseEnter={showCartModal} onMouseLeave={handleMouseLeave}  /*onMouseEnter={showCartModal} onMouseLeave={closeCartModal}*//>
                                 {cartModal && <CartModal closeModal={handleMouseLeaveModal}/>}
                             </>
                             <div>
-                                {authStage !== Auth_Stage_Enum.AUTHORIZED ? <>
-                                        <NavButton text={'log.in'} type={BUTTON_TYPE_ENUM.DEFAULT} icon={userIcon} onClick={showLoginModal}/>
+                                {authStage !== AuthStageEnum.AUTHORIZED ? <>
+                                        <NavButton text={'log.in'} type={ButtonEnum.DEFAULT} icon={lightMode ? userIcon : userIconDark} onClick={showLoginModal}/>
                                         <LogInModal modalOpen={loginModalOpen} closeModal={closeLoginModal}/> 
                                     </> : <>
-                                        <NavButton text={'profile'} type={BUTTON_TYPE_ENUM.DEFAULT} icon={userIcon} onClick={()=>navigate("/profile")}/>
+                                        <NavButton text={'profile'} type={ButtonEnum.DEFAULT} icon={lightMode ? userIcon : userIconDark} onClick={()=>navigate("/profile")}/>
                                     </>
                                 }
                             </div>
@@ -143,13 +152,13 @@ export default function Navigation() {
                     <div className='grid grid-flow-col items-center justify-between'>
                         <div className='flex items-center'>
                             <div className='w-6 mr-2'>
-                                <img src={ categoriesTabModal ? burgerCloseIcon : burgerIcon} alt='categories burger logo' className='w-auto cursor-pointer block ml-auto' onClick={()=>{!categoriesTabModal ? showCategoriesTabModal() : closeCategoriesTabModal()}}/>
+                                <img src={ categoriesTabModal ? (lightMode ? burgerCloseIcon : burgerCloseIconDark) : (lightMode ? burgerIcon : burgerIconDark)} alt='categories burger logo' className='w-auto cursor-pointer block ml-auto' onClick={()=>{!categoriesTabModal ? showCategoriesTabModal() : closeCategoriesTabModal()}}/>
                             </div>
                             <img src={headerLogo} alt='main logo' className='h-[28px] lg:h-[40px] cursor-pointer' onClick={()=>navigate("/")}/>
                         </div>
                         <div>
-                            <img src={searchIcon2} alt='search icon' className='w-6 cursor-pointer' onClick={()=>{!searchInput ? showSearchInput() : closeSearchInput()}}/>
-                            <img src={cartIcon2} alt='cart icon' className='ml-5 w-6 cursor-pointer' onClick={() => navigate('/cart')}/>
+                            <img src={lightMode? searchIcon : searchIconDark} alt='search icon' className='w-6 cursor-pointer' onClick={()=>{!searchInput ? showSearchInput() : closeSearchInput()}}/>
+                            <img src={lightMode ? cartIcon : cartIconDark} alt='cart icon' className='ml-5 w-6 cursor-pointer' onClick={() => navigate('/cart')}/>
                         </div>
                     </div>
                     {searchInput && <NavSearch/>}

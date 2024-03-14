@@ -1,11 +1,11 @@
-import { LANGUAGE_ENUM } from "@src/@types/types";
+import { LanguageEnum } from "@src/@types/types";
 import { createContext } from "react";
 
-interface TLocaleContext {
-  locale: LANGUAGE_ENUM;
-  setLocale: React.Dispatch<React.SetStateAction<LANGUAGE_ENUM>>;
+interface LocaleContext {
+  locale: LanguageEnum;
+  setLocale: React.Dispatch<React.SetStateAction<LanguageEnum>>;
 }
-export const LocaleContext = createContext<TLocaleContext>({
-  locale: LANGUAGE_ENUM.KA,
+export const LocaleContext = createContext<LocaleContext>({
+  locale: LanguageEnum.KA,
   setLocale: () => {},
 });

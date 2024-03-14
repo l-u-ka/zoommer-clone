@@ -1,14 +1,27 @@
-export enum LANGUAGE_ENUM {
+import { ReactNode } from "react";
+
+export enum LanguageEnum {
   KA = "ka",
   EN = "en",
 }
 
-export interface TFlags {
-  [LANGUAGE_ENUM.KA]: string;
-  [LANGUAGE_ENUM.EN]: string;
+export interface Flags {
+  [LanguageEnum.KA]: string;
+  [LanguageEnum.EN]: string;
 }
 
-export enum BUTTON_TYPE_ENUM {
+interface FooterLink {
+  text: string | ReactNode ;
+  url: string;
+  img?: string;
+}
+export interface FooterColumn {
+  title: string | ReactNode;
+  links: FooterLink[]
+}
+
+
+export enum ButtonEnum {
   DEFAULT = "default",
   PRIMARY = "primary",
 }
@@ -25,7 +38,7 @@ export interface AuthorizationFormInput {
   password: string;
 }
 
-export interface CategoryType {
+export interface ProductCategory {
   id: string;
   created_at: string;
   updated_at: string;
@@ -33,7 +46,7 @@ export interface CategoryType {
   image: string;
 }
 
-export interface ProductType {
+export interface Product {
   id: string;
   created_at: string;
   updated_at: string;
@@ -45,8 +58,8 @@ export interface ProductType {
   category_name: string;
 }
 
-export interface CartProduct extends ProductType{
-  category: CategoryType
+export interface CartProduct extends Product {
+  category: ProductCategory;
 }
 export interface CartITem {
   id: string;
@@ -58,11 +71,11 @@ export interface CartITem {
   cartProduct: CartProduct;
 }
 
-export interface LikedProduct extends ProductType {
-  category: CategoryType;
+export interface LikedProduct extends Product {
+  category: ProductCategory;
 }
 
-export interface WishlistItemType {
+export interface WishlistItem {
   id: string;
   created_at: string;
   updated_at: string;
@@ -71,12 +84,20 @@ export interface WishlistItemType {
   likedProduct: LikedProduct;
 }
 
-export interface TAuthRequest {
+export interface BoughtProduct {
+  id: string;
+  created_at: string;
+  updated_at: string;
+  totalPrice: number;
+  totalItems: number;
+}
+
+export interface AuthRequest {
   access_token: string;
   refresh_token: string;
 }
 
-export interface TUserData {
+export interface UserData {
   email: string;
   id: string;
   first_name: string;
@@ -84,7 +105,26 @@ export interface TUserData {
   phone_number: string;
 }
 
-export enum SORT_BY_ENUM {
+enum UserRoleEnum {
+  CUSTOMER = "customer",
+  ADMIN = "admin",
+}
+
+export interface UserInfo {
+  id: string;
+  created_at: string;
+  updated_at: string;
+  first_name: string;
+  last_name: string;
+  phone_number: string;
+  email: string;
+  verified: boolean;
+  role: UserRoleEnum;
+  password: string;
+  refresh_token: string;
+}
+
+export enum SortEnum {
   DEFAULT = "sort.default",
   PRICE_ASC = "sort.price.asc",
   PRICE_DESC = "sort.price.desc",
@@ -92,9 +132,16 @@ export enum SORT_BY_ENUM {
   TITLE_DESC = "sort.title.desc",
 }
 
-export enum EDITING_FORM_ENUM {
+export enum EditFormEnum {
   FIRST_NAME = "edit_first_name",
   LAST_NAME = "edit_last_name",
   EMAIL = "edit_email",
   PHONE_NUMBER = "edit_phone_number",
+}
+
+export enum ProfileMenuEnum {
+  ON_EDITING = "edit.profile",
+  ON_WISHLIST = "wishlist",
+  ON_MENU = "hello",
+  ON_PURCHASE_HISTORY= "purchase.history"
 }

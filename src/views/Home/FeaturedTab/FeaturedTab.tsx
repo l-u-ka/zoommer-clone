@@ -1,22 +1,21 @@
-import { ProductType } from "@src/@types/types";
+import { Product } from "@src/@types/types";
+import { useMediaQuery } from "react-responsive";
+import { Skeleton } from "antd";
+import { FormattedMessage } from "react-intl";
+import { useNavigate } from "react-router-dom";
+import ProductCardSkeleton from "@src/components/Skeletons/ProductCardSkeleton/ProductCardSkeleton";
 import ProductCard from "@src/components/ProductCard/ProductCard";
 import useGetProducts from "@src/hooks/useGetProducts"
 import Slider from "react-slick";
 import leftArrow from '@src/assets/icons/slider-left-btn.png'
 import righrArrow from '@src/assets/icons/slider-right-btn.png'
-import { useMediaQuery } from "react-responsive";
-import { Skeleton } from "antd";
-import ProductCardSkeleton from "@src/components/Skeletons/ProductCardSkeleton/ProductCardSkeleton";
-import { FormattedMessage } from "react-intl";
-import { useNavigate } from "react-router-dom";
-
 
 export default function FeaturedTab({categoryName} : {categoryName: string}) {
 
     const isDesktop = useMediaQuery({ minWidth: 1024 });
     const navigate = useNavigate();
     const {products, productsLoading} = useGetProducts({categoryName});  
-    const featuredProducts = products.map((product:ProductType) => {
+    const featuredProducts = products.map((product:Product) => {
         return <ProductCard key={product.id} product={product}/>
     })
     const featuredProductSkeletons  = [];
@@ -52,7 +51,7 @@ export default function FeaturedTab({categoryName} : {categoryName: string}) {
         infinite: false,
         speed: 500,
         slidesToShow: isDesktop ? 5 : 3,
-        slidesToScroll: isDesktop ? 5 : 3 ,
+        slidesToScroll: isDesktop ? 2 : 1 ,
         swipeToSlide: true,
         nextArrow: <SampleNextArrow />,
         prevArrow: <SamplePrevArrow />

@@ -23,7 +23,7 @@ export default function LoadingSpinner({size, fullscreen, custom} : LoadingSpinn
 
   return (
     <ConfigProvider theme={configTheme}>
-        {(custom && size) ? <Spin indicator={<LoadingOutlined style={{fontSize: size, width: '66px', color: lightMode ? '#ec5e2a' : '#c1471c'}} spin/>} size='large' fullscreen={fullscreen}/>
+        {(custom && size) ? <Spin indicator={<LoadingOutlined style={{fontSize: size, width: '66px', color: lightMode ? '#ec5e2a' : '#c1471c'}} spin/>} fullscreen={fullscreen}/>
          : <Spin fullscreen={fullscreen}/>}
     </ConfigProvider>
   )

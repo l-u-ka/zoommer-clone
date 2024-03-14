@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-interface PurchaseContextType {
+interface PurchaseContext {
     totalPurchasePrice: number; 
     setTotalPurchasePrice: React.Dispatch<React.SetStateAction<number>>;
     totalPurchaseAmount: number;
@@ -9,7 +9,7 @@ interface PurchaseContextType {
     setIsBuyingFromCart: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const PurchaseContext = createContext<PurchaseContextType>({
+export const PurchaseContext = createContext<PurchaseContext>({
     totalPurchasePrice: 0, 
     setTotalPurchasePrice: ()=>{},
     totalPurchaseAmount: 0,

@@ -1,19 +1,19 @@
-import { CartITem } from '@src/@types/types';
 import { useBuyProduct } from '@src/hooks/useBuyProduct';
 import { useRemoveFromCart } from '@src/hooks/useRemoveFromCart';
 import { useCartProvider } from '@src/providers/CartProvider/useCartProvider';
-import { useGlobalProvider } from '@src/providers/GlobalProvider/useGlobalProvider';
 import FullPriceCard from '@src/components/FullPriceCard/FullPriceCard';
 import { Form, Input } from 'antd';
 import React, { useEffect, useState } from 'react'
 import Cards, { Focused } from 'react-credit-cards-2';
 import 'react-credit-cards-2/dist/es/styles-compiled.css';
 import { FormattedMessage, useIntl } from 'react-intl';
-import goBackIcon from '@src/assets/icons/category-left-arr.png'
 import MobilePurchaseCard from '@src/views/BuyPage/MobilePurchaseCard/MobilePurchaseCard';
 import { usePurchaseProvider } from '@src/providers/PurchaseProvider/usePurchaseProvider';
+import { useThemeProvider } from '@src/providers/ThemeProvider/useThemeProvider';
+import goBackIcon from '@src/assets/icons/light/category-left-arr.png'
+import goBackIconDark from '@src/assets/icons/dark/category-left-arr.png'
 
-interface CardFormType {
+interface CardForm {
     number: string;
     name: string;
     expiry: string;
@@ -40,12 +40,12 @@ export default function CardForm({setOnAddress, setSuccessModal}: CardFormProps)
     const {cartItems} = useCartProvider();
     const {removeFromCart} = useRemoveFromCart();
     const {formatMessage} = useIntl();
+    const {lightMode} = useThemeProvider();
 
-    function handleValuesChange(values:CardFormType) {
+    function handleValuesChange(values:CardForm) {
         setCardDetails((prev) => ({ ...prev, ...values, focus: Object.keys(values)[0]}));
     }
-    function cardFormFinish(values:CardFormType) {
-        console.log(values)
+    function cardFormFinish(values:CardForm) {
         buyProduct(totalPurchasePrice, totalPurchaseAmount);
     }
 
@@ -68,7 +68,7 @@ export default function CardForm({setOnAddress, setSuccessModal}: CardFormProps)
             setIsBuyingFromCart(false);
             localStorage.setItem('isBuyingFromCart', JSON.stringify(false));
         }
-    }, [isSuccessful])
+    }, [isSuccessful])  // after user successfully submits form, remove purchase and address infro from local storage, as well as clear cart if user was buying from cart
     
     function handleClick() {
         cardForm.submit();
@@ -78,7 +78,7 @@ export default function CardForm({setOnAddress, setSuccessModal}: CardFormProps)
         <div className='w-full flex'>
             <div className='w-full'>
                 <div className='inline-flex items-center mb-[30px] cursor-pointer' onClick={()=>{setOnAddress(true)}}>
-                    <img alt='go back icon' src={goBackIcon} className='h-full mr-[20px]' />
+                    <img alt='go back icon' src={lightMode ? goBackIcon : goBackIconDark} className='h-full mr-[20px]' />
                     <h2 className='firago-bold text-base leading-[19px] text-black-08 dark:text-dark-black-8'><FormattedMessage id="go.back"/></h2>
                 </div>
                 <div className='w-full flex flex-col md:flex-row-reverse justify-between'>
@@ -89,7 +89,7 @@ export default function CardForm({setOnAddress, setSuccessModal}: CardFormProps)
                         name={cardDetails.name}
                         focused={cardDetails.focus as Focused | undefined}
                     />
-                    <Form<CardFormType>
+                    <Form<CardForm>
                         form={cardForm}
                         name="card_form"
                         onFinish={cardFormFinish}

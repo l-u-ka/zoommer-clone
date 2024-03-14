@@ -1,12 +1,12 @@
 import { createContext } from "react";
-import { CategoryType } from "@src/@types/types";
+import { ProductCategory } from "@src/@types/types";
 
-interface TProductsContext {
-  categories: CategoryType[];
+interface ProductsContext {
+  categories: ProductCategory[];
   categoriesLoading: boolean;
 }
 
-export const ProductsContext = createContext<TProductsContext>({
+export const ProductsContext = createContext<ProductsContext>({
   categories: [],
-  categoriesLoading: false
+  categoriesLoading: false,
 });

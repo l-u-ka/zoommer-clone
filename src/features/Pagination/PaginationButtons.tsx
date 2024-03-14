@@ -5,7 +5,6 @@ import { ConfigProvider, Pagination, PaginationProps, theme } from "antd";
 export default function PaginationButtons({totalProducts}: {totalProducts: number}) {
 
   const {currentPage, setCurrentPage, pageSize} = useProductFiltersProvider()
-
   const onChange: PaginationProps['onChange'] = (page) => {
     setCurrentPage(page)
   };

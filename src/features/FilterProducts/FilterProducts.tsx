@@ -1,20 +1,22 @@
-import clearIcon from '@src/assets/icons/clear.png'
 import { FormattedMessage } from 'react-intl';
 import { Slider, Checkbox, CheckboxProps, ConfigProvider } from 'antd';
 import { useProductFiltersProvider } from '@src/providers/ProductFiltersProvider/useProductFiltersProvider';
-import { FormEvent, useState } from 'react';
+import { useState } from 'react';
 import { useThemeProvider } from '@src/providers/ThemeProvider/useThemeProvider';
-import { SORT_BY_ENUM } from '@src/@types/types';
-import closeIcon from '@src/assets/icons/close.png'
+import { SortEnum } from '@src/@types/types';
+import clearIcon from '@src/assets/icons/light/clear.png'
+import clearIconDark from '@src/assets/icons/dark/clear.png'
+import closeIcon from '@src/assets/icons/light/close.png'
+import closeIconDark from '@src/assets/icons/dark/close.png'
 
 interface FilterProductsProps {
   closeModal?: ()=>void; 
-  setSortOrder:React.Dispatch<React.SetStateAction<SORT_BY_ENUM>>
+  setSortOrder:React.Dispatch<React.SetStateAction<SortEnum>>
 }
 
 export default function FilterProducts({closeModal, setSortOrder} : FilterProductsProps) {
 
-    const {setMaxPrice, setMinPrice, defaultMinPrice, defaultMaxPrice, setIsForSale, isForSale, minPrice, maxPrice} = useProductFiltersProvider();
+    const {setMaxPrice, setMinPrice, defaultMinPrice, defaultMaxPrice, setIsForSale, isForSale, setCurrentPage} = useProductFiltersProvider();
     const [isForSaleChecked, setIsForSaleChecked] = useState(false); 
     const [sliderValue, setSliderValue] = useState<[number, number]>([defaultMinPrice, defaultMaxPrice]); // State for slider value
 
@@ -40,26 +42,26 @@ export default function FilterProducts({closeModal, setSortOrder} : FilterProduc
           "colorPrimary": lightMode ? "rgb(236, 94, 42)" : "#ee6b3b",
           "controlInteractiveSize": 20,
           "colorPrimaryHover": lightMode ? "rgb(236, 94, 42)" : "#ee6b3b",
+          "colorBgContainer": lightMode ? '#FFFFFF' : 'rgb(232, 230, 227)'
         }
       }
     }
 
+    const onChange = (value: number[]) => {
+      setSliderValue([value[0], value[1]]);
+    };  // set values of the slider based on the user's change values
 
     const onChangeComplete = (value: number[]) => {
+      setCurrentPage(1)
       setMinPrice(value[0])
       setMaxPrice(value[1]);
       setSliderValue([value[0], value[1]]);
-      if (closeModal) closeModal();
     };
 
     const onSaleChange: CheckboxProps['onChange'] = (e) => {
+      setCurrentPage(1)
       setIsForSale(e.target.checked);
       setIsForSaleChecked(e.target.checked)
-      if(closeModal) closeModal();
-    };
-
-    const onChange = (value: number[]) => {
-      setSliderValue([value[0], value[1]]);
     };
 
     function clearFilters() {
@@ -68,7 +70,7 @@ export default function FilterProducts({closeModal, setSortOrder} : FilterProduc
       setSliderValue([defaultMinPrice, defaultMaxPrice]);
       setIsForSale(false);
       setIsForSaleChecked(false);
-      setSortOrder(SORT_BY_ENUM.DEFAULT)
+      setSortOrder(SortEnum.DEFAULT)
     }
 
     function handleMinChange(event: { target: HTMLInputElement; }) {
@@ -85,11 +87,11 @@ export default function FilterProducts({closeModal, setSortOrder} : FilterProduc
         <div className='w-full'>
           <div className='flex justify-between items-center'>
             <div className='flex items-center'>
-              <img src={closeIcon} alt='close filter modal icon' className=' cursor-pointer block lg:hidden w-3 mr-2' onClick={closeModal}/>
+              <img src={lightMode? closeIcon : closeIconDark} alt='close filter modal icon' className=' cursor-pointer block lg:hidden w-3 mr-2' onClick={closeModal}/>
               <h2 className='firago-medium text-base leading-[19px] text-black-main dark:text-dark-black-main'><FormattedMessage id='filter'/></h2>
             </div>
             <div className='inline-flex items-center cursor-pointer'>
-              <img src={clearIcon} alt='clear filet icon' className='w-full mr-2'/>
+              <img src={lightMode ? clearIcon : clearIconDark} alt='clear filet icon' className='w-full mr-2'/>
               <h2 className='firago-medium text-xs leading-[14px] opacity-60 text-black-main dark:text-dark-black-main' onClick={clearFilters}><FormattedMessage id='clear'/></h2>
             </div>
           </div>

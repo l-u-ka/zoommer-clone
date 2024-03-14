@@ -1,10 +1,8 @@
-import { Form, Input, Button, Select } from "antd"
+import { Form, Input, Select } from "antd"
 import { RegistrationFormInput } from "@src/@types/types"
-import { useEffect, useState } from "react"
 import { FormattedMessage, useIntl } from "react-intl"
-import axios from "axios";
-import { useAuthProvider } from "@src/providers/AuthProvider/useAuthProvider";
 import PrimaryButton from "@src/components/PrimaryButton/PrimaryButton";
+import { useRegisterUser } from "@src/hooks/useRegisterUser";
 
 interface FormValues extends RegistrationFormInput {
   confirm_password:string;
@@ -12,40 +10,16 @@ interface FormValues extends RegistrationFormInput {
 }
 
 
-export default function RegistrationForm({closeModal}: {closeModal: ()=> void}) {
-
-  const [isError, setIsError] = useState<string>('');
-  const [isLoading, setLoading] = useState<boolean>(false);
+export default function RegistrationForm() {
   const {Option} = Select;
   const [registrationForm] = Form.useForm();
   const {formatMessage} = useIntl();
-  const {setAuthData} = useAuthProvider();
+  const {registerUser, setIsError, isError, isLoading} = useRegisterUser();
 
   function onFinish(changedValues: FormValues) {
     registerUser(changedValues.first_name, changedValues.last_name, changedValues.email, changedValues.password, changedValues.phone_number)
   }
   
-  async function registerUser(first_name: string, last_name:string, email: string, password:string, phone_number: string) {
-    try {
-      setIsError('')
-      setLoading(true);
-      const response = await axios.post("http://localhost:3000/auth/register", {
-        "first_name": first_name,
-        "last_name": last_name,
-        "email": email,
-        "password": password,
-        "phone_number": phone_number
-    })
-      setAuthData(response.data)
-      closeModal();
-    } catch (e) {
-      setIsError('register.error')
-      console.error("Did not register successfully", e)
-    } finally {
-      setLoading(false);
-    }
-  }
-
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>
       <Select style={{ width: 80}} >
@@ -55,11 +29,10 @@ export default function RegistrationForm({closeModal}: {closeModal: ()=> void}) 
     </Form.Item>
   );
   
-  return (
-    
+  return (  
     <Form<FormValues>
       form={registrationForm}
-      name="register"
+      name="registration_form"
       onFinish={onFinish}
       initialValues={{prefix: '995' }}
       style={{ maxWidth: 600 }}
@@ -112,15 +85,23 @@ export default function RegistrationForm({closeModal}: {closeModal: ()=> void}) 
             max: 9,
             message: <FormattedMessage id="input.phone.number.maxlength" values={{ maxLength: 9 }} />, 
           },
-          {
-            validator: (_, value) => {
-              if (/^\d+$/.test(value)) {
-                return Promise.resolve();
-              }
-              return Promise.reject(new Error(formatMessage({ id: 'input.phone.number.invalid' })));
-            },
-          },
+          // {
+          //   validator: (_, value) => {
+          //     if (/^\d+$/.test(value)) {
+          //       return Promise.resolve();
+          //     }
+          //     return Promise.reject(new Error(formatMessage({ id: 'input.phone.number.invalid' })));
+          //   },
+          // },
         ]}
+        getValueFromEvent={(e) => {
+          const value = e.target.value.replace(/\D/g, '');
+          let formattedValue = '';
+          for (let i = 0; i < value.length; i++) {
+              formattedValue += value[i];
+          }
+          return formattedValue;
+      }}
         className="custom-input"
       >
         <Input addonBefore={prefixSelector} style={{ width: '100%' }} placeholder={formatMessage({id: "phone.number"})} className="custom-addon" type="tel"/>

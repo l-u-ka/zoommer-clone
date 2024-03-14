@@ -1,25 +1,26 @@
 import React, { ReactNode, useEffect } from 'react'
 import { Form, Input, Select} from 'antd';
 import FullPriceCard from '@src/components/FullPriceCard/FullPriceCard';
-import { useGlobalProvider } from '@src/providers/GlobalProvider/useGlobalProvider';
 import { FormattedMessage, useIntl } from 'react-intl';
-import goBackIcon from '@src/assets/icons/category-left-arr.png'
+import goBackIcon from '@src/assets/icons/light/category-left-arr.png'
+import goBackIconDark from '@src/assets/icons/dark/category-left-arr.png'
 import { useNavigate } from 'react-router-dom';
 import MobilePurchaseCard from '@src/views/BuyPage/MobilePurchaseCard/MobilePurchaseCard';
 import { usePurchaseProvider } from '@src/providers/PurchaseProvider/usePurchaseProvider';
+import { useThemeProvider } from '@src/providers/ThemeProvider/useThemeProvider';
 
 interface AddressFormValues {
     city: string;
     address: string;
 }
 
-interface cityOptionType {
+interface cityOption {
     id:string;
     name: ReactNode;
     value: string;
 }
 
-const cityOptions:cityOptionType[] = [
+const cityOptions:cityOption[] = [
     {
         id: "city-1",
         name: <FormattedMessage id='tbilisi'/>,
@@ -69,9 +70,9 @@ export default function AddressForm({setOnAddress}: {setOnAddress: (value: React
     const [addressForm] = Form.useForm();
     const {formatMessage} = useIntl();
     const navigate = useNavigate();
+    const {lightMode} = useThemeProvider();
 
     function addressFormFinish(values:AddressFormValues) {
-        console.log(values);
         localStorage.setItem("city", addressForm.getFieldValue("city"))
         localStorage.setItem("address", addressForm.getFieldValue("address"))
         setOnAddress(false);
@@ -86,13 +87,13 @@ export default function AddressForm({setOnAddress}: {setOnAddress: (value: React
             addressForm.setFieldValue("city", localStorage.getItem("city"))
             addressForm.setFieldValue("address", localStorage.getItem("address"))
         }
-    }, [])
+    }, []) // load form values from the local storage on inital render
 
     return (
         <div className='flex w-full flex-col lg:flex-row'>
             <div className='w-full'>
                 <div className='inline-flex items-center mb-[30px] cursor-pointer' onClick={()=>{navigate(-1)}}>
-                    <img alt='go back icon' src={goBackIcon} className='h-full mr-[20px]' />
+                    <img alt='go back icon' src={lightMode ? goBackIcon : goBackIconDark} className='h-full mr-[20px]' />
                     <h2 className='firago-bold text-base leading-[19px] text-black-08 dark:text-dark-black-8'><FormattedMessage id="go.back"/></h2>
                 </div>
                 <Form<AddressFormValues>

@@ -1,6 +1,6 @@
 import { useAuthProvider } from "@src/providers/AuthProvider/useAuthProvider";
 import { useThemeProvider } from "@src/providers/ThemeProvider/useThemeProvider";
-import { Button, ConfigProvider, Modal, theme } from "antd"
+import { Button, ConfigProvider, Modal} from "antd"
 import { FormattedMessage } from "react-intl";
 import closeIcon from '@src/assets/icons/mobile-modal-close.png'
 
@@ -39,8 +39,8 @@ export default function LogoutModal({modalOpen, closeModal}:LogoutModalProps) {
                 <h4 className="mt-[40px] mb-[20px] firago-semibold text-base leading-[19px] text-center text-black-main dark:text-dark-black-main"><FormattedMessage id="logout.sure"/></h4>
                 <h4 className="firago-semibold text-base leading-[19px] text-center text-black-06 dark:text-dark-black-06"><FormattedMessage id="information.might.lost"/></h4>
                 <div className="flex justify-between mt-[40px]">
-                    <Button type="default" className="w-[48%] custom-button" onClick={logout}><FormattedMessage id="yes"/></Button>
-                    <Button type="primary" className="w-[48%] custom-button" onClick={closeModal}><FormattedMessage id="no"/></Button>
+                    <Button type="default" className="w-[48%]" onClick={logout}><p className="firago-bold leading-[17px] text-sm"><FormattedMessage id="yes"/></p></Button>
+                    <Button type="primary" className="w-[48%]" onClick={closeModal}><p className="firago-bold leading-[17px] text-sm"><FormattedMessage id="no"/></p></Button>
                 </div>
             </div>
         </Modal>

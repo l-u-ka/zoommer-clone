@@ -1,103 +1,22 @@
-import { Form, Input, Button } from "antd"
+import { Form, Input} from "antd"
 import { AuthorizationFormInput } from "@src/@types/types"
-import { useState } from "react"
 import { FormattedMessage, useIntl } from "react-intl"
-import { publicAxios } from "@src/utils/publicAxios";
-import { useAuthProvider } from "@src/providers/AuthProvider/useAuthProvider";
 import PrimaryButton from "@src/components/PrimaryButton/PrimaryButton";
+import { useUserLogin } from "@src/hooks/useUserLogin";
 
-export default function AuthorizationForm({closeModal}: {closeModal: ()=> void}) {
+export default function AuthorizationForm() {
   const [loginForm] = Form.useForm();
   const {formatMessage} = useIntl();
-  const [isLoading, setLoading] = useState<boolean>(false);
-  const [isError, setIsError] = useState<boolean>(false);
-  const {setAuthData} = useAuthProvider();
-
-  /*
-const [authInput, setAuthInput] = useState<AuthorizationFormInput>({
-    email: localStorage.getItem('emailInput') || '',
-    password: localStorage.getItem('passwordInput') || ''
-  });
-
-  function handleValuesChange(changedValues:AuthorizationFormInput) {
-    setAuthInput((prev) => ({
-      ...prev,
-      ...changedValues
-    }));
-  }
-  
-  const authInputRef = useRef(authInput);
-
-  useEffect(() => {
-    authInputRef.current = authInput;
-  }, [authInput]);
-
-  useEffect(() => {
-    return () => {
-      localStorage.setItem('emailInput', authInputRef.current.email)
-      localStorage.setItem('passwordInput', authInputRef.current.password)
-      console.log(authInputRef.current);
-    }
-  }, []);
-
-
-  useEffect(() => {
-    if (localStorage.getItem('emailInput')) {
-      loginForm.setFieldValue('email', localStorage.getItem('emailInput'))
-    }
-    if (localStorage.getItem('passwordInput')) {
-      loginForm.setFieldValue('password', localStorage.getItem('passwordInput'))
-    }
-  }, [])
+  const {userLogin, isError, isLoading} = useUserLogin();
 
   function onFinish(changedValues:AuthorizationFormInput) {
     userLogin(changedValues.email, changedValues.password);
-    localStorage.removeItem('emailInput');
-    localStorage.removeItem('passwordInput');
-  }
-
-
-  useEffect(() => {
-    const handleBeforeUnload = (event) => {
-      event.preventDefault();
-      console.log('reload');
-    };
-
-    window.addEventListener('beforeunload', handleBeforeUnload);
-
-    return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
-    };
-  }, []);
-  */
-
-  function onFinish(changedValues:AuthorizationFormInput) {
-    userLogin(changedValues.email, changedValues.password);
-  }
-
-  async function userLogin(email: string, password:string) {
-    try {
-      setLoading(true);
-      setIsError(false)
-      const response = await publicAxios.post("/auth/login", {
-        email: email,
-        password: password
-      })
-      setAuthData(response.data);
-      closeModal();
-    } catch(e) {
-      console.error(e)
-      setIsError(true)
-    } finally {
-      setLoading(false);
-    }
   }
   
   return (
-    
-    <Form
+    <Form<AuthorizationFormInput>
       form={loginForm}
-      name="authorize"
+      name="authorization_form"
       onFinish={onFinish}
       initialValues={{prefix: '995' }}
       style={{ maxWidth: 600 }}

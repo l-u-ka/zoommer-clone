@@ -6,19 +6,10 @@ import gmailIcon from '@src/assets/icons/gmail.png'
 import phoneIcon from '@src/assets/icons/phone.png'
 import locationIcon from '@src/assets/icons/locations.png'
 import { FormattedMessage } from 'react-intl'
-import { ReactNode } from 'react'
+import { FooterColumn } from '@src/@types/types'
 
-interface TLink {
-    text: string | ReactNode ;
-    url: string;
-    img?: string;
-}
-interface TFooterColumn {
-    title: string | ReactNode;
-    links: TLink[]
-}
 
-const footerSection:TFooterColumn[] = [
+const footerSection:FooterColumn[] = [
     {
         title: <FormattedMessage id='follow.us'/>,
         links: [

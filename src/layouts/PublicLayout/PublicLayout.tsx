@@ -13,7 +13,7 @@ export function PublicLayout() {
   return (
     <div className="bg-light-theme-bg dark:bg-dark-theme-bg transition-colors duration-300 ease-in-out min-h-screen">
       <Navigation/>
-      <div className="relative">
+      <div className="relative min-h-[inherit]">
         <Outlet/>
         <Footer/>
         <ToggleThemeButton/>

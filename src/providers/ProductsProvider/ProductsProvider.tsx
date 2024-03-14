@@ -1,10 +1,9 @@
-import { PropsWithChildren, useEffect, useState } from "react";
+import { PropsWithChildren } from "react";
 import { ProductsContext } from "./ProductsContext";
 import useGetCategories from "@src/hooks/useGetCategories";
 
 
 export function ProductsProvider({children}: PropsWithChildren) {
-
     const {categories, categoriesLoading} = useGetCategories();
     
     return (

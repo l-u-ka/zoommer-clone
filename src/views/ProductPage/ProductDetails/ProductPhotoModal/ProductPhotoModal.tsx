@@ -1,20 +1,17 @@
 import { useThemeProvider } from "@src/providers/ThemeProvider/useThemeProvider";
 import { ConfigProvider, Modal, ThemeConfig } from "antd";
 import closeIcon from '@src/assets/icons/mobile-modal-close.png'
-import { ProductType } from "@src/@types/types";
+import { Product } from "@src/@types/types";
 
 interface ProductPhotoModalProps {
     modalOpen: boolean;
     closeModal: () => void;
-    product: ProductType
+    product: Product
 }
 
 export default function ProductPhotoModal({modalOpen, closeModal, product} : ProductPhotoModalProps) {
-
     const {lightMode} = useThemeProvider();
-
     const configStyle:ThemeConfig = {
-        // algorithm: !lightMode ? darkAlgorithm : defaultAlgorithm,
         "components": {
             "Modal": {
               "borderRadiusLG": 20,

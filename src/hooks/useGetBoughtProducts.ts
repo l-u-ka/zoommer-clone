@@ -1,33 +1,27 @@
+import { BoughtProduct } from "@src/@types/types";
 import { privateAxios } from "@src/utils/privateAxios";
 import { useEffect, useState } from "react";
 
-interface BoughtProductType {
-    id: string;
-    created_at: string;
-    updated_at: string;
-    totalPrice: number;
-    totalItems: number;
-}
-
 export function useGetBoughtProducts() {
-    const [boughtProducts, setBoughtProducts] = useState<BoughtProductType[]>([]);
-    const [boughtProductsLoading, setBoughtProductsLoading]= useState<boolean>(false);
+  const [boughtProducts, setBoughtProducts] = useState<BoughtProduct[]>([]);
+  const [boughtProductsLoading, setBoughtProductsLoading] =
+    useState<boolean>(false);
 
-    async function getBoughtProducts() {
-        try {
-            setBoughtProductsLoading(true);
-            const response = await privateAxios.get("/purchases");
-            setBoughtProducts(response.data)
-        } catch (err) {
-            console.error(err);
-        } finally {
-            setBoughtProductsLoading(false);
-        }
+  async function getBoughtProducts() {
+    try {
+      setBoughtProductsLoading(true);
+      const response = await privateAxios.get("/purchases");
+      setBoughtProducts(response.data);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setBoughtProductsLoading(false);
     }
+  }
 
-    useEffect(()=> {
-        getBoughtProducts();
-    }, [])
+  useEffect(() => {
+    getBoughtProducts();
+  }, []);
 
-    return {boughtProducts, boughtProductsLoading}
+  return { boughtProducts, boughtProductsLoading };
 }

@@ -1,14 +1,18 @@
-import { EDITING_FORM_ENUM } from "@src/@types/types";
-import useGetUserInfo from "@src/hooks/useGetUserInfo";
+import { EditFormEnum, ProfileMenuEnum } from "@src/@types/types";
 import { useAuthProvider } from "@src/providers/AuthProvider/useAuthProvider";
 import { privateAxios } from "@src/utils/privateAxios";
-import { Form, Input, Skeleton, message } from "antd";
+import { Form, Input, message } from "antd";
 import { useEffect, useState } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
-import editIcon from '@src/assets/icons/edit-icon.png'
+import { useThemeProvider } from "@src/providers/ThemeProvider/useThemeProvider";
+import editIcon from '@src/assets/icons/light/edit-icon.png'
+import editIconDark from '@src/assets/icons/dark/edit-icon.png'
 import PrimaryButton from "@src/components/PrimaryButton/PrimaryButton";
+import useGetUserInfo from "@src/hooks/useGetUserInfo";
+import EditFormSkeleton from "@src/components/Skeletons/EditFormSkeleton/EditFormSkeleton";
 
-interface TEdit_Form_Values {
+
+interface EditFormValues {
     edit_first_name: string;
     edit_last_name: string;
     edit_email: string;
@@ -18,13 +22,13 @@ interface TEdit_Form_Values {
 export default function EditProfile({updateLoading, setUpdateLoading}: {updateLoading: boolean, setUpdateLoading: React.Dispatch<React.SetStateAction<boolean>>}) {
     const [editForm] = Form.useForm();
     const {formatMessage} = useIntl();
-    const [isEditing, setIsEditing] = useState<EDITING_FORM_ENUM>();
+    const [isEditing, setIsEditing] = useState<EditFormEnum>();
     const {userData, getNewTokens} = useAuthProvider();
-    
+    const {lightMode} = useThemeProvider();
     const {userInfo, getUserInfo} = useGetUserInfo();
     const [messageApi, contextHolder] = message.useMessage();
 
-    function handleFinish(values:TEdit_Form_Values) {
+    function handleFinish(values:EditFormValues) {
         updateUserInfo(values);
     }
 
@@ -50,7 +54,7 @@ export default function EditProfile({updateLoading, setUpdateLoading}: {updateLo
         });
       };
 
-    async function updateUserInfo(values:TEdit_Form_Values) {
+    async function updateUserInfo(values:EditFormValues) {
         try {
             setUpdateLoading(true);
             await privateAxios.put('/user',{
@@ -62,7 +66,7 @@ export default function EditProfile({updateLoading, setUpdateLoading}: {updateLo
              getUserInfo();
             success();
         } catch(err) {
-            console.log(err);
+            console.error(err);
             error();
         } finally {
             setUpdateLoading(false);
@@ -87,17 +91,13 @@ export default function EditProfile({updateLoading, setUpdateLoading}: {updateLo
     return (
         <div className="flex flex-col lg:w-[400px] w-full">
             {contextHolder}
-            {(updateLoading) && <div className="grid grid-cols-1 gap-6">
-                <Skeleton.Input active block size="large" style={{height:'50px'}}/>
-                <Skeleton.Input active block size="large" style={{height:'50px'}}/>
-                <Skeleton.Input active block size="large" style={{height:'50px'}}/>
-                <Skeleton.Input active block size="large" style={{height:'50px'}}/>
-                <Skeleton.Button active block size="large" style={{height:'50px'}}/>
-            </div>}
-            {!(updateLoading) && (
-            <Form<TEdit_Form_Values>
+            <h2 className="mb-[30px] firago-semibold text-lg leading-[22px] text-black-main dark:text-dark-black-main hidden lg:block"><FormattedMessage id={ProfileMenuEnum.ON_EDITING}/></h2>
+            {/* skeletons for form input when user data is updating */}
+            {updateLoading ? <EditFormSkeleton/>
+            : (
+            <Form<EditFormValues>
                 form={editForm}
-                name="edit_profile"
+                name="edit_form"
                 onFinish={handleFinish}
                 style={{ maxWidth: '100%'}}
             >
@@ -106,11 +106,11 @@ export default function EditProfile({updateLoading, setUpdateLoading}: {updateLo
                     className="custom-input"
                 >
                     <Input placeholder={formatMessage({id: "name"})} className="w-full custom-addon" 
-                            disabled={!(isEditing === EDITING_FORM_ENUM.FIRST_NAME)}
+                            disabled={!(isEditing === EditFormEnum.FIRST_NAME)}
                             onBlur={()=> {
-                                if(isEditing === EDITING_FORM_ENUM.FIRST_NAME) setIsEditing(undefined)
+                                if(isEditing === EditFormEnum.FIRST_NAME) setIsEditing(undefined)
                             }}
-                            addonAfter={<img src={editIcon} alt="edit input icon" className="cursor-pointer" onClick={()=>setIsEditing(EDITING_FORM_ENUM.FIRST_NAME)}/>}
+                            addonAfter={<img src={lightMode ? editIcon : editIconDark} alt="edit input icon" className="cursor-pointer" onClick={()=>setIsEditing(EditFormEnum.FIRST_NAME)}/>}
                     />
                 </Form.Item>
                 <Form.Item
@@ -118,11 +118,11 @@ export default function EditProfile({updateLoading, setUpdateLoading}: {updateLo
                         className="custom-input"
                 >           
                     <Input placeholder={formatMessage({id: "surname"})} className="w-full custom-addon" 
-                            disabled={!(isEditing === EDITING_FORM_ENUM.LAST_NAME)}
+                            disabled={!(isEditing === EditFormEnum.LAST_NAME)}
                             onBlur={()=> {
-                                if(isEditing === EDITING_FORM_ENUM.LAST_NAME) setIsEditing(undefined)
+                                if(isEditing === EditFormEnum.LAST_NAME) setIsEditing(undefined)
                             }}
-                            addonAfter={<img src={editIcon} alt="edit input icon" className="cursor-pointer" onClick={()=>setIsEditing(EDITING_FORM_ENUM.LAST_NAME)}/>}
+                            addonAfter={<img src={lightMode ? editIcon : editIconDark} alt="edit input icon" className="cursor-pointer" onClick={()=>setIsEditing(EditFormEnum.LAST_NAME)}/>}
                     />
                 </Form.Item>
                 <Form.Item
@@ -136,11 +136,11 @@ export default function EditProfile({updateLoading, setUpdateLoading}: {updateLo
                         ]}
                 >
                     <Input placeholder={formatMessage({id: "email"})} className="w-full custom-addon" 
-                        disabled={!(isEditing === EDITING_FORM_ENUM.EMAIL)}
+                        disabled={!(isEditing === EditFormEnum.EMAIL)}
                         onBlur={()=> {
-                                if(isEditing === EDITING_FORM_ENUM.EMAIL) setIsEditing(undefined)
+                                if(isEditing === EditFormEnum.EMAIL) setIsEditing(undefined)
                         }}
-                        addonAfter={<img src={editIcon} alt="edit input icon" className="cursor-pointer" onClick={()=>setIsEditing(EDITING_FORM_ENUM.EMAIL)}/>}
+                        addonAfter={<img src={lightMode ? editIcon : editIconDark} alt="edit input icon" className="cursor-pointer" onClick={()=>setIsEditing(EditFormEnum.EMAIL)}/>}
                     />
                 </Form.Item>
                 <Form.Item
@@ -160,17 +160,18 @@ export default function EditProfile({updateLoading, setUpdateLoading}: {updateLo
                             ]}
                 >
                     <Input placeholder={formatMessage({id: "phone.number"})} className="w-full custom-addon" 
-                            disabled={!(isEditing === EDITING_FORM_ENUM.PHONE_NUMBER)}
+                            disabled={!(isEditing === EditFormEnum.PHONE_NUMBER)}
                             onBlur={()=> {
-                                if(isEditing === EDITING_FORM_ENUM.PHONE_NUMBER) setIsEditing(undefined)
+                                if(isEditing === EditFormEnum.PHONE_NUMBER) setIsEditing(undefined)
                             }}
-                            addonAfter={<img src={editIcon} alt="edit input icon" className="cursor-pointer" onClick={()=>setIsEditing(EDITING_FORM_ENUM.PHONE_NUMBER)}/>}
+                            addonAfter={<img src={lightMode ? editIcon : editIconDark} alt="edit input icon" className="cursor-pointer" onClick={()=>setIsEditing(EditFormEnum.PHONE_NUMBER)}/>}
                     />
                 </Form.Item>
                 <Form.Item className="mb-0">
                     <PrimaryButton loading={updateLoading} height={50} width="100%" onClick={()=>{editForm.submit()}}><h3 className="firago-bold text-sm leading-[17px] text-white dark:black-main"><FormattedMessage id="update"/></h3></PrimaryButton>
                 </Form.Item>
-            </Form>)}
+            </Form>
+            )}
     </div>
   )
 }

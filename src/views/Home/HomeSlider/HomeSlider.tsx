@@ -1,7 +1,7 @@
+import { useMediaQuery } from 'react-responsive';
 import Slider from "react-slick";
 import leftArrow from '@src/assets/icons/slider-left-btn.png'
 import righrArrow from '@src/assets/icons/slider-right-btn.png'
-import { useMediaQuery } from 'react-responsive';
 import img1 from '@src/assets/images/200657ab-e908-44ef-9885-5f61538e6d77_Thumb.png'
 import img2 from '@src/assets/images/289d951d-af80-469a-b7c1-98986e9d8a5f_Thumb.png'
 import img3 from '@src/assets/images/5557ec49-4355-4839-8a07-4c6bfbb3c802_Thumb.png'
@@ -76,7 +76,7 @@ export default function HomeSlider() {
         <div className='w-full lg:w-[750px] xl:w-[850px] lg:ml-auto relative'>
             <Slider {...settings}>
                   {sliderImages.map(slidImg => {
-                    return <img key={slidImg.id} src={slidImg.src} alt='home slider img' className=' min-h-[105px] md:min-h-[120px] max-w-[210px] sm:max-w-[280px] md:max-w-[235px] lg:max-w-[750px] xl:max-w-full rounded-xl'/>
+                    return <img key={slidImg.id} src={slidImg.src} alt='home slider img' className=' min-h-[110px] sm:min-h-[120px] max-w-[220px] sm:max-w-[280px] md:max-w-[235px] lg:max-w-[750px] xl:max-w-full rounded-xl'/>
                   })}
               </Slider>
         </div>

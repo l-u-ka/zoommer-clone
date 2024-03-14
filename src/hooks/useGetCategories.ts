@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import { CategoryType } from "@src/@types/types";
+import { ProductCategory } from "@src/@types/types";
 import { publicAxios } from "@src/utils/publicAxios";
 
 export default function useGetCategories() {
-  const [categories, setCategories] = useState<CategoryType[]>([]);
+  const [categories, setCategories] = useState<ProductCategory[]>([]);
   const [categoriesLoading, setCategoriesLoading] = useState<boolean>(false);
 
   async function getCategories() {
@@ -23,6 +23,5 @@ export default function useGetCategories() {
     getCategories();
   }, []);
 
-
-  return { categories, categoriesLoading};
+  return { categories, categoriesLoading };
 }
