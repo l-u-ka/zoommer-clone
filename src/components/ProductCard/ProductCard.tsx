@@ -32,7 +32,7 @@ export default function ProductCard({product} : {product: Product}) {
 
     return (
             <div className='col-span-1 w-[140px] md:w-[165px] h-[300px] flex flex-col justify-between relative mx-auto'>
-                <img onClick={()=>navigate(`/products/${product.category_name}/${product.id}`)}  src={product.image} alt="product image" className="w-full h-[165px] object-cover cursor-pointer"/> 
+                <img onClick={()=>navigate(`/products/${product.category_name}/details/${product.id}`)}  src={product.image} alt="product image" className="w-full h-[165px] object-cover cursor-pointer"/> 
                 <div className={`${authStage === AuthStageEnum.AUTHORIZED ? 'flex' : 'hidden'} w-7 h-7 bg-white-400 rounded-[50%] absolute top-1 right-1 items-center justify-center`}>
                     {(addLoading || removeLoading) ? <LoadingSpinner size={28} fullscreen={false} custom={true}/>
                         : <img src={isInWishlist(product.id) ? wishlistIconActive : wishlistIcon} alt="wishlist icon" className="w-[18px] cursor-pointer" onClick={ () => isInWishlist(product.id) ? removeItem(product.id) : addToWishlist(product.id)}/>
@@ -49,7 +49,7 @@ export default function ProductCard({product} : {product: Product}) {
                             </p>
                         </div>
                     )}
-                    <h3 onClick={()=>navigate(`/products/${product.category_name}/${product.id}`)}  className="max-w-40 firago-medium text-xs leading-[18px] opacity-80 cursor-pointer text-black-main dark:text-dark-black-main">{product.title}</h3>          
+                    <h3 onClick={()=>navigate(`/products/${product.category_name}/details/${product.id}`)}  className="max-w-40 firago-medium text-xs leading-[18px] opacity-80 cursor-pointer text-black-main dark:text-dark-black-main">{product.title}</h3>          
                 </div>
                 <AddCartButton height={40} borderRadius={4} productId={product.id}/>    
         </div>

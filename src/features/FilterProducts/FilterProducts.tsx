@@ -8,6 +8,7 @@ import clearIcon from '@src/assets/icons/light/clear.png'
 import clearIconDark from '@src/assets/icons/dark/clear.png'
 import closeIcon from '@src/assets/icons/light/close.png'
 import closeIconDark from '@src/assets/icons/dark/close.png'
+import { useNavigate, useParams } from 'react-router-dom';
 
 interface FilterProductsProps {
   closeModal?: ()=>void; 
@@ -16,9 +17,11 @@ interface FilterProductsProps {
 
 export default function FilterProducts({closeModal, setSortOrder} : FilterProductsProps) {
 
-    const {setMaxPrice, setMinPrice, defaultMinPrice, defaultMaxPrice, setIsForSale, isForSale, setCurrentPage} = useProductFiltersProvider();
+    const {setMaxPrice, setMinPrice, minPrice, maxPrice, defaultMinPrice, defaultMaxPrice, setIsForSale, isForSale} = useProductFiltersProvider();
     const [isForSaleChecked, setIsForSaleChecked] = useState(false); 
     const [sliderValue, setSliderValue] = useState<[number, number]>([defaultMinPrice, defaultMaxPrice]); // State for slider value
+    const {category} = useParams();
+    const navigate = useNavigate();
 
     const {lightMode} = useThemeProvider();
 
@@ -52,19 +55,20 @@ export default function FilterProducts({closeModal, setSortOrder} : FilterProduc
     };  // set values of the slider based on the user's change values
 
     const onChangeComplete = (value: number[]) => {
-      setCurrentPage(1)
+      navigate(`/products/${category}/1`)
       setMinPrice(value[0])
       setMaxPrice(value[1]);
       setSliderValue([value[0], value[1]]);
     };
 
     const onSaleChange: CheckboxProps['onChange'] = (e) => {
-      setCurrentPage(1)
+      navigate(`/products/${category}/1`)
       setIsForSale(e.target.checked);
       setIsForSaleChecked(e.target.checked)
     };
 
     function clearFilters() {
+      if (isForSale || (minPrice !== defaultMinPrice) || (maxPrice !== defaultMaxPrice)) navigate(`/products/${category}/1`)
       setMinPrice(defaultMinPrice);
       setMaxPrice(defaultMaxPrice);
       setSliderValue([defaultMinPrice, defaultMaxPrice]);

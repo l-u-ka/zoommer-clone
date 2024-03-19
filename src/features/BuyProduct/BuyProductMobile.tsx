@@ -44,7 +44,7 @@ export default function BuyProductMobile({product}: {product: Product}) {
 
 
   return (
-        <div className="flex justify-between items-center lg:hidden w-full fixed left-0 bottom-[70px] py-2 bg-orange-main dark:bg-dark-orange-main transition-colors duration-300 ease-in-out z-10 p-2 shadow-top">
+        <div className="flex justify-between items-center lg:hidden w-full fixed left-0 bottom-[70px] py-2 bg-orange-main dark:bg-dark-orange-main transition-colors duration-300 ease-in-out z-20 p-2 shadow-top">
              <h3 className="text-white dark:text-black-main firago-bold text-xl leading-6">{product.salePrice ? product.salePrice : product.price} ₾</h3>
              <div className="flex items-center">
                 <button onClick={()=>{isInCart(product.id) ? setShowModal(true) : addToCart(product.id)}} className="h-9 w-9 dark:bg-dark-white-400 inline-flex items-center justify-center rounded-md border-none hover:scale-105 active:scale-75 cursor-pointer mr-3 transition-all duration-300 ease-in-out">{ addToCartLoading ? <LoadingSpinner fullscreen={false} custom={true} size={16}/> : <img src={lightMode ? cartIcon : cartIconDark} alt="mobile cart icon" className="w-4"/>}</button>

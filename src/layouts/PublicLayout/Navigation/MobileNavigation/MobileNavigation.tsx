@@ -19,7 +19,7 @@ export default function MobileNavigation() {
   }
 
   return (
-    <div className="grid grid-cols-3 lg:hidden w-full bg-light-theme-bg dark:bg-[rgba(20,20,20)] fixed left-0 bottom-0 z-10 py-4 border-t border-solid border-b-0 border-x-0 border-white-600">
+    <div className="grid grid-cols-3 lg:hidden w-full bg-light-theme-bg dark:bg-[rgba(20,20,20)] fixed left-0 bottom-0 z-20 py-4 border-t border-solid border-b-0 border-x-0 border-white-600">
       <div className="flex justify-center col-span-1 " onClick={() => handleNavigation('/')}>
         <div className="inline-flex justify-center items-center flex-col cursor-pointer">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 18v-3M10.07 2.82 3.14 8.37c-.78.62-1.28 1.93-1.11 2.91l1.33 7.96c.24 1.42 1.6 2.57 3.04 2.57h11.2c1.43 0 2.8-1.16 3.04-2.57l1.33-7.96c.16-.98-.34-2.29-1.11-2.91l-6.93-5.54c-1.07-.86-2.8-.86-3.86-.01Z" stroke={`${location.pathname === '/' ? '#ec5e2a' : '#7F8184'}`} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path></svg>

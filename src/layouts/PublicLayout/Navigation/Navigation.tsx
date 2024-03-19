@@ -121,7 +121,7 @@ export default function Navigation() {
     }
 
     return (
-        <div className="w-[100%] sticky top-0 bg-light-theme-secondary-bg dark:bg-dark-theme-secondary-bg transition-colors duration-300 ease-in-out z-40">
+        <div className="w-[100%] sticky top-0 bg-light-theme-secondary-bg dark:bg-dark-theme-secondary-bg transition-colors duration-300 ease-in-out z-50">
             <div className='hidden lg:block'>
                 <div className="custom-container py-3 items-center grid grid-flow-col auto-cols-max justify-between relative">
                     <img src={headerLogo} alt='main logo' className='h-[28px] lg:h-[40px] cursor-pointer' onClick={()=>navigate("/")}/>

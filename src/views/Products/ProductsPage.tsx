@@ -14,13 +14,13 @@ import ProductCardSkeleton from '@src/components/Skeletons/ProductCardSkeleton/P
 import ProductsSortMobile from './ProductsSortMobile/ProductsSortMobile';
 
 export default function Products() {
-  const {category} = useParams();
-  const {currentPage, pageSize, minPrice, maxPrice, isForSale, setMinPrice, setMaxPrice, defaultMinPrice, defaultMaxPrice} = useProductFiltersProvider();
-  const {products, productsLoading, totalProducts, setProducts} = useGetProducts({categoryName: category as string, page: currentPage, pageSize: pageSize, minPrice: minPrice, maxPrice: maxPrice, onlySales: isForSale})
+  const {category, page} = useParams();
+  const {pageSize, minPrice, maxPrice, isForSale, setMinPrice, setMaxPrice, defaultMinPrice, defaultMaxPrice} = useProductFiltersProvider();
+  const {products, productsLoading, totalProducts, setProducts} = useGetProducts({categoryName: category as string, page: Number(page) || 1, pageSize: pageSize, minPrice: minPrice, maxPrice: maxPrice, onlySales: isForSale})
   const navigate = useNavigate();
   const [sortOrder, setSortOrder] = useState<SortEnum>(SortEnum.DEFAULT);
   const {lightMode} = useThemeProvider();
-  
+
   /* create array of product skeletons as many as products */
   const productCartSkeletons = Array.from({ length: pageSize }, (_, index) => <ProductCardSkeleton key={index} />);
 
@@ -39,7 +39,7 @@ export default function Products() {
         setProducts([...products.sort((a, b) => b.title.localeCompare(a.title))]);
         break;
       case SortEnum.DEFAULT:
-        setProducts([...products.sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime())]);  // sort how the products are first set in the array (most recent at the beginning)
+        setProducts([...products.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())]);  // sort how the products are first set in the array (most recent at the beginning)
       default:
         break;
     }
@@ -59,12 +59,19 @@ export default function Products() {
     setMinPrice(defaultMinPrice);
     setMaxPrice(defaultMaxPrice);
   }, [category])
-  
 
+  // scroll to top after loading is done
+  useEffect(()=> {
+    if (!productsLoading) {
+       window.scrollTo({ top: 0, behavior: 'smooth' })
+       sortProducts();
+    }
+  }, [productsLoading])
+  
   return (
     <div className='custom-container pt-[30px] pb-[60px] min-h-[80vh]'>
       <div className='w-full flex flex-col lg:flex-row lg:justify-between items-start lg:items-center'>
-        <div className='inline-flex items-center cursor-pointer' onClick={()=> {navigate(-1)}}>
+        <div className='inline-flex items-center cursor-pointer' onClick={()=> {navigate('/')}}>
           <img src={lightMode ? goBackIcon : goBackIconDark} alt='go back icon' className='h-full mr-[22px]'/>
           <h2 className='firago-bold text-base leading-[19px] text-black-main dark:text-dark-black-main'>{category}</h2>
         </div>
@@ -83,8 +90,7 @@ export default function Products() {
                 <FilterProducts setSortOrder={setSortOrder}/>
               </div>
               {productsLoading ? <div className=' w-full pl-8 lg:w-[760px] xl:w-[800px] grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 gap-6 ml-auto'>{productCartSkeletons}</div> :
-              (products.length > 0) ? <ProductsList products={products} totalProducts={totalProducts as number}/> :
-              <h2 className='pl-8 text-black-main dark:text-dark-black-main firago-semibold text-lg leading-[20px]'><FormattedMessage id='products.not.found'/></h2>}
+              ((products.length > 0) ? <ProductsList products={products} totalProducts={totalProducts as number}/> : <h2 className='pl-8 text-black-main dark:text-dark-black-main firago-semibold text-lg leading-[20px]'><FormattedMessage id='products.not.found'/></h2>)}
             </div>
           </div>
       </div>

@@ -13,7 +13,7 @@ export function useGetCartItems() {
     try {
       setCartLoading(true);
       const result = await privateAxios.get("/cart");
-      setCartItems(result.data);
+      setCartItems(result.data.sort((a:CartITem, b:CartITem) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()));
     } catch (error) {
       console.error(error);
     } finally {

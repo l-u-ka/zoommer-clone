@@ -15,7 +15,7 @@ export default function SearchResultCard({product, closeModal}: SearchResultCard
 
     return (
         <div key={product.id} className="w-full bg-white-400 dark:bg-dark-white-400 p-[6px] flex justify-between items-center cursor-pointer rounded-lg" onClick={()=>{
-            navigate(`/products/${product.category_name}/${product.id}`)
+            navigate(`/products/${product.category_name}/details/${product.id}`)
             closeModal();
             }}>
             <div className="flex">

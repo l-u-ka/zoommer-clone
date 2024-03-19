@@ -17,7 +17,7 @@ export function PublicLayout() {
         <Outlet/>
         <Footer/>
         <ToggleThemeButton/>
-        {showOverlay && <ShadowOverlay/>}
+        {<ShadowOverlay show={showOverlay}/>}
         {<MobileNavigation/>}
       </div>
     </div>

@@ -1,12 +1,14 @@
 import { useProductFiltersProvider } from "@src/providers/ProductFiltersProvider/useProductFiltersProvider";
 import { useThemeProvider } from "@src/providers/ThemeProvider/useThemeProvider";
 import { ConfigProvider, Pagination, PaginationProps, theme } from "antd";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function PaginationButtons({totalProducts}: {totalProducts: number}) {
-
-  const {currentPage, setCurrentPage, pageSize} = useProductFiltersProvider()
+  const navigate = useNavigate();
+  const {category, page} = useParams();
+  const {pageSize} = useProductFiltersProvider()
   const onChange: PaginationProps['onChange'] = (page) => {
-    setCurrentPage(page)
+    navigate(`/products/${category}/${page}`)
   };
 
   const {lightMode} = useThemeProvider();
@@ -24,7 +26,7 @@ export default function PaginationButtons({totalProducts}: {totalProducts: numbe
 
   return (
     <ConfigProvider theme={configTheme}>
-      <Pagination current={currentPage} pageSize={pageSize} total={totalProducts} onChange={onChange}/>
+      <Pagination current={Number(page) || 1} pageSize={pageSize} total={totalProducts} onChange={onChange}/>
     </ConfigProvider>
   )
 }

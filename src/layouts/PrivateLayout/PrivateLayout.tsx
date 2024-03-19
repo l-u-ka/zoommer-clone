@@ -15,7 +15,7 @@ export function PrivateLayout() {
       <div className="relative min-h-[inherit]">
         <Outlet/>
         <ToggleThemeButton/>
-        {showOverlay && <ShadowOverlay/>}
+        {<ShadowOverlay show={showOverlay}/>}
         {<MobileNavigation/>}
       </div>
     </div>

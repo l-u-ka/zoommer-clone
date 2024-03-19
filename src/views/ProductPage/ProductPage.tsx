@@ -8,6 +8,7 @@ import ProductDetails from "./ProductDetails/ProductDetails";
 import BuyProduct from "@src/features/BuyProduct/BuyProduct";
 import BuyProductMobile from "@src/features/BuyProduct/BuyProductMobile";
 import ProductPageSkeleton from "../../components/Skeletons/ProductPageSkeleton/ProductPageSkeleton";
+import { useEffect } from "react";
 
 
 export default function ProductPage() {
@@ -16,6 +17,11 @@ export default function ProductPage() {
     const {product, singleProductLoading} = useGetSingleProduct({productId: prodId as string})
     const navigate = useNavigate();
     const {lightMode} = useThemeProvider();
+
+    // scroll to top after loading is done
+    useEffect(()=> {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, [singleProductLoading])
 
     return (
       <div className="custom-container py-[30px] min-h-[80vh]">
