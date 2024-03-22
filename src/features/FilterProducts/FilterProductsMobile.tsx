@@ -10,9 +10,10 @@ interface FilterProductsMobileProps {
     isModalOpen: boolean;
     handleCancel: ()=>void;
     setSortOrder: React.Dispatch<React.SetStateAction<SortEnum>>;
+    totalProducts: number;
 }
 
-export default function FilterProductsMobile({isModalOpen, handleCancel, setSortOrder}: FilterProductsMobileProps) {
+export default function FilterProductsMobile({isModalOpen, handleCancel, setSortOrder, totalProducts}: FilterProductsMobileProps) {
     const isDesktop = useMediaQuery({ minWidth: 1024 });
     const {lightMode} = useThemeProvider();
 
@@ -45,7 +46,7 @@ export default function FilterProductsMobile({isModalOpen, handleCancel, setSort
                 }}
                 >
                 <div className="w-full">
-                    <FilterProducts closeModal={handleCancel} setSortOrder={setSortOrder}/>
+                    <FilterProducts closeModal={handleCancel} setSortOrder={setSortOrder} totalProducts={totalProducts}/>
                 </div>
             </Modal>
         </ConfigProvider>

@@ -28,6 +28,7 @@
   @apply font-firago font-[700];
 }
 
+/* style overwrites for antd components */
 .custom-input .ant-input,
 .custom-input .ant-input-password,
 .custom-addon .ant-select-selection-item {
@@ -42,11 +43,7 @@
   @apply text-black-main;
 }
 
-.custom-input .ant-form-item-explain-error,
-.ant-form-item-explain-error {
-  @apply firago-bold;
-}
-
+.ant-form-item-explain-error,
 .custom-select .ant-select-selection-item,
 .custom-select .ant-select-selection-placeholder,
 .ant-select-item-option-content {
@@ -60,14 +57,11 @@
   @apply dark:text-black-main opacity-95;
 }
 
-.rccs {
-  @apply md:!m-0;
-}
-
 .shadow-top {
   box-shadow: rgba(0, 0, 0, 0.1) 0px -4px 4px;
 }
 
+/*custom scrollbar */
 ::-webkit-scrollbar {
   @apply w-3 h-3;
 }

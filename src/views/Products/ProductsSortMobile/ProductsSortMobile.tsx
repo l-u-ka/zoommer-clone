@@ -10,9 +10,10 @@ import { useThemeProvider } from '@src/providers/ThemeProvider/useThemeProvider'
 interface ProductsSortMobileProps {
     sortOrder: SortEnum;
     setSortOrder: React.Dispatch<React.SetStateAction<SortEnum>>;
+    totalProducts: number;
 }
 
-export default function ProductsSortMobile({sortOrder, setSortOrder}: ProductsSortMobileProps) {
+export default function ProductsSortMobile({sortOrder, setSortOrder, totalProducts}: ProductsSortMobileProps) {
     const [filterModal, setFilterModal] = useState<boolean>(false);
     const {lightMode} = useThemeProvider();
 
@@ -39,7 +40,7 @@ export default function ProductsSortMobile({sortOrder, setSortOrder}: ProductsSo
                             <p className='firago-medium text-xs leading-[14px] text-black-main dark:text-dark-black-main'><FormattedMessage id='filter'/></p>
                         </div>
                     </button>
-                    <FilterProductsMobile isModalOpen={filterModal} handleCancel={handleFilterCancel} setSortOrder={setSortOrder}/>
+                    <FilterProductsMobile isModalOpen={filterModal} handleCancel={handleFilterCancel} setSortOrder={setSortOrder} totalProducts={totalProducts}/>
                 </div>
             </div>
     </div>

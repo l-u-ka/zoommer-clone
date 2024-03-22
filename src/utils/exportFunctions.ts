@@ -9,3 +9,10 @@ export function getFullPrice(cartItems: CartITem[]) {
     }
     return fullPrice;
 }
+
+export const modifyDate = (created_at: string) => {
+    const createdDate:Date = new Date(created_at);
+    const formattedDate = createdDate.toISOString().split('T')[0]; // Extracting date part
+    const formattedTime = createdDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); // Formatting time
+    return `${formattedDate} ${formattedTime}`;
+}

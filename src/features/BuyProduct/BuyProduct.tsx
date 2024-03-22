@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 export default function BuyProduct({product}: {product: Product}) {
 
     const navigate = useNavigate();
-    const {setTotalPurchasePrice, setTotalPurchaseAmount, setIsBuyingFromCart} = usePurchaseProvider();
+    const {setTotalPurchasePrice, setTotalPurchaseAmount, /*setIsBuyingFromCart*/} = usePurchaseProvider();
     const {authStage} = useAuthProvider();
     const {setLoginModalOpen} = useGlobalProvider();
 
@@ -22,8 +22,8 @@ export default function BuyProduct({product}: {product: Product}) {
             setTotalPurchasePrice(product.salePrice || product.price);
             localStorage.setItem('purchaseAmount', JSON.stringify(1));
             localStorage.setItem('purchasePrice', JSON.stringify(product.salePrice || product.price));
-            setIsBuyingFromCart(false);
-            localStorage.setItem('isBuyingFromCart', JSON.stringify(false))
+            //setIsBuyingFromCart(false);
+            //localStorage.setItem('isBuyingFromCart', JSON.stringify(false))
             navigate("/buy-product");
         } else {
             setLoginModalOpen(true);

@@ -15,7 +15,7 @@ export interface GetProductsParams {
 export default function useGetProducts(productProps: GetProductsParams) {
   const [products, setProducts] = useState<Product[]>([]);
   const [productsLoading, setProductsLoading] = useState<boolean>(false);
-  const [totalProducts, setTotalProducts] = useState<number>();
+  const [totalProducts, setTotalProducts] = useState<number>(0);
 
   async function getProducts(params: GetProductsParams) {
     try {

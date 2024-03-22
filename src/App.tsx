@@ -21,7 +21,7 @@ function App() {
       <Routes>
         <Route element={<PublicLayout />}>
           <Route path="/" element={<Home />} />
-          <Route path="/products/:category/:page?" element={<Products/>} />
+          <Route path="/products/:category" element={<Products/>} />
           <Route path="/products/:category/details/:prodId" element={<ProductPage/>}/>
           <Route path="/products/search/:searchValue" element={<SearchResultsPage/>}/>
           <Route path="/all-categories" element={<AllCategories/>}/>

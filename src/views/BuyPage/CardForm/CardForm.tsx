@@ -28,7 +28,7 @@ interface CardFormProps {
 export default function CardForm({setOnAddress, setSuccessModal}: CardFormProps) {
 
     const [cardForm] = Form.useForm();
-    const {totalPurchaseAmount, totalPurchasePrice, setTotalPurchaseAmount, setTotalPurchasePrice, isBuyingFromCart, setIsBuyingFromCart} = usePurchaseProvider();
+    const {totalPurchaseAmount, totalPurchasePrice, setTotalPurchaseAmount, setTotalPurchasePrice, /*isBuyingFromCart, setIsBuyingFromCart*/} = usePurchaseProvider();
     const {buyProduct, isSuccessful, buyLoading} = useBuyProduct();
     const [cardDetails, setCardDetails] = useState({
         number: '',
@@ -37,23 +37,23 @@ export default function CardForm({setOnAddress, setSuccessModal}: CardFormProps)
         name: '',
         focus: '',
     });
-    const {cartItems} = useCartProvider();
-    const {removeFromCart} = useRemoveFromCart();
+    // const {cartItems} = useCartProvider();
+    // const {removeFromCart} = useRemoveFromCart();
     const {formatMessage} = useIntl();
     const {lightMode} = useThemeProvider();
 
     function handleValuesChange(values:CardForm) {
         setCardDetails((prev) => ({ ...prev, ...values, focus: Object.keys(values)[0]}));
     }
-    function cardFormFinish(values:CardForm) {
+    function cardFormFinish() {
         buyProduct(totalPurchasePrice, totalPurchaseAmount);
     }
 
-    function deleteAllCartProducts() {
-        for (const cartItem of cartItems) {
-            removeFromCart(cartItem.id, true)
-        }
-    }   
+    // function deleteAllCartProducts() {
+    //     for (const cartItem of cartItems) {
+    //         removeFromCart(cartItem.id, true)
+    //     }
+    // }   
 
     useEffect(()=> {
         if (isSuccessful) {
@@ -64,9 +64,9 @@ export default function CardForm({setOnAddress, setSuccessModal}: CardFormProps)
             localStorage.removeItem('purchaseAmount');
             localStorage.removeItem('address');
             localStorage.removeItem('city');
-            if(isBuyingFromCart) deleteAllCartProducts();
-            setIsBuyingFromCart(false);
-            localStorage.setItem('isBuyingFromCart', JSON.stringify(false));
+            // if(isBuyingFromCart) deleteAllCartProducts();
+            // setIsBuyingFromCart(false);
+            //localStorage.setItem('isBuyingFromCart', JSON.stringify(false));
         }
     }, [isSuccessful])  // after user successfully submits form, remove purchase and address infro from local storage, as well as clear cart if user was buying from cart
     

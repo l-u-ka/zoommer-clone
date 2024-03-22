@@ -1,29 +1,34 @@
 import { FormattedMessage } from 'react-intl';
 import { Slider, Checkbox, CheckboxProps, ConfigProvider } from 'antd';
 import { useProductFiltersProvider } from '@src/providers/ProductFiltersProvider/useProductFiltersProvider';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useThemeProvider } from '@src/providers/ThemeProvider/useThemeProvider';
 import { SortEnum } from '@src/@types/types';
 import clearIcon from '@src/assets/icons/light/clear.png'
 import clearIconDark from '@src/assets/icons/dark/clear.png'
 import closeIcon from '@src/assets/icons/light/close.png'
 import closeIconDark from '@src/assets/icons/dark/close.png'
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import useGetProducts from '@src/hooks/useGetProducts';
 
 interface FilterProductsProps {
   closeModal?: ()=>void; 
-  setSortOrder:React.Dispatch<React.SetStateAction<SortEnum>>
+  setSortOrder:React.Dispatch<React.SetStateAction<SortEnum>>;
+  totalProducts: number;
 }
 
-export default function FilterProducts({closeModal, setSortOrder} : FilterProductsProps) {
+export default function FilterProducts({closeModal, setSortOrder, totalProducts} : FilterProductsProps) {
 
-    const {setMaxPrice, setMinPrice, minPrice, maxPrice, defaultMinPrice, defaultMaxPrice, setIsForSale, isForSale} = useProductFiltersProvider();
-    const [isForSaleChecked, setIsForSaleChecked] = useState(false); 
-    const [sliderValue, setSliderValue] = useState<[number, number]>([defaultMinPrice, defaultMaxPrice]); // State for slider value
-    const {category} = useParams();
-    const navigate = useNavigate();
-
+    const {defaultMinPrice, defaultMaxPrice, pageSize} = useProductFiltersProvider();
     const {lightMode} = useThemeProvider();
+    const [searchParams, setSearchParams] = useSearchParams();
+    const page = Number(searchParams.get('page')) || 1;
+    const minPrice = Number(searchParams.get('minPrice'));
+    const maxPrice = Number(searchParams.get('maxPrice'));
+    const isForSale = JSON.parse(searchParams.get('onSale') as string);
+
+    const [isForSaleChecked, setIsForSaleChecked] = useState(isForSale || false); 
+    const [sliderValue, setSliderValue] = useState<[number, number]>([minPrice || defaultMinPrice, maxPrice || defaultMaxPrice]); // State for slider value
 
     const configTheme = {
       "components": {
@@ -49,42 +54,59 @@ export default function FilterProducts({closeModal, setSortOrder} : FilterProduc
         }
       }
     }
+        
+    // fix it that the function gets a state value that is previous, that way it does not automatically navigate to 1st page when there are no more
+   function navigateToFirst() {
+      if (totalProducts > 0) {
+        if (page > (Math.ceil(totalProducts / pageSize))) {
+          searchParams.set("page", '1');
+          setSearchParams(searchParams);
+        }
+      }
+   }
+
+   useEffect(()=> {
+    navigateToFirst();
+   }, [totalProducts])
+      
 
     const onChange = (value: number[]) => {
       setSliderValue([value[0], value[1]]);
     };  // set values of the slider based on the user's change values
 
     const onChangeComplete = (value: number[]) => {
-      navigate(`/products/${category}/1`)
-      setMinPrice(value[0])
-      setMaxPrice(value[1]);
+      searchParams.set("minPrice", JSON.stringify(value[0]));
+      searchParams.set("maxPrice", JSON.stringify(value[1]));
+      setSearchParams(searchParams);
       setSliderValue([value[0], value[1]]);
     };
 
     const onSaleChange: CheckboxProps['onChange'] = (e) => {
-      navigate(`/products/${category}/1`)
-      setIsForSale(e.target.checked);
+      searchParams.set("onSale", JSON.stringify(e.target.checked));
+      setSearchParams(searchParams);
       setIsForSaleChecked(e.target.checked)
     };
 
     function clearFilters() {
-      if (isForSale || (minPrice !== defaultMinPrice) || (maxPrice !== defaultMaxPrice)) navigate(`/products/${category}/1`)
-      setMinPrice(defaultMinPrice);
-      setMaxPrice(defaultMaxPrice);
-      setSliderValue([defaultMinPrice, defaultMaxPrice]);
-      setIsForSale(false);
+      if (isForSale || (minPrice) || (maxPrice)) {
+        setSearchParams({ page: '1', minPrice: JSON.stringify(defaultMinPrice), maxPrice: JSON.stringify(defaultMaxPrice), onSale: JSON.stringify(false)});
+      }
+      setSliderValue([defaultMinPrice, defaultMaxPrice])
       setIsForSaleChecked(false);
       setSortOrder(SortEnum.DEFAULT)
     }
 
     function handleMinChange(event: { target: HTMLInputElement; }) {
       setSliderValue(prev => [Number(event.target.value), prev[1]]);
-      setMinPrice(Number(event.target.value));
+      searchParams.set("minPrice", event.target.value);
+      setSearchParams(searchParams);
     }
     function handleMaxChange(event: { target: HTMLInputElement; }) {
       setSliderValue(prev => [prev[0], Number(event.target.value)]);
-      setMaxPrice(Number(event.target.value));
+      searchParams.set("maxPrice", event.target.value);
+      setSearchParams(searchParams);
     }
+    
 
     return (
       <ConfigProvider theme={configTheme}>

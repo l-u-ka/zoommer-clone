@@ -1,5 +1,6 @@
 import { ProductCategory } from "@src/@types/types";
 import { useProductsProvider } from "@src/providers/ProductsProvider/useProductsProvider"
+import { Helmet } from "react-helmet-async";
 import { FormattedMessage } from "react-intl";
 import { Link } from "react-router-dom";
 
@@ -11,10 +12,16 @@ export default function AllCategories() {
     })
 
     return (
-        <div className="custom-container pt-[30px] pb-[60px] min-h-[80vh] w-full">
-            <h3 className="firago-medium text-base text-text-blue dark:text-dark-text-blue leading-6"><FormattedMessage id="all.categories"/></h3>
-            <hr className="mt-[20px] mb-[30px] border border-solid border-border-white dark:border-border-dark-white"/>
-            <div className="grid grid-cols-3 gap-y-7 w-full">{categoryElements}</div>
-        </div>
+        <>
+            <Helmet>
+                <title>All Categories</title>
+                <meta name='all categories' content='All Categories Page' />
+            </Helmet>
+            <div className="custom-container pt-[30px] pb-[60px] min-h-[80vh] w-full">
+                <h3 className="firago-medium text-base text-text-blue dark:text-dark-text-blue leading-6"><FormattedMessage id="all.categories"/></h3>
+                <hr className="mt-[20px] mb-[30px] border border-solid border-border-white dark:border-border-dark-white"/>
+                <div className="grid grid-cols-3 gap-y-7 w-full">{categoryElements}</div>
+            </div>
+        </>
     )
 }

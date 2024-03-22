@@ -3,6 +3,8 @@ import HomeSlider from "./HomeSlider/HomeSlider";
 import Featured from "./Featured/Featured";
 import useGetCategories from "@src/hooks/useGetCategories";
 import HomePageSkeleton from "@src/components/Skeletons/HomePageSkeleton/HomePageSkeleton";
+import { Helmet } from "react-helmet-async";
+
 
 export default function Home() {
 
@@ -10,15 +12,21 @@ export default function Home() {
   
 
     return (
-      <div className="custom-container pt-[30px] pb-[60px] min-h-[80vh]">
-        {categoriesLoading ? <HomePageSkeleton/> : (
-        <>
-          <div className="flex">
-            <CategoriesTab/>
-            <HomeSlider/>
-          </div>
-          {!categoriesLoading && <Featured/>}
-        </>)}
-      </div>
+      <>
+        <Helmet>
+          <title>Home</title>
+          <meta name='home' content='Home page' />
+        </Helmet>
+        <div className="custom-container pt-[30px] pb-[60px] min-h-[80vh]">
+          {categoriesLoading ? <HomePageSkeleton/> : (
+          <>
+            <div className="flex">
+              <CategoriesTab/>
+              <HomeSlider/>
+            </div>
+            {!categoriesLoading && <Featured/>}
+          </>)}
+        </div>
+      </>
   );
 }

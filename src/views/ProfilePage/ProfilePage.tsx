@@ -13,6 +13,7 @@ import ProfilePageMobile from "./ProfilePageMobile";
 import Wishlist from "./Wishlist/Wishlist";
 import ProfilePageMenu from "./ProfilePageMenu/ProfilePageMenu"
 import PurchaseHistory from "./PurchaseHistory/PurchaseHistory";
+import { Helmet } from "react-helmet-async";
 
 export default function ProfilePage() {
     const {userData} = useAuthProvider();    
@@ -57,7 +58,12 @@ export default function ProfilePage() {
     
 
     return (
-        <ConfigProvider theme={customTheme}>
+        <>
+            <Helmet>
+                <title>{'Profile Page'}</title>
+                <meta name='profile page' content='User Profile page' />
+            </Helmet>
+            <ConfigProvider theme={customTheme}>
             <div className="custom-container pt-[30px] pb-[60px]">
                 {isDesktop ? (  // desktop profile page meu and content
                 <div className="">
@@ -83,5 +89,6 @@ export default function ProfilePage() {
                 : <ProfilePageMobile selected={selected} setSelected={setSelected} updateLoading={updateLoading} setUpdateLoading={setUpdateLoading}/>}
             </div>
         </ConfigProvider>
+        </>
     )
 }

@@ -17,7 +17,7 @@ export default function BuyProductMobile({product}: {product: Product}) {
   const {cartItems} = useCartProvider();
   const [showModal, setShowModal] = useState<boolean>(false);
   const navigate = useNavigate();
-  const {setTotalPurchasePrice, setTotalPurchaseAmount, setIsBuyingFromCart} = usePurchaseProvider();
+  const {setTotalPurchasePrice, setTotalPurchaseAmount, /*setIsBuyingFromCart*/} = usePurchaseProvider();
   const {lightMode} = useThemeProvider();
 
   /* check if product is already in cart */
@@ -37,8 +37,8 @@ export default function BuyProductMobile({product}: {product: Product}) {
     setTotalPurchasePrice(product.salePrice || product.price);
     localStorage.setItem('purchaseAmount', JSON.stringify(1));
     localStorage.setItem('purchasePrice', JSON.stringify(product.salePrice || product.price));
-    setIsBuyingFromCart(false);
-    localStorage.setItem('isBuyingFromCart', JSON.stringify(false))
+    //setIsBuyingFromCart(false);
+    //localStorage.setItem('isBuyingFromCart', JSON.stringify(false))
     navigate("/buy-product");
   }
 

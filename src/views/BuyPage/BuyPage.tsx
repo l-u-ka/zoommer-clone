@@ -8,6 +8,7 @@ import { useThemeProvider } from '@src/providers/ThemeProvider/useThemeProvider'
 import SuccessModal from './SuccessModal/SuccessModal';
 import { usePurchaseProvider } from '@src/providers/PurchaseProvider/usePurchaseProvider';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
+import { Helmet } from 'react-helmet-async';
 
 export default function BuyPage() {
 
@@ -70,6 +71,11 @@ export default function BuyPage() {
     const [parent] = useAutoAnimate({duration: 300, easing: 'ease-in-out'})
 
     return (
+    <>
+        <Helmet>
+            <title>Purchase Product</title>
+            <meta name='purchase' content='Purhcase Product' />
+        </Helmet>
         <ConfigProvider theme={configTheme}>
             <div className="custom-container pt-[30px] pb-[60px]">
                 <h2 className='firago-bold text-2xl leading-[29px] text-black-main dark:text-dark-black-main'><FormattedMessage id='order.details'/></h2>
@@ -85,5 +91,6 @@ export default function BuyPage() {
                 <SuccessModal modalOpen={openSuccessModal} closeModal={closeModal}/>
             </div>
         </ConfigProvider>
+    </>
   )
 }
