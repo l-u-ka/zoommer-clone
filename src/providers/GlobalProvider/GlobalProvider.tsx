@@ -1,6 +1,7 @@
 import { PropsWithChildren, useEffect, useState } from "react";
-import { GlobalContext, Route } from "./GlobalContext";
+import { GlobalContext} from "./GlobalContext";
 import { useLocation } from "react-router-dom";
+import { Route } from "@src/@types/types";
 
 export function GlobalProvider({ children }: PropsWithChildren) {
 
