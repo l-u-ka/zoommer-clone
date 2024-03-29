@@ -1,6 +1,6 @@
 import { BoughtProduct } from "@src/@types/types";
 import { privateAxios } from "@src/utils/privateAxios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export function useGetOrders() {
   const [orders, setOrders] = useState<BoughtProduct[]>([]);
@@ -17,10 +17,6 @@ export function useGetOrders() {
       setOrdersLoading(false);
     }
   }
-
-  useEffect(() => {
-    getOrders();
-  }, []);
 
   return {orders, ordersLoading, getOrders};
 }

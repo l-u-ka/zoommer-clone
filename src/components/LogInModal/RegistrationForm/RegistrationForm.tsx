@@ -9,7 +9,6 @@ interface FormValues extends RegistrationFormInput {
   prefix:string;
 }
 
-
 export default function RegistrationForm() {
   const {Option} = Select;
   const [registrationForm] = Form.useForm();

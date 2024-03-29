@@ -6,7 +6,7 @@ import LoadingSpinner from "@src/components/LoadingSpinner/LoadingSpinner";
 import { useAddToCart } from "@src/hooks/useAddToCart";
 import { useCartProvider } from "@src/providers/CartProvider/useCartProvider";
 import { usePurchaseProvider } from "@src/providers/PurchaseProvider/usePurchaseProvider";
-import {useState } from "react";
+import {useMemo, useState } from "react";
 import { FormattedMessage } from "react-intl";
 import { useNavigate } from "react-router-dom";
 import { useThemeProvider } from "@src/providers/ThemeProvider/useThemeProvider";
@@ -21,11 +21,12 @@ export default function BuyProductMobile({product}: {product: Product}) {
   const {lightMode} = useThemeProvider();
 
   /* check if product is already in cart */
-  function isInCart(productId: string) {
-    const result = cartItems.find(item => item.cartProduct.id === productId);
-    if (result) return true;
-    else return false;
-  }
+  const isInCart = useMemo(()=> {
+    return (productId: string) => {
+      const result = cartItems.find(item => item.cartProduct.id === productId);
+      return result ? true : false;
+    }
+  }, [cartItems])
 
   function closeModal() {
     setShowModal(false);

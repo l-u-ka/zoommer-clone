@@ -14,6 +14,7 @@ import LoadingSpinner from "@src/components/LoadingSpinner/LoadingSpinner";
 import { usePurchaseProvider } from "@src/providers/PurchaseProvider/usePurchaseProvider";
 import { useThemeProvider } from "@src/providers/ThemeProvider/useThemeProvider";
 import { Helmet } from "react-helmet-async";
+import { useMemo } from "react";
 
 export default function Cart() {
 
@@ -21,7 +22,7 @@ export default function Cart() {
   const {removeFromCart, removeFromCartLoading} = useRemoveFromCart();
   const {setTotalPurchaseAmount, setTotalPurchasePrice, /*setIsBuyingFromCart*/} = usePurchaseProvider();
   const {lightMode} = useThemeProvider();
-  const fullPrice:number = getFullPrice(cartItems);
+  const fullPrice = useMemo(() => getFullPrice(cartItems), [cartItems]);
   const navigate = useNavigate();
 
 
@@ -48,7 +49,7 @@ export default function Cart() {
   function clearCart() {
     for (const cartItem of cartItems) {
       removeFromCart(cartItem.id, true)
-  }
+    }
   }
 
   return (

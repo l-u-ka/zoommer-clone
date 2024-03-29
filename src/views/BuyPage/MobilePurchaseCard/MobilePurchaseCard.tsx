@@ -12,19 +12,19 @@ export default function MobilePurchaseCard({fullPrice, onClick, loading, buttonT
 
   return (
     <div className='w-full bg-light-theme-bg dark:bg-dark-theme-bg transition-colors duration-300 ease-in-out shadow-top'>
-        <div className="w-full p-5 bg-242-600 dark:bg-white-400">
+        <div className="w-full p-5 bg-242-600 dark:bg-dark-white-400">
             <div className="flex justify-between mb-5">
-                <h3 className="firago-semibold text-base leading-[19px] text-black-06"><FormattedMessage id="price"/></h3>
-                <h3 className="firago-semibold text-base leading-[19px] text-black-main">{fullPrice} ₾</h3>
+                <h3 className="firago-semibold text-base leading-[19px] text-black-06 dark:text-dark-black-06"><FormattedMessage id="price"/></h3>
+                <h3 className="firago-semibold text-base leading-[19px] text-black-main dark:text-dark-black-main">{fullPrice} ₾</h3>
             </div>
             <div className="flex justify-between">
-                <h3 className="firago-semibold text-base leading-[19px] text-black-06"><FormattedMessage id="delivery.price"/></h3>
-                <h3 className="firago-semibold text-base leading-[19px] text-black-main">0 ₾</h3>
+                <h3 className="firago-semibold text-base leading-[19px] text-black-06 dark:text-dark-black-06"><FormattedMessage id="delivery.price"/></h3>
+                <h3 className="firago-semibold text-base leading-[19px] text-black-main dark:text-dark-black-main">0 ₾</h3>
             </div>
             <hr className="mt-5 mb-5 border border-solid border-white"/>
             <div className="flex justify-between">
-                <h3 className="firago-semibold text-base leading-[19px] text-black-06"><FormattedMessage id="sum.price"/></h3>
-                <h3 className="firago-semibold text-base leading-[19px] text-black-main">{fullPrice} ₾</h3>
+                <h3 className="firago-semibold text-base leading-[19px] text-black-06 dark:text-dark-black-06"><FormattedMessage id="sum.price"/></h3>
+                <h3 className="firago-semibold text-base leading-[19px] text-black-main dark:text-dark-black-main">{fullPrice} ₾</h3>
             </div>
         </div>
         <div className="w-full px-5 pt-5 pb-24">

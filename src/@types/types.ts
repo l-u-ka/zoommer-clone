@@ -20,6 +20,16 @@ export interface FooterColumn {
   links: FooterLink[]
 }
 
+export interface cityOption {
+  id:string;
+  name: ReactNode;
+  value: string;
+}
+
+export interface Route {
+  to: string;
+  from: string;
+}
 
 export enum ButtonEnum {
   DEFAULT = "default",

@@ -8,8 +8,7 @@ import clearIcon from '@src/assets/icons/light/clear.png'
 import clearIconDark from '@src/assets/icons/dark/clear.png'
 import closeIcon from '@src/assets/icons/light/close.png'
 import closeIconDark from '@src/assets/icons/dark/close.png'
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import useGetProducts from '@src/hooks/useGetProducts';
+import { useSearchParams } from 'react-router-dom';
 
 interface FilterProductsProps {
   closeModal?: ()=>void; 
@@ -18,7 +17,6 @@ interface FilterProductsProps {
 }
 
 export default function FilterProducts({closeModal, setSortOrder, totalProducts} : FilterProductsProps) {
-
     const {defaultMinPrice, defaultMaxPrice, pageSize} = useProductFiltersProvider();
     const {lightMode} = useThemeProvider();
     const [searchParams, setSearchParams] = useSearchParams();

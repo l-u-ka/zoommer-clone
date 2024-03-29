@@ -1,6 +1,6 @@
 import { useBuyProduct } from '@src/hooks/useBuyProduct';
-import { useRemoveFromCart } from '@src/hooks/useRemoveFromCart';
-import { useCartProvider } from '@src/providers/CartProvider/useCartProvider';
+// import { useRemoveFromCart } from '@src/hooks/useRemoveFromCart';
+// import { useCartProvider } from '@src/providers/CartProvider/useCartProvider';
 import FullPriceCard from '@src/components/FullPriceCard/FullPriceCard';
 import { Form, Input } from 'antd';
 import React, { useEffect, useState } from 'react'
@@ -75,7 +75,7 @@ export default function CardForm({setOnAddress, setSuccessModal}: CardFormProps)
     }
 
     return (
-        <div className='w-full flex'>
+        <div className='w-full flex custom-container'>
             <div className='w-full'>
                 <div className='inline-flex items-center mb-[30px] cursor-pointer' onClick={()=>{setOnAddress(true)}}>
                     <img alt='go back icon' src={lightMode ? goBackIcon : goBackIconDark} className='h-full mr-[20px]' />
@@ -203,7 +203,7 @@ export default function CardForm({setOnAddress, setSuccessModal}: CardFormProps)
             <div className='hidden lg:block min-w-[400px] ml-[50px]'>
                 <FullPriceCard fullPrice={totalPurchasePrice} onClick={handleClick} loading={buyLoading} buttonText='pay'/>
             </div>
-            <div className='block lg:hidden w-full absolute left-0 top-[650px] md:top-[450px]'>
+            <div className='block lg:hidden w-full absolute left-0 top-[550px] md:top-[350px]'>
                 <MobilePurchaseCard fullPrice={totalPurchasePrice} onClick={handleClick} loading={buyLoading} buttonText='pay'/>
             </div>
         </div>

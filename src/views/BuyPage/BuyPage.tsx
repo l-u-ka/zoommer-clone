@@ -82,7 +82,7 @@ export default function BuyPage() {
                 <hr className="mt-[24px] mb-[30px] border border-solid border-border-white dark:border-border-dark-white"/>
                 {!(totalPurchaseAmount === 0 || totalPurchasePrice === 0) && (
                     <div className='flex'>
-                        <div className='w-full' ref={parent}>
+                        <div className='w-full !absolute left-0' ref={parent}>
                             {onAdress && <AddressForm setOnAddress={setOnAddress}/>}
                             {!onAdress && <CardForm setOnAddress={setOnAddress} setSuccessModal={setOpenSuccessModal}/>}
                         </div>

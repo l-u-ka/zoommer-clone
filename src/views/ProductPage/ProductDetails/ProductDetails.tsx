@@ -1,6 +1,6 @@
 import { Product } from "@src/@types/types";
 import { FormattedMessage } from "react-intl";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useWishlistProvider } from "@src/providers/WishlistProvider/useWishlistProvider";
 import { useAddToWishlist } from "@src/hooks/useAddToWishlist";
 import { useRemoveFromWishlist } from "@src/hooks/useRemoveFromWishlist";
@@ -25,11 +25,14 @@ export default function ProductDetails({product} : {product: Product}) {
         if (item) removeFromWishlist(item.id)
     }
 
-    function isInWishlist(id:string) {
-        const result = wishlistItems.find(item => item.likedProduct.id === id);
-        if (result) return true;
-        else return false;
-    }
+    const isInWishlist = useMemo(()=> {
+        return (id:string) => {
+            const result = wishlistItems.find(item => item.likedProduct.id === id);
+            if (result) return true;
+            else return false;
+        }
+    }, [wishlistItems])
+
     function closePhotoModal() {
         setShowPhotoModal(false);
     }

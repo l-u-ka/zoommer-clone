@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect } from 'react'
+import React, {useEffect } from 'react'
 import { Form, Input, Select} from 'antd';
 import FullPriceCard from '@src/components/FullPriceCard/FullPriceCard';
 import { FormattedMessage, useIntl } from 'react-intl';
@@ -8,16 +8,11 @@ import { useNavigate } from 'react-router-dom';
 import MobilePurchaseCard from '@src/views/BuyPage/MobilePurchaseCard/MobilePurchaseCard';
 import { usePurchaseProvider } from '@src/providers/PurchaseProvider/usePurchaseProvider';
 import { useThemeProvider } from '@src/providers/ThemeProvider/useThemeProvider';
+import { cityOption } from '@src/@types/types';
 
 interface AddressFormValues {
     city: string;
     address: string;
-}
-
-interface cityOption {
-    id:string;
-    name: ReactNode;
-    value: string;
 }
 
 const cityOptions:cityOption[] = [
@@ -63,7 +58,6 @@ const cityOptions:cityOption[] = [
     }
 ]
 
-
 export default function AddressForm({setOnAddress}: {setOnAddress: (value: React.SetStateAction<boolean>) => void}) {
     const {totalPurchasePrice} = usePurchaseProvider();
     const { Option } = Select;
@@ -72,7 +66,7 @@ export default function AddressForm({setOnAddress}: {setOnAddress: (value: React
     const navigate = useNavigate();
     const {lightMode} = useThemeProvider();
 
-    function addressFormFinish(values:AddressFormValues) {
+    function addressFormFinish() {
         localStorage.setItem("city", addressForm.getFieldValue("city"))
         localStorage.setItem("address", addressForm.getFieldValue("address"))
         setOnAddress(false);
@@ -90,7 +84,7 @@ export default function AddressForm({setOnAddress}: {setOnAddress: (value: React
     }, []) // load form values from the local storage on inital render
 
     return (
-        <div className='flex w-full flex-col lg:flex-row'>
+        <div className='flex w-full flex-col lg:flex-row custom-container'>
             <div className='w-full'>
                 <div className='inline-flex items-center mb-[30px] cursor-pointer' onClick={()=>{navigate(-1)}}>
                     <img alt='go back icon' src={lightMode ? goBackIcon : goBackIconDark} className='h-full mr-[20px]' />
@@ -122,7 +116,7 @@ export default function AddressForm({setOnAddress}: {setOnAddress: (value: React
             <div className='hidden lg:block min-w-[400px] ml-[50px]'>
                     <FullPriceCard fullPrice={totalPurchasePrice} onClick={handleClick} buttonText="next"/>
             </div>
-            <div className='block lg:hidden w-full absolute left-0 top-[400px]'>
+            <div className='block lg:hidden w-full absolute left-0 top-[300px]'>
                 <MobilePurchaseCard fullPrice={totalPurchasePrice} onClick={handleClick} buttonText='next'/>
             </div>
         </div>

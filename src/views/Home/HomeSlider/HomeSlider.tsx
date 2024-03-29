@@ -65,7 +65,7 @@ export default function HomeSlider() {
         infinite: true,
         speed: 500,
         slidesToShow: isDesktop ? 1 : isMobile ? 3 : 2,
-        slidesToScroll: isDesktop ? 1 : isMobile ? 3 : 2,
+        slidesToScroll: 1,
         swipeToSlide: true,
         arrows: isDesktop ? true : false,
         nextArrow: <SampleNextArrow />,

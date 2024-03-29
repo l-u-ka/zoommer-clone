@@ -1,9 +1,5 @@
+import { Route } from "@src/@types/types";
 import { createContext } from "react";
-
-export interface Route {
-  to: string;
-  from: string;
-}
 
 interface GlobalContext {
   showOverlay: boolean;

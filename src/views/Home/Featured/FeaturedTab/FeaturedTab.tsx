@@ -51,7 +51,7 @@ export default function FeaturedTab({categoryName} : {categoryName: string}) {
         infinite: false,
         speed: 500,
         slidesToShow: isDesktop ? 5 : 3,
-        slidesToScroll: isDesktop ? 2 : 1 ,
+        slidesToScroll: 1,
         swipeToSlide: true,
         nextArrow: <SampleNextArrow />,
         prevArrow: <SamplePrevArrow />

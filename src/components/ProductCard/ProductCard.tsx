@@ -9,6 +9,7 @@ import { useRemoveFromWishlist } from "@src/hooks/useRemoveFromWishlist";
 import { useAuthProvider } from "@src/providers/AuthProvider/useAuthProvider";
 import { AuthStageEnum } from "@src/providers/AuthProvider/AuthContext";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
+import { useMemo } from "react";
 
 export default function ProductCard({product} : {product: Product}) {
     const navigate = useNavigate();
@@ -24,11 +25,13 @@ export default function ProductCard({product} : {product: Product}) {
     }
 
     /* check if product is already in wishlist */
-    function isInWishlist(id:string) {
-        const result = wishlistItems.find(item => item.likedProduct.id === id);
-        if (result) return true;
-        else return false;
-    }
+    const isInWishlist = useMemo(() => {
+        return (id: string) => {
+            const result = wishlistItems.find(item => item.likedProduct.id === id);
+            return result ? true : false;
+        };
+    }, [wishlistItems]);
+
 
     return (
             <div className='col-span-1 w-[140px] md:w-[165px] h-[300px] flex flex-col justify-between relative mx-auto'>

@@ -2,7 +2,7 @@ import { SortEnum } from '@src/@types/types';
 import { FormattedMessage } from 'react-intl';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { useProductFiltersProvider } from '@src/providers/ProductFiltersProvider/useProductFiltersProvider';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useThemeProvider } from '@src/providers/ThemeProvider/useThemeProvider';
 import useGetProducts from '@src/hooks/useGetProducts';
 import goBackIcon from '@src/assets/icons/light/category-left-arr.png'
@@ -29,8 +29,7 @@ export default function Products() {
  
   /* create array of product skeletons as many as products */
   const productCartSkeletons = Array.from({ length: pageSize }, (_, index) => <ProductCardSkeleton key={index} />);
-
-  function sortProducts() {
+  const sortProducts = useCallback(() => {
     switch (sortOrder) {
       case SortEnum.PRICE_ASC:
         setProducts([...products.sort((a, b) => (a.salePrice || a.price) - ( b.salePrice || b.price))]);
@@ -49,7 +48,8 @@ export default function Products() {
       default:
         break;
     }
-}
+  }, [sortOrder, products]);
+
 
   useEffect(()=> {
     if (products) {

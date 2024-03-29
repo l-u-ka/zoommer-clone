@@ -1,5 +1,4 @@
 import { FormattedMessage } from "react-intl"
-import cartButtonIcon from '@src/assets/icons/light/cart.png'
 import { Button, ConfigProvider, ThemeConfig } from "antd"
 import { useAddToCart } from "@src/hooks/useAddToCart"
 import { useCartProvider } from "@src/providers/CartProvider/useCartProvider"
@@ -9,6 +8,8 @@ import { useAuthProvider } from "@src/providers/AuthProvider/useAuthProvider"
 import { useGlobalProvider } from "@src/providers/GlobalProvider/useGlobalProvider"
 import { AuthStageEnum } from "@src/providers/AuthProvider/AuthContext"
 import { useThemeProvider } from "@src/providers/ThemeProvider/useThemeProvider"
+import cartButtonIcon from '@src/assets/icons/light/cart.png'
+import cartButtonIconDark from '@src/assets/icons/dark/cart.png'
 
 interface AddCartButtonProps {
   height: number;
@@ -62,8 +63,8 @@ export default function AddCartButton({height, borderRadius, productId} : AddCar
     <ConfigProvider theme={customTheme}>
         <Button type="primary" className="flex justify-center items-center hover:scale-95 transition-all ease-in-out w-full" loading={addToCartLoading} onClick={handleCllick}>
           <div className="inline-flex items-center mx-auto">
-              <img src={cartButtonIcon} className="w-[14px] mr-[10px]"/>
-              <p className="text-black-main firago-semibold text-xs leading-5 opacity-80"><FormattedMessage id={isInCart(productId) ? "added" : "add"}/></p>
+              <img src={lightMode ?  cartButtonIcon : cartButtonIconDark} className="w-[14px] mr-[10px]"/>
+              <p className="text-black-main dark:text-dark-black-main firago-semibold text-xs leading-5 opacity-80"><FormattedMessage id={isInCart(productId) ? "added" : "add"}/></p>
           </div>
         </Button>
         {<AlreadyInCartModal closeModal={closeModal} modalOpen={showModal}/>}
