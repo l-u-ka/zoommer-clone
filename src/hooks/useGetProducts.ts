@@ -21,7 +21,7 @@ export default function useGetProducts(productProps: GetProductsParams) {
     try {
       setProductsLoading(true);
       const response = await publicAxios.get(`/product`, { params: params });
-      setProducts(response.data.products.sort((a:Product, b:Product) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())); // reverse so that most recent products are at the beginning of array
+      setProducts(response.data.products.sort((a:Product, b:Product) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime())); // reverse so that most recent products are at the beginning of array
       setTotalProducts(response.data.total);
     } catch (e) {
       console.error(e);

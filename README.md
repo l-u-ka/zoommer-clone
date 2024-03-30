@@ -1,36 +1,39 @@
 # Zoommer Clone
 
-A project made as a Zommer.ge clone with the basic functionalities
+***A project made as a Zommer.ge clone with the basic functionalities***
+**project is hosted at: (https://main--zoommer-clone.netlify.app/)**
 
-# Basic functionalities
- ** Dark / Light mode**
- ** English / Georgian locale**
- ** Responsive design with destkop/mobile mode**
- ** Products separated in categories**
- ** Product Cards with buttons to add to cart and add to wishlist**
- ** Single page for product categories with filters and pagination**
- ** Single product details page, with buttons to either add to cart or buy directly**
- ** Ability to search product in the search bar and view search result**
- ** Cart page where user sees full price to buy and added products and a button to puchase page**
- ** Purhcase page where user enters address and credit card details to make a purchase**
- ** Profile Page with ability to edit user information, view wishlisted products and order history**
+# Features
+
+* **Dark / Light mode**
+* **English / Georgian locale**
+* **Responsive design with destkop/mobile mode**
+* **Products separated in categories**
+* **Product Cards with buttons to add to cart and add to wishlist**
+* **Single page for product categories with filters and pagination**
+* **Single product details page, with buttons to either add to cart or buy directly**
+* **Feature to search product in the search bar and view search result**
+* **Cart page where user sees full price to buy and added products and a button to puchase page**
+* **Purhcase page where user enters address and credit card details to make a purchase**
+* **Profile Page with ability to edit user information, view wishlisted products and order history**
 
 # Technologies Used
 
-**Tailwind**
-**React (typescript)**
-
-Uses Nest.js backend with POSGRESQL database
+* **Tailwind**
+* **React (typescript)**
+_Uses Nest.js backend with POSGRESQL database_
 
 # external libraries used
 
-**Antd**
-**rooks**
-**react-slick**
-**formkit**
+* **Antd**
+* **rooks**
+* **react-slick**
+* **formkit**
 
-#Home Page
-A Home page with the categories tab, slider banner and featured slider of categories for both dekstop and mobile mode
+
+# Home Page
+
+    A Home page with the categories tab, slider banner and featured slider of categories for both dekstop and mobile mode
 
 # All Categories Page
 

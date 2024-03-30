@@ -44,7 +44,7 @@ export default function Products() {
         setProducts([...products.sort((a, b) => b.title.localeCompare(a.title))]);
         break;
       case SortEnum.DEFAULT:
-        setProducts([...products.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())]);  // sort how the products are first set in the array (most recent at the beginning)
+        setProducts([...products.sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime())]);  // sort how the products are first set in the array (most recent at the beginning)
       default:
         break;
     }
