@@ -5,8 +5,8 @@ interface PurchaseContext {
     setTotalPurchasePrice: React.Dispatch<React.SetStateAction<number>>;
     totalPurchaseAmount: number;
     setTotalPurchaseAmount: React.Dispatch<React.SetStateAction<number>>;
-    // isBuyingFromCart: boolean; 
-    // setIsBuyingFromCart: React.Dispatch<React.SetStateAction<boolean>>;
+    isBuyingFromCart: boolean; 
+    setIsBuyingFromCart: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const PurchaseContext = createContext<PurchaseContext>({
@@ -14,6 +14,6 @@ export const PurchaseContext = createContext<PurchaseContext>({
     setTotalPurchasePrice: ()=>{},
     totalPurchaseAmount: 0,
     setTotalPurchaseAmount: ()=>{},
-    // isBuyingFromCart: false, 
-    // setIsBuyingFromCart: () => {}
+    isBuyingFromCart: false, 
+    setIsBuyingFromCart: () => {}
 })

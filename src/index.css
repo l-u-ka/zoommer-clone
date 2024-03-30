@@ -40,7 +40,11 @@
 }
 
 .custom-addon .ant-select-selection-item {
-  @apply text-black-main;
+  @apply text-black-main dark:text-dark-black-main;
+}
+
+.ant-select-item-option-content {
+  @apply text-black-main dark:text-dark-black-07;
 }
 
 .ant-form-item-explain-error,
@@ -56,8 +60,7 @@
 .custom-addon .ant-select-arrow {
   @apply dark:text-black-main opacity-95;
 }
-
-.shadow-top {
+. .shadow-top {
   box-shadow: rgba(0, 0, 0, 0.1) 0px -4px 4px;
 }
 

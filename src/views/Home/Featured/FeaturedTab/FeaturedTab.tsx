@@ -13,6 +13,7 @@ import righrArrow from '@src/assets/icons/slider-right-btn.png'
 export default function FeaturedTab({categoryName} : {categoryName: string}) {
 
     const isDesktop = useMediaQuery({ minWidth: 1024 });
+    const isMobile = useMediaQuery({maxWidth: 480});
     const navigate = useNavigate();
     const {products, productsLoading} = useGetProducts({categoryName});  
     const featuredProducts = products.map((product:Product) => {
@@ -50,7 +51,7 @@ export default function FeaturedTab({categoryName} : {categoryName: string}) {
         dots: false,
         infinite: false,
         speed: 500,
-        slidesToShow: isDesktop ? 5 : 3,
+        slidesToShow: isDesktop ? 5 : isMobile ? 2 : 3,
         slidesToScroll: 1,
         swipeToSlide: true,
         nextArrow: <SampleNextArrow />,

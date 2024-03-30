@@ -20,7 +20,7 @@ export default function Cart() {
 
   const {cartItems, cartLoading} = useCartProvider();
   const {removeFromCart, removeFromCartLoading} = useRemoveFromCart();
-  const {setTotalPurchaseAmount, setTotalPurchasePrice, /*setIsBuyingFromCart*/} = usePurchaseProvider();
+  const {setTotalPurchaseAmount, setTotalPurchasePrice, setIsBuyingFromCart} = usePurchaseProvider();
   const {lightMode} = useThemeProvider();
   const fullPrice = useMemo(() => getFullPrice(cartItems), [cartItems]);
   const navigate = useNavigate();
@@ -41,8 +41,8 @@ export default function Cart() {
       localStorage.setItem('purchaseAmount', JSON.stringify(totalAmount));
       localStorage.setItem('purchasePrice', JSON.stringify(totalPrice));
     }
-    // setIsBuyingFromCart(true);
-    // localStorage.setItem('isBuyingFromCart', JSON.stringify(true))
+    setIsBuyingFromCart(true);
+    localStorage.setItem('isBuyingFromCart', JSON.stringify(true))
     navigate('/buy-product');
   }
 

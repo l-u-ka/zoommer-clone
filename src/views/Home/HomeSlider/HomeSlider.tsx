@@ -12,7 +12,8 @@ import img5 from '@src/assets/images/80bfcfa9-91a7-4da9-905d-83b74250e530_Thumb.
 export default function HomeSlider() {
 
     const isDesktop = useMediaQuery({ minWidth: 1024 });
-    const isMobile = useMediaQuery({minWidth: 768});
+    const isTab = useMediaQuery({minWidth: 768});
+    const isMobile = useMediaQuery({minWidth: 640})
 
     const sliderImages = [{
             id: '1',
@@ -64,7 +65,7 @@ export default function HomeSlider() {
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: isDesktop ? 1 : isMobile ? 3 : 2,
+        slidesToShow: isDesktop ? 1 : isTab ? 3 : isMobile ? 2 : 1,
         slidesToScroll: 1,
         swipeToSlide: true,
         arrows: isDesktop ? true : false,
@@ -76,7 +77,7 @@ export default function HomeSlider() {
         <div className='w-full lg:w-[750px] xl:w-[850px] lg:ml-auto relative'>
             <Slider {...settings}>
                   {sliderImages.map(slidImg => {
-                    return <img key={slidImg.id} src={slidImg.src} alt='home slider img' className=' min-h-[110px] sm:min-h-[120px] max-w-[220px] sm:max-w-[280px] md:max-w-[235px] lg:max-w-[750px] xl:max-w-full rounded-xl'/>
+                    return <img key={slidImg.id} src={slidImg.src} alt='home slider img' className='max-h-[200px] lg:max-h-full sm:min-h-[140px] max-w-full sm:max-w-[290px] md:max-w-[240px] lg:max-w-[750px] xl:max-w-full rounded-xl'/>
                   })}
               </Slider>
         </div>
