@@ -1,7 +1,7 @@
 # Zoommer Clone
 
-***A project made as a Zommer.ge clone with the basic functionalities***
-**project is hosted at: (https://main--zoommer-clone.netlify.app/)**
+***A React project made as a Zommer.ge clone with the basic features.***
+**The project is hosted at: (https://main--zoommer-clone.netlify.app/)**
 
 # Features
 
@@ -33,28 +33,28 @@ _Uses Nest.js backend with POSGRESQL database_
 
 # Home Page
 
-    A Home page with the categories tab, slider banner and featured slider of categories for both dekstop and mobile mode
+    A Home page with the categories tab, slider banner, and featured product carousel of categories
 
 # All Categories Page
 
     A page with links to all existing categories
 
 # Product Categories Page
-    Page for each of the existing categories, where user can view all products from that category with pagination. It is possible to sort by price, or name. 
-    Products can be filtered with minimum and maximum price range and if they are on sale.
+    A Page for each of the existing categories, where a user can view all products from that category with pagination. It is possible to sort by price, or name. 
+    Products can be filtered with minimum and maximum price range and whether they are on sale.
 
 # Single Product Details Page
-    A page with the product photo, details and buttons to add to cart or  buy directly
+    A page with the product photo, details, and buttons to add to the cart or buy directly
 
 # Search Result Page
-    A page redirected from the search bar of the results from user's search input
+    A page redirected from the search bar with the results from the user's search input
 
 # Cart Page
-    A Cart Page with the full price to pay, a list or all added cart items with the number of them. User can increase/decrease number of cart items and delete them
+    A Cart Page with the full price to pay, a list of all added cart items with the amount number and remove button. The user can increase/decrease the number of cart items and delete single or all the items
 
 # Purchase Page 
-    A page with the full price, and address and credit card forms. The user has to enter both address and card information correctly and then they can complete a purchase.
+    A page that displays the full price to pay, and has address and credit card forms. The user has to enter both address and card information correctly and then they can complete a purchase.
 
 # Profile Page
-    A profile page, with menu to select Edit Profile From / Wishlisted products / Order History. User can edit their information, delete items from wishlisted list, 
-    and remove order from order history
+    A profile page, with the menu to select Edit Profile From / Wishlisted products / Order History. User can edit their information, delete items from the wishlisted list, 
+    and remove an order from the purchase history
