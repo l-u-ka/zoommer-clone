@@ -103,7 +103,7 @@ export default function Products() {
                 <div className='w-[350px] min-w-[350px] hidden lg:block'>
                   <FilterProducts setSortOrder={setSortOrder} totalProducts={totalProducts}/>
                 </div>
-                {productsLoading ? <div className=' w-full pl-8 lg:w-[760px] xl:w-[800px] grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 gap-6 ml-auto'>{productCartSkeletons}</div> :
+                {productsLoading ? <div className=' w-full lg:pl-8 lg:w-[760px] xl:w-[800px] grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 gap-6 ml-auto'>{productCartSkeletons}</div> :
                 ((products.length > 0) ? <ProductsList products={products} totalProducts={totalProducts as number}/> : <h2 className='pl-8 text-black-main dark:text-dark-black-main firago-semibold text-lg leading-[20px]'><FormattedMessage id='products.not.found'/></h2>)}
               </div>
             </div>

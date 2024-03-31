@@ -25,10 +25,10 @@ export default function SuccessModal({modalOpen, closeModal} : SuccessModalProps
 
   return (
     <ConfigProvider theme={configStyle}>
-        <Modal centered open={modalOpen} onCancel={closeModal} maskClosable={false} footer={false} className="!w-[55%] lg:!w-[50%]" closeIcon={<img className="relative top-[-8px] w-auto" src={closeIcon} alt="modal close icon"/>}>
+        <Modal centered open={modalOpen} onCancel={closeModal} maskClosable={false} footer={false} className="!w-[65%] lg:!w-[50%]" closeIcon={<img className="relative top-[-8px] w-auto" src={closeIcon} alt="modal close icon"/>}>
                 <div>
                     <h3 className="firago-medium text-base leading-[19px] text-center mt-5 text-black-main dark:text-dark-black-main"><FormattedMessage id='congrats.bought.success'/></h3>
-                    <img src={successImg} alt='success img' className='w-[240px] block mx-auto my-12'/>
+                    <img src={successImg} alt='success img' className='w-full sm:w-[240px] block mx-auto my-12'/>
                     <div className="flex justify-between">
                         <PrimaryButton width='100%' height={50} onClick={closeModal}><h3 className='firago-bold text-base leading-[19px] text-white'><FormattedMessage id='close'/></h3></PrimaryButton>
                     </div>

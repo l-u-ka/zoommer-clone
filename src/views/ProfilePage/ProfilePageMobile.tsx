@@ -4,7 +4,7 @@ import { useAuthProvider } from '@src/providers/AuthProvider/useAuthProvider';
 import { useThemeProvider } from '@src/providers/ThemeProvider/useThemeProvider';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { ProfileMenuEnum } from '@src/@types/types';
-import React from 'react'
+import React, { useEffect } from 'react'
 import lefrArrow from '@src/assets/icons/light/category-left-arr.png'
 import leftArrowDark from '@src/assets/icons/dark/category-left-arr.png'
 import EditProfile from './EditProfile/EditProfile';
@@ -12,22 +12,30 @@ import profileIcon from '@src/assets/icons/light/profile-icon.png'
 import profileIconDark from '@src/assets/icons/dark/profile-icon.png'
 import Wishlist from './Wishlist/Wishlist';
 import PurchaseHistory from './PurchaseHistory/PurchaseHistory';
+import { useGlobalProvider } from '@src/providers/GlobalProvider/useGlobalProvider';
+import { useLocation } from 'react-router-dom';
 
 export default function ProfilePageMobile({selected, setSelected, updateLoading, setUpdateLoading} : {selected: ProfileMenuEnum, setSelected: React.Dispatch<React.SetStateAction<ProfileMenuEnum>>, updateLoading: boolean, setUpdateLoading: React.Dispatch<React.SetStateAction<boolean>>}) {
 
   const {userData} = useAuthProvider();
   const {lightMode} = useThemeProvider();
+  const {route} = useGlobalProvider();
+  const location = useLocation();
 
   function handleMenuSelect(selectOption: ProfileMenuEnum) {
     setSelected(selectOption)
     localStorage.setItem('selected', selectOption)
   }
 
+  useEffect(()=> {
+    if ((route.to !== route.from) && (location.pathname !== route.to)) setSelected(ProfileMenuEnum.ON_MENU)
+  }, [])
+
   const [parent] = useAutoAnimate({duration: 300, easing: 'ease-in-out'})
   
   return (
     <div>
-      <div ref={parent}>
+      <div ref={parent}>  {/*profile page header based on the selected menu item */}
         {selected === ProfileMenuEnum.ON_MENU && (
           <div className="flex items-center">
             <img src={lightMode ? profileIcon : profileIconDark} alt="profile icon" className="w-6 mr-3"/>

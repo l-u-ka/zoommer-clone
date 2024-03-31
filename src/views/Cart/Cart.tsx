@@ -83,7 +83,7 @@ export default function Cart() {
           </div>
           ) :  /* if loading is over and there are no items in cart */
           <div className="w-full flex justify-center items-center">
-            <img src={emptyBag} alt="empty cart icon" className="w-[300px]"/>
+            <img src={emptyBag} alt="empty cart icon" className="w-[300px] mt-[8%]"/>
           </div>)
         }
       </div>
