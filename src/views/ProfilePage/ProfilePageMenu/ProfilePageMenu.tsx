@@ -9,13 +9,12 @@ interface ProfilePageMenuProps {
 }
 
 export default function ProfilePageMenu({selected, setSelected}: ProfilePageMenuProps) {
+    const [isLogoutModal, setIsLogoutModal] = useState<boolean>(false);
 
     function handleMenuSelect(selectOption: ProfileMenuEnum) {
         setSelected(selectOption)
         localStorage.setItem('selected', selectOption)
     }
-
-    const [isLogoutModal, setIsLogoutModal] = useState<boolean>(false);
 
     function showLogoutModal() {
         setIsLogoutModal(true);

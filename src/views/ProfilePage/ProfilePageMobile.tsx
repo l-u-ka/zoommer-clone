@@ -4,7 +4,7 @@ import { useAuthProvider } from '@src/providers/AuthProvider/useAuthProvider';
 import { useThemeProvider } from '@src/providers/ThemeProvider/useThemeProvider';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { ProfileMenuEnum } from '@src/@types/types';
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import lefrArrow from '@src/assets/icons/light/category-left-arr.png'
 import leftArrowDark from '@src/assets/icons/dark/category-left-arr.png'
 import EditProfile from './EditProfile/EditProfile';
@@ -14,6 +14,7 @@ import Wishlist from './Wishlist/Wishlist';
 import PurchaseHistory from './PurchaseHistory/PurchaseHistory';
 import { useGlobalProvider } from '@src/providers/GlobalProvider/useGlobalProvider';
 import { useLocation } from 'react-router-dom';
+import LogoutModal from '@src/components/LogoutModal/LogoutModal';
 
 export default function ProfilePageMobile({selected, setSelected, updateLoading, setUpdateLoading} : {selected: ProfileMenuEnum, setSelected: React.Dispatch<React.SetStateAction<ProfileMenuEnum>>, updateLoading: boolean, setUpdateLoading: React.Dispatch<React.SetStateAction<boolean>>}) {
 
@@ -21,6 +22,14 @@ export default function ProfilePageMobile({selected, setSelected, updateLoading,
   const {lightMode} = useThemeProvider();
   const {route} = useGlobalProvider();
   const location = useLocation();
+  const [isLogoutModal, setIsLogoutModal] = useState<boolean>(false);
+
+  function showLogoutModal() {
+    setIsLogoutModal(true);
+  }
+  function closeLogoutModal() {
+    setIsLogoutModal(false);
+  }
 
   function handleMenuSelect(selectOption: ProfileMenuEnum) {
     setSelected(selectOption)
@@ -77,6 +86,10 @@ export default function ProfilePageMobile({selected, setSelected, updateLoading,
               <h3 className='firago-normal text-sm leading-[17px] cursor-pointer text-black-main dark:text-dark-black-main'><FormattedMessage id='purchase.history'/></h3>
               <img src={lightMode ? lefrArrow : leftArrowDark} className='rotate-180 h-3'/>
             </div>
+            <div className='flex justify-between cursor-pointer'>
+              <h4 className="text-orange-main cursor-pointer firago-normal leading-[17px] text-sm opacity-80 block mt-20" 
+              onClick={showLogoutModal}><FormattedMessage id="logout"/></h4>
+             </div>
           </div>
         )}
         {selected === ProfileMenuEnum.ON_EDITING && (
@@ -89,6 +102,7 @@ export default function ProfilePageMobile({selected, setSelected, updateLoading,
           <PurchaseHistory/>
         )}
       </div>
+      {isLogoutModal && <LogoutModal modalOpen={isLogoutModal} closeModal={closeLogoutModal}/>}
     </div>
   )
 }

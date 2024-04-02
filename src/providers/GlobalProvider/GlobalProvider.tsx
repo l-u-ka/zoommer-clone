@@ -24,8 +24,6 @@ export function GlobalProvider({ children }: PropsWithChildren) {
   useEffect(()=> {
     setRoute((prev)=> ({to: location.pathname, from: prev.to}) )
   }, [location]);
-
-  console.log(route)
   
   return (
     <GlobalContext.Provider value={{showOverlay, setShowOverlay, loginModalOpen, setLoginModalOpen, route}}>
