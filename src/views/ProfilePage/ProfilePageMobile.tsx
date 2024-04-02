@@ -37,7 +37,10 @@ export default function ProfilePageMobile({selected, setSelected, updateLoading,
   }
 
   useEffect(()=> {
-    if ((route.to !== route.from) && (location.pathname !== route.to)) setSelected(ProfileMenuEnum.ON_MENU)
+    if ((route.to !== route.from) && (location.pathname !== route.to)) {
+      localStorage.setItem('selected', ProfileMenuEnum.ON_MENU);
+      setSelected(ProfileMenuEnum.ON_MENU);
+    }
   }, [])
 
   const [parent] = useAutoAnimate({duration: 300, easing: 'ease-in-out'})
